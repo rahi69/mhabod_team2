@@ -1,0 +1,9 @@
+C:\Users\Maryam\Desktop\WebApplication4\WebApplication4\bin\WebApplication4.dll.config
+C:\Users\Maryam\Desktop\WebApplication4\WebApplication4\bin\WebApplication4.dll
+C:\Users\Maryam\Desktop\WebApplication4\WebApplication4\bin\WebApplication4.pdb
+C:\Users\Maryam\Desktop\WebApplication4\WebApplication4\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Maryam\Desktop\WebApplication4\WebApplication4\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Maryam\Desktop\WebApplication4\WebApplication4\obj\Debug\WebApplication4.csprojResolveAssemblyReference.cache
+C:\Users\Maryam\Desktop\WebApplication4\WebApplication4\obj\Debug\WebApplication4.csproj.CoreCompileInputs.cache
+C:\Users\Maryam\Desktop\WebApplication4\WebApplication4\obj\Debug\WebApplication4.dll
+C:\Users\Maryam\Desktop\WebApplication4\WebApplication4\obj\Debug\WebApplication4.pdb

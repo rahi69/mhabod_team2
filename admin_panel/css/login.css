@@ -1,0 +1,96 @@
+body{
+    background-image: url("../img/LoginPage.jpg");
+}
+
+.BackgroundOne{
+    width: 300px;
+    height: 300px;
+    background: #fff;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px;
+    border-radius: 200px;
+    opacity: 0.5;
+    margin: 0 auto;
+    position: relative;
+    top: 130px;
+}
+.BackgroundTwo{
+    width: 200px;
+    height: 200px;
+    background: #fff;
+    -moz-border-radius: 150px;
+    -webkit-border-radius: 150px;
+    border-radius: 150px;
+    margin: 0 auto;
+    position: relative;
+    bottom: 120px;
+}
+
+.UserPicture{
+    position: relative;
+    bottom: 287px;
+    left: 600px;
+    width: 10%;
+}
+
+
+.PassWord{
+    width: 400px;
+    height: 50px;
+    background: #fff;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    opacity: 0.5;
+    margin: 0 auto;
+    position: relative;
+    bottom: 150px;
+    left: 460px;
+    color: #000;
+    padding-left: 10px;
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075);
+    transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.LoginButtom{
+    width: 200px;
+    height: 35px;
+    background: #54769f;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    margin: 0 auto;
+    position: relative;
+    bottom: 100px;
+}
+
+a{
+    text-decoration: none;
+    text-align: center;
+}
+
+.Login{
+    color: #fff;
+    font-weight: 900;
+    position: relative;
+    top: 6px;
+}
+
+.UserName {
+
+    color: #000;
+    width: 400px;
+    height: 50px;
+    opacity: 0.5;
+    margin: 0 auto;
+    left: 460px;
+    position: relative;
+    bottom: 170px;
+    padding-left: 10px;
+    background-color: #fff;
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075);
+    transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
