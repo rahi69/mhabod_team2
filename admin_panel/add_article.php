@@ -3,11 +3,7 @@
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Add article </title>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <meta charset="UTF-8">
+
     <title>ویرایش مقالات</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,15 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+
+
 <style>
     .container{
         margin-top: 10%;
     }
+    #ParentArticle{
+        direction:rtl;
+        /*font-family: IRANSans;*/
+        font-weight: bold
+    }
+
 </style>
 <body>
-<div style="direction:rtl;font-family: IRANSans;font-weight: bold" class="container">
+<div id="ParentArticle" class="container">
 
     <form>
         <div class="form-group">
@@ -35,13 +37,11 @@
             <label for="pwd">رمز عبور:</label>
             <input type="password" class="form-control" id="pwd" placeholder="وارد کردن رمز عبور">
         </div>
+        <div class="form-group">
+            <label for="pwd">تکرار رمز عبور:</label>
+            <input type="password" class="form-control" id="Rpwd" placeholder="تکرار رمز عبور">
+        </div>
         <input style="direction: rtl;width: 100%" type="file" id="myFile">
-        <script>
-            function myFunction() {
-                var x = document.getElementById("myFile");
-                x.disabled = true;
-            }
-        </script>
 
         <div class="checkbox">
             <label><input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;فعال</label>
