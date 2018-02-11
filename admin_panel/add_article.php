@@ -14,41 +14,46 @@
 
 
 <style>
-    .container{
-        margin-top: 10%;
-    }
-    #ParentArticle{
-        direction:rtl;
-        /*font-family: IRANSans;*/
-        font-weight: bold
+
+    body{
+        background-image: url("img/BackgroundHome.jpg");
     }
 
+    form{
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        direction: rtl;
+        font-family: IRANSans;
+        font-weight: bold;
+        margin: 10%;
+    }
 </style>
 <body>
-<div id="ParentArticle" class="container">
 
-    <form>
-        <div class="form-group">
-            <label for="email">ایمیل:</label>
-            <input type="email" class="form-control" id="email"
-                   placeholder="وارد کردن ایمیل">
-        </div>
-        <div class="form-group">
-            <label for="pwd">رمز عبور:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="وارد کردن رمز عبور">
-        </div>
-        <div class="form-group">
-            <label for="pwd">تکرار رمز عبور:</label>
-            <input type="password" class="form-control" id="Rpwd" placeholder="تکرار رمز عبور">
-        </div>
-        <input style="direction: rtl;width: 100%" type="file" id="myFile">
+<form>
+    <div class="form-group">
+        <label for="email">ایمیل:</label>
+        <input type="email" class="form-control" id="email"
+               placeholder="وارد کردن ایمیل">
+    </div>
+    <div class="form-group">
+        <label for="pwd">رمز عبور:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="وارد کردن رمز عبور">
+    </div>
+    <div class="form-group">
+        <label for="pwd">تکرار رمز عبور:</label>
+        <input type="password" class="form-control" id="Rpwd" placeholder="وارد کردن رمز عبور">
+    </div>
+    <input style="direction: rtl;width: 100%" type="file" id="myFile">
 
-        <div class="checkbox">
-            <label><input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;فعال</label>
-        </div>
-        <button type="submit" class="btn btn-danger">ثبت</button>
-    </form>
-</div>
+    <div class="checkbox">
+        <label><input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;فعال</label>
+    </div>
+    <button type="submit" class="btn btn-danger">ثبت</button>
+</form>
+
+
 </body>
 
 
