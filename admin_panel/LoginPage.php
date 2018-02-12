@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-image: url("img/LoginPage.jpg")">
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">

@@ -1,5 +1,5 @@
 body{
-    background-image: url("LoginPage.jpg");
+    /*background-image: url(img/Loginpage.jpg);*/
 }
 
 .BackgroundOne{
@@ -61,7 +61,8 @@ body{
     border-radius: 30px;
     margin: 0 auto;
     position: relative;
-    bottom: 100px;
+    top: 400px;
+    right: 470px;
 }
 
 a{
