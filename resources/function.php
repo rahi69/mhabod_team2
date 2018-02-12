@@ -134,34 +134,34 @@ LISTARTICLE;
         $id=$this->escape_string($_GET['edit_article']);
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['submit']) && is_numeric($id)) {
-                    $title = $this->escape_string($_POST['title']);
-                    $short_desc = $this->escape_string($_POST['short_desc']);
-                    $description = $this->escape_string($_POST['description']);
-                    $image = $this->escape_string($_POST['image']);
-                    $status = $this->escape_string($_POST['status']);
-                    $sql="UPDATE tbl_article SET title ='{$title}' ,short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
-                    $result=$this->query($sql);
+                $title = $this->escape_string($_POST['title']);
+                $short_desc = $this->escape_string($_POST['short_desc']);
+                $description = $this->escape_string($_POST['description']);
+                $image = $this->escape_string($_POST['image']);
+                $status = $this->escape_string($_POST['status']);
+                $sql="UPDATE tbl_article SET title ='{$title}' ,short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
+                $result=$this->query($sql);
 //                    $this->confirm($result);
-                    if($result)
-                    {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
-                }
-                else
+                if($result)
                 {
+                    return true;
+                }
+                else {
                     return false;
                 }
-
+            }
+            else
+            {
+                return false;
             }
 
         }
+
+    }
     public function get_cat()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['submit'])) {
+            if (isset($_POST['mybtn'])) {
                 if (empty($_POST['name_cat'])) {
                     echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
 
@@ -211,6 +211,32 @@ VIDEO;
             echo $list;
         }
     }
+
+    public function manage_category(){
+        $sql = "SELECT * FROM tbl_category";
+        $result = $this->query($sql);
+        $this->confirm($result);
+        while ($row = $this->fetch_array($result)){
+            $category = <<<DELIMITER
+  <a href="#">{$row['name_category']}</a>
+                          
+DELIMITER;
+            echo $category;
+        }
+    }
+    public function manage_list_category(){
+        $sql = "SELECT * FROM tbl_category";
+        $result = $this->query($sql);
+        $this->confirm($result);
+        while ($row = $this->fetch_array($result)) {
+            $list = <<<DELIMITER
+            <li >
+ <button class="btn btn-primary btn-md" > حذف</button ><button class="btn btn-primary btn-md" > ویرایش</button ><button class="btn btn-primary btn-md" > غیر فعال </button ><p > {$row['name_category']} </p >
+            </li >
+DELIMITER;
+            echo $list;
+        }
+    }
     public function manage_gallery(){
 
 
@@ -223,6 +249,10 @@ VIDEO;
 <div class="SCard">
                 <img class="Svideo" src=img/"{$row['image_url']}">
                 <button>حذف</button><button>ویرایش</button>
+          <video poster="img/{$row['prev_url']}" class="Svideo" controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
+   
+                     <button>حذف</button><button>ویرایش</button>
+         
             </div>
 <div class="SCard">
                 <video class="Svideo" src=img/"{$row['image_url']}"></video>
@@ -252,7 +282,7 @@ DELIMITER;
                    
             </ul>
 VIDEO;
-             echo $list;
+            echo $list;
 
         }
     }
