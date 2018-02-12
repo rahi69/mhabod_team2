@@ -32,6 +32,11 @@
 
         </li>
 
+        <li data-toggle="collapse" data-target="#ads" class="collapsed">
+            <a class="list()" href="#َ"><i class="fa fa-black-tie fa-lg"></i> درباره من </a>
+
+        </li>
+
 
     </ul>
 

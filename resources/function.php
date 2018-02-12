@@ -224,6 +224,10 @@ VIDEO;
                 <img class="Svideo" src=img/"{$row['image_url']}">
                 <button>حذف</button><button>ویرایش</button>
             </div>
+<div class="SCard">
+                <video class="Svideo" src=img/"{$row['image_url']}">
+                <button>حذف</button><button>ویرایش</button>
+            </div>
 DELIMITER;
             echo $gallery;
         }
