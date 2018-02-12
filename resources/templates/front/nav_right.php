@@ -2,6 +2,10 @@
 
 
     <ul id="menu-content" class="menu-content collapse out">
+        <li data-toggle="collapse" data-target="#ads" class="collapsed">
+            <a class="list()" href="#َ"><i class="fa fa-black-tie fa-lg"></i> درباره من </a>
+
+        </li>
 
         <li data-toggle="collapse" data-target="#ads" class="collapsed">
             <a class="list" href="index.php"><i class="fa fa-camera fa-lg"></i>صفحه اصلی </a>
@@ -32,12 +36,15 @@
 
         </li>
 
+<<<<<<< Updated upstream
         <li data-toggle="collapse" data-target="#ads" class="collapsed">
             <a class="list()" href="#َ"><i class="fa fa-black-tie fa-lg"></i> سفارشات من </a>
 
         </li>
 
 
+=======
+>>>>>>> Stashed changes
     </ul>
 
 </div>
