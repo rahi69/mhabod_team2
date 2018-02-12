@@ -34,6 +34,8 @@ body{
     .nav-side-menu ul,
     .nav-side-menu li {
         list-style: none;
+        /*height: auto;*/
+        /*background-color: black;*/
         padding: 0px;
         margin: 0px;
         line-height: 35px;

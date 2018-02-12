@@ -38,6 +38,46 @@
         </div>
 
     </div>
+    <!--MENU LIST-->
+<!--    <div id="HomeLIST"  class="nav-side-menu col-lg-4">-->
+<!---->
+<!--        <div class="menu-list">-->
+<!---->
+<!--            <ul id="menu-content" class="menu-content collapse out">-->
+<!--                <!--PIC PROFILE-->-->
+<!---->
+<!--                <li data-toggle="collapse" data-target="#ads" class="collapsed">-->
+<!--                    <a class="list" href="index.php"><i class="fa fa-camera fa-lg"></i>صفحه اصلی </a>-->
+<!---->
+<!--                </li>-->
+<!---->
+<!--                <li onclick="showGallery()" data-toggle="collapse" data-target="#ads" class="collapsed">-->
+<!--                    <a class="list" href="Managmant-Gallery.php"><i class="fa fa-camera fa-lg"></i> مدیریت گالری </a>-->
+<!---->
+<!--                </li>-->
+<!---->
+<!---->
+<!--                <li onclick="showArticle()" data-toggle="collapse" data-target="#service" class="collapsed">-->
+<!--                    <a class="list" href="ManagmantArticle.php"><i class="glyphicon glyphicon-duplicate fa-lg"></i> مدیریت مقالات </a>-->
+<!--                </li>-->
+<!---->
+<!---->
+<!--                <li onclick="ShowEducation()" data-toggle="collapse" data-target="#new" class="collapsed">-->
+<!--                    <a class="list" href="Managment-Education.php"><i class="glyphicon glyphicon-briefcase fa-lg"></i> مدیریت آموزش </a>-->
+<!--                </li>-->
+<!--                <li onclick="List()" data-toggle="collapse" data-target="#ads" class="collapsed">-->
+
+
+
+<!--                    <a class="list()" href="#"><i class="fa fa-black-tie fa-lg"></i> درباره من </a>-->
+<!--                </li>-->
+<!---->
+<!---->
+<!--            </ul>-->
+<!---->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
     <div id="HomeLIST"  class="nav-side-menu col-lg-4">
         <!--BUTTON LIST-->
         <!--<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>-->
