@@ -38,7 +38,7 @@
 
 <<<<<<< Updated upstream
         <li data-toggle="collapse" data-target="#ads" class="collapsed">
-            <a class="list()" href="#َ"><i class="fa fa-black-tie fa-lg"></i> سفارشات من </a>
+            <a class="list()" href="#َ"><i class="fa fa-black-tie fa-lg"></i> سفارشات من  </a>
 
         </li>
 
