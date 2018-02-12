@@ -249,9 +249,9 @@ DELIMITER;
 <div class="SCard">
                 <img class="Svideo" src=img/"{$row['image_url']}">
                 <button>حذف</button><button>ویرایش</button>
-          <video poster="img/{$row['prev_url']}" class="Svideo" controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
-   
-                     <button>حذف</button><button>ویرایش</button>
+//          <video poster="img/{$row['prev_url']}" class="Svideo" controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
+//   
+//                     <button>حذف</button><button>ویرایش</button>
          
             </div>
 <div class="SCard">
