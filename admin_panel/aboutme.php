@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>مدیریت آموزش</title>
+    <title>درباره من</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -13,11 +13,11 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
 
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquerymin.js"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquerymin.js"></script>-->
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->
+    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
 
     <!--BOOTSTRAP-->
     <link href="Content/bootstrap.css" rel="stylesheet" />
@@ -87,16 +87,16 @@
                             <i class="material-icons">menu</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="facebook.png" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="pinterest.png" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="google plus.png" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="instagram.png" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="linkedin.png" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="skype.png" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="telegram.png" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="twitter.png" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="whatsapp.png" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="youtube.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/facebook.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/pinterest.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/google plus.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/instagram.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/linkedin.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/skype.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/telegram.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/twitter.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/whatsapp.png" /></a></li>
+                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" /></a></li>
 
                         </ul>
                     </div>
@@ -104,7 +104,7 @@
                     <div id="myOverlay" class="overlay">
                         <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
                         <div class="overlay-content">
-                            <form action="/action_page.php">
+                            <form>
                                 <input type="text" class="Social" placeholder="لینک">
                                 <br><br>
                                 <a href="#"><div class="SaveButton">حذف</div></a>
@@ -135,23 +135,23 @@
                 <!--PIC PROFILE-->
 
                 <li data-toggle="collapse" data-target="#ads" class="collapsed">
-                    <a class="list" href="main.html"><i class="fa fa-camera fa-lg"></i>صفحه اصلی </a>
+                    <a class="list" href="index.php"><i class="fa fa-camera fa-lg"></i>صفحه اصلی </a>
 
                 </li>
 
                 <li onclick="showGallery()" data-toggle="collapse" data-target="#ads" class="collapsed">
-                    <a class="list" href="Managmant-Gallery.html"><i class="fa fa-camera fa-lg"></i> مدیریت گالری </a>
+                    <a class="list" href="Managmant-Gallery.php"><i class="fa fa-camera fa-lg"></i> مدیریت گالری </a>
 
                 </li>
 
 
                 <li onclick="showArticle()" data-toggle="collapse" data-target="#service" class="collapsed">
-                    <a class="list" href="ManagmantArticle.html"><i class="glyphicon glyphicon-duplicate fa-lg"></i> مدیریت مقالات </a>
+                    <a class="list" href="ManagmantArticle.php"><i class="glyphicon glyphicon-duplicate fa-lg"></i> مدیریت مقالات </a>
                 </li>
 
 
                 <li onclick="ShowEducation()" data-toggle="collapse" data-target="#new" class="collapsed">
-                    <a class="list" href="Managment-Education.html"><i class="glyphicon glyphicon-briefcase fa-lg"></i> مدیریت آموزش </a>
+                    <a class="list" href="Managment-Education.php"><i class="glyphicon glyphicon-briefcase fa-lg"></i> مدیریت آموزش </a>
                 </li>
                 <li onclick="List()" data-toggle="collapse" data-target="#ads" class="collapsed">
                     <a class="list()" href="#"><i class="fa fa-black-tie fa-lg"></i> درباره من </a>
@@ -166,7 +166,7 @@
 </div>
 
 <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
 <script type="text/javascript" src="js/materialize.min.js"></script>
 
 </body>

@@ -59,9 +59,7 @@
                     <div class="dropdown row col-xs-12 col-lg-12">
                         <button class="dropbtn">دسته بندی</button>
                         <div class="dropdown-content">
-                            <a href="#">دسته بندی اول</a>
-                            <a href="#">دسته بندی دوم</a>
-                            <a href="#">دسته بندی سوم</a>
+                          <?php $function->manage_list_category();?>
                         </div>
                     </div>
 
