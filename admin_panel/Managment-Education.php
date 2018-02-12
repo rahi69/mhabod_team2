@@ -100,8 +100,6 @@
                         <input class="row col-lg-12" name="name_cat" type="text" placeholder="نام دسته">
                         <br/><br/><br/><br/>
                         <button id="mybtn" type="submit" name="submit"  class="row col-lg-12 btn btn-primary btn-lg" >افزودن دسته</button>
-
-
                     </form>
 
                 </div>

@@ -244,22 +244,20 @@ DELIMITER;
         $result = $this->query($sql);
         $this->confirm($result);
         while ($row = $this->fetch_array($result)){
-
+//echo "<pre>";
+//print_r($row);
+//echo "</pre>";
             $gallery=<<<DELIMITER
 <div class="SCard">
                 <img class="Svideo" src=img/"{$row['image_url']}">
                 <button>حذف</button><button>ویرایش</button>
-//          <video poster="img/{$row['prev_url']}" class="Svideo" controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
-//   
-//                     <button>حذف</button><button>ویرایش</button>
-         
             </div>
 <div class="SCard">
-                <video class="Svideo" src=img/"{$row['image_url']}"></video>
+                <video class="Svideo" src=upload/"{$row['video_url']}"></video>
                 <button>حذف</button><button>ویرایش</button>
             </div>
 DELIMITER;
-            echo $gallery;
+            return $gallery;
         }
     }
     public function list_video()
