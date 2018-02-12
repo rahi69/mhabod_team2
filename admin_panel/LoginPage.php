@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Login Page</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -20,7 +20,7 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <div class="BackgroundOne"></div>
             <div class="BackgroundTwo"></div>
-            <img src="UserPicture.jpg" class="UserPicture">
+            <img src="img/UserPicture.jpg" class="UserPicture">
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <div>
@@ -31,7 +31,7 @@
                 <a href="#"><div class="LoginButtom"><div class="Login" onclick="document.getElementById('id01').style.display='block'">Sign Up</div></div></a>
                 <div id="id01" class="modal">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <form class="modal-content" action="/action_page.php">
+                    <form class="modal-content">
                         <div class="container">
                             <h1>Sign Up</h1>
                             <p>Please fill in this form to create an account.</p>
@@ -76,7 +76,6 @@
     </div>
 </div>
 <script src="Scripts/jquery-1.9.1.min.js"></script>
-<script src="Scriptsjs"></script>
 <script src="Scripts/bootstrap.min.js"></script>
 
 </body>
