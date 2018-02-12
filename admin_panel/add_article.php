@@ -31,26 +31,35 @@
 </style>
 <body>
 
-<form>
+<form action="">
+    <br/>
     <div class="form-group">
-        <label for="email">ایمیل:</label>
-        <input type="email" class="form-control" id="email"
-               placeholder="وارد کردن ایمیل">
+        <label>نام مقاله:</label>
+        <input type="text" class="form-control" placeholder="نام مقاله" name="title">
     </div>
     <div class="form-group">
-        <label for="pwd">رمز عبور:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="وارد کردن رمز عبور">
+        <label>توضیحات کوتاه:</label>
+        <input type="text" class="form-control" placeholder="توضیحات" name="description">
     </div>
-    <div class="form-group">
-        <label for="pwd">تکرار رمز عبور:</label>
-        <input type="password" class="form-control" id="Rpwd" placeholder="وارد کردن رمز عبور">
-    </div>
-    <input style="direction: rtl;width: 100%" type="file" id="myFile">
 
-    <div class="checkbox">
-        <label><input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;فعال</label>
+    <div class="form-group">
+        <label for="comment">متن مقاله:</label>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
     </div>
-    <button type="submit" class="btn btn-danger">ثبت</button>
+
+    <input style="direction: rtl;width: 100%" type="file" id="myFile">
+    <!--        <script>-->
+    <!--            function myFunction() {-->
+    <!--                var x = document.getElementById("myFile");-->
+    <!--                x.disabled = true;-->
+    <!--            }-->
+    <!--        </script>-->
+    <div style="direction: rtl;width: 100%" class="checkbox">
+        <label><input type="checkbox" name="remember">&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
+    </div>
+    <div style="direction: rtl;width: 100%">
+        <button style="direction: rtl" type="submit" class="btn btn-danger">ثبت</button>
+    </div>
 </form>
 
 
