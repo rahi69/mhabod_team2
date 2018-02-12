@@ -107,35 +107,35 @@
     border: 1.5px solid #ffffff;
     width:100%;
     height:75%;
-    background-image: url("img/backVideo.jpg");
+    background-image: url("../img/backVideo.jpg");
     background-size: cover;
 }
 .ListGallery .Mvideo{
     border: 2px solid #f29e93;
     width:100%;
     height:80%;
-    background-image: url("img/p.gif");
+    background-image: url("../img/p.gif");
     background-size: cover;
 }
 .ListGallery .Lvideo{
     border: 2px solid #ffffff;
     width:100%;
     height:82%;
-    background-image: url("img/backVideo.jpg");
+    background-image: url("../img/backVideo.jpg");
     background-size: cover;
 }
 .ListGallery .xsvideo {
     border: 2px solid #ffffff;
     width:100%;
     height:82%;
-    background-image: url("img/backVideo.jpg");
+    background-image: url("../img/backVideo.jpg");
     background-size: cover;
 }
 .ListGallery .XLvideo {
     border: 2px solid #ffffff;
     width:100%;
     height:83%;
-    background-image: url("img/backVideo.jpg");
+    background-image: url("../img/backVideo.jpg");
     background-size: cover;
 }
 .ListGallery button{
@@ -158,7 +158,7 @@
 }
 /*.............................................................................................*/
 #showListHome{
-    background-image: url("img/CIRLEpROFILE.jpg");
+    background-image: url("../img/CIRLEpROFILE.jpg");
     width: 100px;
     height: 100px;
     border-radius: 100px;
@@ -171,4 +171,6 @@
 #showListHome:hover{
     border: 5px solid #d43f3a;
 }
-
+#container{
+    overflow-y: scroll;
+}
