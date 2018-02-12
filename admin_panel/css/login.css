@@ -27,9 +27,9 @@ body{
 }
 
 .UserPicture{
-    position: relative;
-    bottom: 287px;
-    right: 140px;
+    position: absolute;
+    top: 200px;
+    right: 180px;
 }
 
 
