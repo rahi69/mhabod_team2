@@ -225,7 +225,7 @@ VIDEO;
                 <button>حذف</button><button>ویرایش</button>
             </div>
 <div class="SCard">
-                <video class="Svideo" src=img/"{$row['image_url']}">
+                <video class="Svideo" src=img/"{$row['image_url']}"></video>
                 <button>حذف</button><button>ویرایش</button>
             </div>
 DELIMITER;
