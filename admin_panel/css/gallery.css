@@ -1,3 +1,26 @@
+#Add-newGallery{
+    direction: rtl;
+    background-color: #ffffff;
+    padding: 5px;
+    margin: auto;
+    font-weight: bold;
+
+    }
+#Add-newGallery a{
+    width: 120px;
+    background-color: #54759f;
+    text-align: right;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 10px;
+    text-decoration: none;
+}
+#Add-newGallery a:hover{
+    font-size: 12px;
+    width: 150px;
+
+}
 #header-GAllery{
     color: #ffffff;
     margin: auto;
@@ -170,6 +193,7 @@
 #showListHome:hover{
     border: 5px solid #d43f3a;
 }
+
 /*.ListGallery .Mvideo{*/
     /*border: 2px solid #f29e93;*/
     /*width:100%;*/
