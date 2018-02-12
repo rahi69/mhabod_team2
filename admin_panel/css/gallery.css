@@ -190,6 +190,11 @@
     margin-right: 41%;
     margin-bottom: 8%;
 }
+.div-parent{
+    width: 100%;
+    height: 200px;
+    background-color: #239d0f;
+}
 #showListHome:hover{
     border: 5px solid #d43f3a;
 }

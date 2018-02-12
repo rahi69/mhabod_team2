@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 <body>
 <!--<button class="hidden-lg" id="showListHome" onclick="showListHome()"></button>-->
@@ -41,8 +40,9 @@
         </div>
 
     </div>
-
     <div id="HomeLIST"  class="nav-side-menu col-lg-4">
+        <!--BUTTON LIST-->
+        <!--<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>-->
 
         <?php include TEMPLATE_FRONT . 'nav_right.php'; ?>
 
