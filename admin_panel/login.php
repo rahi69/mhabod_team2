@@ -1,4 +1,5 @@
 <?php require_once '../resources/config.php'; ?>
+
 <!doctype html>
 <html lang="en">
 <head>

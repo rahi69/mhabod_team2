@@ -40,6 +40,9 @@
             direction: rtl;
 
         }
+        #container{
+            margin-bottom: 5%;
+        }
     </style>
 </head>
 <body>
