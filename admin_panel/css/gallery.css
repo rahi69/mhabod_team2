@@ -1,19 +1,20 @@
 #Add-newGallery{
     direction: rtl;
-    background-color: #ffffff;
+    /*background-color: #8fc5f3;*/
     padding: 5px;
     margin: auto;
     font-weight: bold;
 
+
     }
 #Add-newGallery a{
-    width: 120px;
+    width: 100%;
     background-color: #54759f;
     text-align: right;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 1px;
     color: #ffffff;
-    font-size: 10px;
+    font-size:13px;
     text-decoration: none;
 }
 #Add-newGallery a:hover{

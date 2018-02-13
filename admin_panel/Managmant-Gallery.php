@@ -30,13 +30,15 @@
     <div  id="container" class="col-lg-8">
 
         <div id="header-GAllery" class="row col-lg-12">مدیریت گالری</div>
-<div class="row col-xs-12" id="Add-newGallery">
-    <a href="#">اضافه کردن گالری جدید</a>
-</div>
+
 
         <div class="row col-lg-12 ListGallery">
 
   <?php echo $function->manage_gallery();?>
+        </div>
+
+        <div class="row col-xs-12" id="Add-newGallery">
+            <a href="#">اضافه کردن گالری جدید</a>
         </div>
 
     </div>
