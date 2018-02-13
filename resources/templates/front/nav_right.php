@@ -23,7 +23,7 @@
 
 
         <li onclick="ShowEducation()" data-toggle="collapse" data-target="#new" class="collapsed">
-            <a class="list" href="Managment-Education.php"><i class="glyphicon glyphicon-briefcase fa-lg"></i> مدیریت آموزش </a>
+            <a class="list" href="ModiriateGallery.php"><i class="glyphicon glyphicon-briefcase fa-lg"></i> مدیریت آموزش </a>
 
         </li>
 
