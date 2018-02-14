@@ -457,7 +457,7 @@
                                 <label><input type="checkbox" name="remember"> فعال</label>&nbsp;&nbsp;
                             </div><br/>
                             <div style="direction: rtl;width: 100%">
-                                <button style="direction: rtl" type="submit" class="btn btn-danger">ویرایش</button>
+                                <button style="direction: rtl" type="submit" class="btn btn-danger">ثبت</button>
                             </div>
                         </form>
                     </div>
