@@ -11,29 +11,23 @@
 </head>
 
 <style>
-    .container form{
+    .containerrrrr form{
         font-weight: bold;
         font-family: IRANSans;
         direction: rtl;
         text-align: right;
-    }
-    body{
-        background-image: url("img/BackgroundHome.jpg");
-    }
-
-    form{
         background-color: #ffffff;
         padding: 20px;
         border-radius: 10px;
-        direction: rtl;
-        font-family: IRANSans;
-        font-weight: bold;
         margin: 10%;
     }
+    /*body{*/
+        /*background-image: url("img/BackgroundHome.jpg");*/
+    /*}*/
+
 </style>
 <body>
-<div class="container">
-
+<div class="containerrrrr">
     <form action="">
         <br/>
         <div class="form-group">
