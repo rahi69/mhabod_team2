@@ -23,13 +23,13 @@
 
 
         <li onclick="ShowEducation()" data-toggle="collapse" data-target="#new" class="collapsed">
-            <a class="list" href="ModiriateGallery.php"><i class="glyphicon glyphicon-briefcase fa-lg"></i> مدیریت آموزش </a>
+            <a class="list" href="M.Education.php"><i class="glyphicon glyphicon-briefcase fa-lg"></i> مدیریت آموزش </a>
 
         </li>
 
 
         <li data-toggle="collapse" data-target="#ads" class="collapsed">
-            <a class="list()" href="#َ"><i class="fa fa-black-tie fa-lg"></i> درباره من </a>
+            <a class="list()" href="aboutme.php"><i class="fa fa-black-tie fa-lg"></i> درباره من </a>
 
         </li>
 
