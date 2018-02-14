@@ -371,8 +371,9 @@
 
                 </div>
                 <div class="CARDvideo">
-                    <img class="XLvideo"></img>
+                    <img src="img/backVideo.jpg" class="XLvideo"></img>
                     <button>حذف</button><button>ویرایش</button>
+<!--                    سیسشیحنبخنب-->
 
                 </div>
             </div>
