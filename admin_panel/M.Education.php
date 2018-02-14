@@ -101,40 +101,74 @@
             <div id="myOverlaytow" class="overlay">
                 <span class="closebtn" onclick="closeSearch2()" title="Close Overlay">×</span>
                 <div class="overlay-content">
-                    <div class="containerrrrr">
-                        <form action="">
-                            <br/>
-                            <div class="form-group">
-                                <label> عنوان:</label>
-                                <input type="text" class="form-control"  name="title">
-                            </div>
-                            <div class="form-group">
-                                <label>قیمت:</label>
-                                <input type="text" class="form-control"  name="price">
-                            </div>
+                    <div  class="containerrrrr">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
-                            <div class="form-group">
-                                <label for="comment">توضیحات:</label>
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
-                            </div>
-                            <label for="video">انتخاب ویدئو</label>
-                            <input style="direction: rtl;width: 100%" type="file" id="myFile"><br/>
-                            <!--        <script>-->
-                            <!--            function myFunction() {-->
-                            <!--                var x = document.getElementById("myFile");-->
-                            <!--                x.disabled = true;-->
-                            <!--            }-->
-                            <!--        </script>-->
+                            <?php
+                            $add=new functions();
+                            $add->get_video();
+                            ?>
+                            <form>
 
-                            <div style="direction: rtl;width: 100%" class="checkbox">
-                                <label><input type="checkbox" name="remember"> فعال</label>&nbsp;&nbsp;
-                            </div><br/>
-                            <div style="direction: rtl;width: 100%">
-                                <button style="direction: rtl" type="submit" class="btn btn-danger">ثبت</button>
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <label for="title">عنوان </label>
+                                    <input type="text" name="title" class="form-control">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">قیمت </label>
+                                    <input type="text" name="price" class="form-control">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">توضیحات</label>
+                                    <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+                                </div>
+                                <br/>
+                                <select name="category">
+                                    <option value="0">انتخاب دسته بندی</option>
+                                    <?php
+                                    $function=new functions();
+                                    $sql = "SELECT * FROM tbl_category";
+                                    $query = $function->query($sql);
+                                    $function->confirm($query);
+                                    //        $row = fetch_array($query);
+                                    //        echo $row['cat_id'];
+                                    while($row = $function->fetch_array($query)) {
+
+                                        ?>
+                                        <option   value="<?php echo $row['id_category'];?>"><?php echo $row['name_category'];?></option>
+
+                                    <?php  } ?>
+                                </select><br><br>
+
+                                <!-- Product Image -->
+                                <div class="form-group">
+                                    <label for="image">انتخاب عکس</label>
+                                    <input type="file" name="image">
+
+                                </div>
+                                <div id="choseFile" class="form-group">
+                                    <label for="video">انتخاب ویدئو</label>
+                                    <input type="file" name="video">
+
+                                </div>
+
+                                <div style="width: 15%" class="checkbox">
+                                    <label><input type="checkbox" name=""> فعال</label>&nbsp;&nbsp;
+                                </div>
+<br/>
+                                <div class="form-group">
+                                    <button class="btn btn-danger" type="submit" name="Add">ثبت</button>
+                                </div>
+
+
+                            </form>
+
+
+
                     </div>
-
 
                 </div>
             </div>
