@@ -35,44 +35,33 @@
 <!--                <div class="LoginButtom" name="LoginButton"><div class="Login"><input type="submit" name="LoginButton" style="background: #54769f; border: none;" value="Login"></div></div>-->
 
                 <a href="#"><div class="SignUpButtom"><div class="Login" onclick="document.getElementById('id01').style.display='block'">Sign Up</div></div></a>
-<!--                <div id="id01" class="modal">-->
-<!--<!--                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>-->-->
-<!--                    <form class="modal-content" method="post">-->
-<!--                        <div class="container">-->
-<!--                            <h1>Sign Up</h1>-->
-<!--                            <p>Please fill in this form to create an account.</p>-->
-<!--                            <p style="display: none"><span>--><?php // $function->display_message(); ?><!--</span></p>-->
-<!--                            <hr>-->
-<!--                            <label><b>username</b></label>-->
-<!--                            <input type="text" placeholder="Enter username" name="username" required><br>-->
-<!---->
-<!--                            <label><b>Email</b></label>-->
-<!--                            <input type="email" placeholder="Enter Email" name="email" required><br>-->
-<!---->
-<!--                            <label><b>Password</b></label>-->
-<!--                            <input type="password" placeholder="Enter Password" name="password" required><br>-->
-<!---->
-<!--                            <label><b>Repeat Password</b></label>-->
-<!--                            <input type="password" placeholder="Repeat Password" name="re_password" required><br>-->
-<!---->
-<!--                            <label>-->
-<!--                                <input type="checkbox" checked="checked" name="remember"> Remember me-->
-<!--                            </label>-->
-<!--                            <div class="clearfix">-->
-<!--                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>-->
-<!--                                <button type="submit" name="SignUp" class="signupbtn">Sign Up</button>-->
-<!--                                --><?php //$function->sign_up();?>
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
+                <div id="id01" class="modal">
+<!--                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>-->
+                    <form class="modal-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
+                        <div class="container">
+                            <h1>Sign Up</h1>
+                            <p>Please fill in this form to create an account.</p>
+                            <hr>
+                            <label><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="email" required><br>
 
+                            <label><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required><br>
 
-<!--                *************-->
+                            <label><b>Repeat Password</b></label>
+                            <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
 
-
-
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                            <div class="clearfix">
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                                <button type="submit" class="signupbtn">Sign Up</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
                 <!--                <script>-->
                 <!--                    // Get the modal-->

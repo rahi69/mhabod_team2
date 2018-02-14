@@ -179,12 +179,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/login.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Sign Up</title>
 </head>
 <body>
 
 <div id="id01" class="modal">
-    <!--                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>-->
+<!--                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>-->
     <form class="modal-content" method="post">
         <div class="container">
             <h1>Sign Up</h1>
@@ -214,6 +216,7 @@
         </div>
     </form>
 </div>
-
+<script src="Scripts/jquery-1.9.1.min.js"></script>
+<script src="Scripts/bootstrap.min.js"></script>
 </body>
 </html>
