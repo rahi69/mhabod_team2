@@ -32,7 +32,6 @@
                  <?php $function->login(); ?>
                 </form>
                 <br>
-<!--                <div class="LoginButtom" name="LoginButton"><div class="Login"><input type="submit" name="LoginButton" style="background: #54769f; border: none;" value="Login"></div></div>-->
 
                 <a href="#"><div class="SignUpButtom"><div class="Login" onclick="document.getElementById('id01').style.display='block'">Sign Up</div></div></a>
                 <div id="id01" class="modal">
