@@ -10,18 +10,18 @@
 #Add-newGallery a{
     width: 100%;
     background-color: #54759f;
-    text-align: right;
+    text-align: center;
     padding: 10px;
     border-radius: 1px;
     color: #ffffff;
     font-size:13px;
     text-decoration: none;
 }
-#Add-newGallery a:hover{
-    font-size: 12px;
-    width: 150px;
+/*#Add-newGallery a:hover{*/
+    /*font-size: 12px;*/
+    /*width: 150px;*/
 
-}
+/*}*/
 #header-GAllery{
     color: #ffffff;
     margin: auto;
