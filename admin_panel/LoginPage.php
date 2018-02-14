@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php require_once '../resources/config.php';?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,9 +25,12 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <div>
-                <div><input type="text" class="UserName" placeholder="User Name"></div>
-                <div><input type="text" class="PassWord" placeholder="Pass Word"></div>
-                <a href="#"><div class="LoginButtom"><div class="Login">Login</div></div></a>
+                <form method="post">
+                <div><input type="text" class="UserName" name="username" placeholder="User Name"></div>
+                <div><input type="password" class="PassWord" name="password" placeholder="Pass Word"></div>
+               <div class="LoginButtom" name="LoginButton"><div class="Login"><input type="submit" name="LoginButton" style="background: #54769f; border: none;" value="Login"></div></div>
+                 <?php $function->login(); ?>
+                </form>
                 <br>
                 <a href="#"><div class="SignUpButtom"><div class="Login" onclick="document.getElementById('id01').style.display='block'">Sign Up</div></div></a>
                 <div id="id01" class="modal">

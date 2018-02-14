@@ -46,10 +46,10 @@ if(!isset($_SESSION))
     {
         global $connection;
         $string2 = $connection->real_escape_string($string);
-//     $string3=htmlspecialchars($string2);
-        $string3 = htmlentities($string2, ENT_COMPAT, 'UTF-8');
-
-        return $string3;
+     $string2 = htmlspecialchars($string2);
+        $string2 = htmlentities($string2, ENT_COMPAT, 'UTF-8');
+        $string2 = trim($string2);
+        return $string2;
 
     }
     public function add_cat()
@@ -351,7 +351,7 @@ LIST;
     public function login()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['submit'])) {
+            if (isset($_POST['LoginButton'])) {
                 if (empty($_POST['username']) || empty($_POST['password'])) {
                     echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
 
