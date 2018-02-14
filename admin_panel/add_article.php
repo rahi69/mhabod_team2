@@ -57,7 +57,7 @@
     <div style="direction: rtl;width: 100%" class="checkbox">
         <label><input type="checkbox" name="remember">&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
     </div>
-    <div style="direction: rtl;width: 100%">
+    <div>
         <button style="direction: rtl" type="submit" class="btn btn-danger">ثبت</button>
     </div>
 </form>
