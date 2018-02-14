@@ -16,14 +16,14 @@
 
 
         <li onclick="showArticle()" data-toggle="collapse" data-target="#service" class="collapsed">
-            <a class="list" href="ManagmantArticle.php"><i class="glyphicon glyphicon-duplicate fa-lg"></i> مدیریت مقالات </a>
+            <a class="list" href="ManagmantArticle.php"> <i class="fa fa-newspaper-o"></i> مدیریت مقالات </a>
 
         </li>
 
 
 
         <li onclick="ShowEducation()" data-toggle="collapse" data-target="#new" class="collapsed">
-            <a class="list" href="M.Education.php"><i class="glyphicon glyphicon-briefcase fa-lg"></i> مدیریت آموزش </a>
+            <a class="list" href="M.Education.php"><i class="fa fa-suitcase"></i> مدیریت آموزش </a>
 
         </li>
 
@@ -35,7 +35,7 @@
 
 
         <li data-toggle="collapse" data-target="#ads" class="collapsed">
-            <a class="list()" href="#َ"><i class="fa fa-black-tie fa-lg"></i> سفارشات من  </a>
+            <a class="list()" href="#َ"><i class="fa fa-tty"></i> سفارشات من  </a>
 
         </li>
 
