@@ -4,9 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>مدیریت آموزشی</title>
-
-
-
     <!--BOOTSTRAP-->
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
