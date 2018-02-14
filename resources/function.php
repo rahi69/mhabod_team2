@@ -52,6 +52,23 @@ if(!isset($_SESSION))
         return $string3;
 
     }
+    public function add_cat()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['submit'])) {
+                if (empty($_POST['name_cat'])) {
+                    echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
+
+                } else {
+                    $name_cat = $this->escape_string($_POST['name_cat']);
+                    $sql = "INSERT INTO tbl_category(name_category) VALUES ('$name_cat')";
+                    $result = $this->query($sql);
+                    $this->confirm($result);
+                }
+
+            }
+        }
+    }
     public function manage_article()
     {
         $sql = "SELECT * FROM tbl_article";
@@ -231,15 +248,14 @@ DELIMITER;
         while ($row = $this->fetch_array($result)) {
             $list = <<<DELIMITER
             <li >
- <button class="btn btn-primary btn-md" > حذف</button ><button class="btn btn-primary btn-md" > ویرایش</button ><button class="btn btn-primary btn-md" > غیر فعال </button ><p > {$row['name_category']} </p >
+            <button class="btn btn-primary btn-md" > حذف</button ><button class="btn btn-primary btn-md" > ویرایش</button ><button class="btn btn-primary btn-md" > غیر فعال </button ><p > {$row['name_category']} </p >
             </li >
 DELIMITER;
             echo $list;
         }
     }
-    public function manage_gallery(){
-
-
+    public function manage_gallery()
+    {
         $sql = "SELECT * FROM tblgallery";
         $result = $this->query($sql);
         $this->confirm($result);
@@ -253,7 +269,7 @@ DELIMITER;
                 <button>حذف</button><button>ویرایش</button>
             </div>
 <div class="SCard">
-                <video class="Svideo" src=upload/"{$row['video_url']}"></video>
+                <video  class="XLvideo" controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
                 <button>حذف</button><button>ویرایش</button>
             </div>
 DELIMITER;

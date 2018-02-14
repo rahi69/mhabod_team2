@@ -4,9 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>مدیریت آموزشی</title>
-
-
-
     <!--BOOTSTRAP-->
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
@@ -59,7 +56,9 @@
                     <div class="dropdown row col-xs-12 col-lg-12">
                         <button class="dropbtn">دسته بندی</button>
                         <div class="dropdown-content">
-                          <?php $function->manage_list_category();?>
+                            <a href="#">دسته بندی اول</a>
+                            <a href="#">دسته بندی دوم</a>
+                            <a href="#">دسته بندی سوم</a>
                         </div>
                     </div>
 
