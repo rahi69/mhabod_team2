@@ -46,12 +46,13 @@ if(!isset($_SESSION))
     {
         global $connection;
         $string2 = $connection->real_escape_string($string);
-     $string2 = htmlspecialchars($string2);
+        $string2 = htmlspecialchars($string2);
         $string2 = htmlentities($string2, ENT_COMPAT, 'UTF-8');
         $string2 = trim($string2);
         return $string2;
 
     }
+
     public function add_cat()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -69,6 +70,7 @@ if(!isset($_SESSION))
             }
         }
     }
+
     public function manage_article()
     {
         $sql = "SELECT * FROM tbl_article";
@@ -86,6 +88,7 @@ LISTARTICLE;
 
         }
     }
+
     public function list_article()
     {
         $sql = "SELECT * FROM tbl_article";
@@ -132,49 +135,48 @@ LISTARTICLE;
             }
         }
     }
+
     public function edit_article()
     {
-        if(!isset($_SESSION))
-        {
-            session_start();
-        }
-        $id=$this->escape_string($_GET['edit_article']);
-        $sql="SELECT * FROM tbl_article WHERE id_article = '{$id}'";
-        $query=$this->query($sql);
+//        if(!isset($_SESSION))
+//        {
+//            session_start();
+//        }
+        $id = $this->escape_string($_GET['edit_article']);
+        $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id}'";
+        $query = $this->query($sql);
         $this->confirm($query);
-        $result =$this->fetch_array($query);
+        $result = $this->fetch_array($query);
         return $result;
 
     }
+
     public function UpdateArticleById()
     {
-        $id=$this->escape_string($_GET['edit_article']);
+        $id = $this->escape_string($_GET['edit_article']);
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['submit']) && is_numeric($id)) {
+            if (isset($_POST['update_article']) && is_numeric($id)) {
                 $title = $this->escape_string($_POST['title']);
                 $short_desc = $this->escape_string($_POST['short_desc']);
                 $description = $this->escape_string($_POST['description']);
                 $image = $this->escape_string($_POST['image']);
-                $status = $this->escape_string($_POST['status']);
-                $sql="UPDATE tbl_article SET title ='{$title}' ,short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
-                $result=$this->query($sql);
+                $status = intval($_POST['status']);
+                $sql = "UPDATE tbl_article SET title ='{$title}' ,short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
+                $query = $this->query($sql);
 //                    $this->confirm($result);
-                if($result)
-                {
+                if ($query) {
                     return true;
-                }
-                else {
+                } else {
                     return false;
                 }
-            }
-            else
-            {
+            } else {
                 return false;
             }
 
         }
 
     }
+
     public function get_cat()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -192,21 +194,16 @@ LISTARTICLE;
             }
         }
     }
+
     public function button()
     {
-        if($_SERVER["REQUEST_METHOD"]=="POST")
-        {
-            if(isset($_POST['Add_category']))
-            {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['Add_category'])) {
                 $this->redirect("add_cat.php");
-            }
-            elseif (isset($_POST['Add_video']))
-            {
+            } elseif (isset($_POST['Add_video'])) {
                 $this->redirect("add_video.php");
 
-            }
-            elseif (isset($_POST['Admin_category']))
-            {
+            } elseif (isset($_POST['Admin_category'])) {
                 $this->redirect("list_cat.php");
 
             }
@@ -223,7 +220,6 @@ LISTARTICLE;
                     <video poster="img/{$row['image_prev']}" class="XLvideo" controls><source src="upload/{$row['video']}" type="video/mp4"></video>
                     <a class="btn btn-danger" href="index.php?delete_video={$row['id_video']}">حذف</a>
                     <button>ویرایش</button></div>
-  
 VIDEO;
             echo $list;
         }
@@ -375,6 +371,10 @@ LIST;
     }
     public function sign_up()
     {
+//        if(!isset($_SESSION))
+//        {
+//            session_start();
+//        }
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['SignUp'])) {
                 if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['re_password']) || empty($_POST['email'])) {

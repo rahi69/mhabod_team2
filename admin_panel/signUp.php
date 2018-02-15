@@ -8,10 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/login.css" />
-    <title>Document</title>
+    <title>Sign Up</title>
 </head>
 <body>
-
 <!--<div class="modal">-->
     <form class="modal-content" method="post">
         <div class="container">

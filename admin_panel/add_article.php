@@ -47,7 +47,7 @@
 
     <div class="form-group">
         <label for="description">متن مقاله:</label>
-        <textarea class="form-control" rows="5" name="description" id=""></textarea>
+        <textarea class="form-control" rows="5" name="description" id="comment"></textarea>
     </div>
 
     <input style="direction: rtl;width: 100%" type="file" id="myFile" name="image">

@@ -67,16 +67,12 @@
         include '../admin_panel/delete_video.php';
     }
     ?>
-    <!--<div id="footer" class="row">فوتر صفحه</div>-->
-
 </body>
 </html>
 
 
 <script src="Scripts/main.js"></script>
 
-<!--angular js-->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
 
 
 

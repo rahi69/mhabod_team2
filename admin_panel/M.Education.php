@@ -37,20 +37,8 @@
             </div>
             <br/>
             <div id="listsVideo" class="row">
-                <div class="CARDvideo">
-                    <video class="XLvideo"></video>
-                    <button>حذف</button><button>ویرایش</button>
-
-                </div>
-                <div class="CARDvideo">
-                    <img src="img/backVideo.jpg" class="XLvideo"></img>
-                    <button>حذف</button><button>ویرایش</button>
-<!--                    سیسشیحنبخنب-->
-
-                </div>
+                <?php $function->manage_video();?>
             </div>
-
-
             <!--pup uo 1-->
             <div id="myOverlay" class="overlay">
                 <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
@@ -91,9 +79,15 @@
             <div id="myOverlayone" class="overlay">
                 <span class="closebtn" onclick="closeSearch1()" title="Close Overlay">×</span>
                 <div class="overlay-content">
-                    <a href="#myOverlay" id="mybtn" class="row col-lg-12 btn btn-primary btn-lg">افزودن دسته</a>
-                    <br/><br/><br/><br/>
-                    <input class="row col-lg-12" type="text" placeholder="نام دسته">
+                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                        <?php
+                        $function->add_cat(); ?>
+                    <button type="submit" name="submit" id="mybtn" class="row col-lg-12 btn btn-primary btn-lg">افزودن دسته</button>
+<!--                        <button id="mybtn" type="submit" name="submit"  class="row col-lg-12 btn btn-primary btn-lg" >افزودن دسته</button>-->
+
+                        <br/><br/><br/><br/>
+                        <input class="row col-lg-12" name="name_cat" type="text" placeholder="نام دسته">
+                    </form>
 
                 </div>
             </div>
@@ -105,28 +99,27 @@
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
                             <?php
-                            $add=new functions();
-                            $add->get_video();
+                            $function->get_video();
                             ?>
                             <form>
 
                                 <div class="form-group">
                                     <label for="title">عنوان </label>
-                                    <input type="text" name="title" class="form-control">
+                                    <input type="text" name="title" class="form-control" required>
 
                                 </div>
                                 <div class="form-group">
                                     <label for="price">قیمت </label>
-                                    <input type="text" name="price" class="form-control">
+                                    <input type="text" name="price" class="form-control" required>
 
                                 </div>
 
                                 <div class="form-group">
                                     <label for="description">توضیحات</label>
-                                    <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea name="description" id="" cols="30" rows="10" class="form-control" required></textarea>
                                 </div>
                                 <br/>
-                                <select name="category">
+                                <select name="category" required>
                                     <option value="0">انتخاب دسته بندی</option>
                                     <?php
                                     $function=new functions();
@@ -146,25 +139,26 @@
                                 <!-- Product Image -->
                                 <div class="form-group">
                                     <label for="image">انتخاب عکس</label>
-                                    <input type="file" name="image">
+                                    <input type="file" name="image" required>
 
                                 </div>
                                 <div id="choseFile" class="form-group">
                                     <label for="video">انتخاب ویدئو</label>
-                                    <input type="file" name="video">
+                                    <input type="file" name="video" required>
 
                                 </div>
 
                                 <div style="width: 15%" class="checkbox">
-                                    <label><input type="checkbox" name=""> فعال</label>&nbsp;&nbsp;
+                                    <label><input type="checkbox" name="status" value="1" required> فعال</label>&nbsp;&nbsp;
                                 </div>
 <br/>
                                 <div class="form-group">
-                                    <button class="btn btn-danger" type="submit" name="Add">ثبت</button>
+                                    <button style="margin-left:600px;" class="btn btn-danger" type="submit" name="Add">ثبت</button>
                                 </div>
 
 
                             </form>
+
 
 
 
