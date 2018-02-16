@@ -219,7 +219,7 @@ LISTARTICLE;
        <div class="CARDvideo">
                     <video poster="img/{$row['image_prev']}" class="XLvideo" controls><source src="upload/{$row['video']}" type="video/mp4"></video>
                     <a class="btn btn-danger" href="index.php?delete_video={$row['id_video']}">حذف</a>
-                    <button>ویرایش</button></div>
+                    <a class="btn btn-info" href="edit_video.php?edit_video={$row['id_video']}">ویرایش</a></div>
 VIDEO;
             echo $list;
         }
@@ -335,9 +335,10 @@ LIST;
                     $image = $this->escape_string($_POST['image']);
                     $video = $this->escape_string($_POST['video']);
                     $status = $this->escape_string($_POST['status']);
+                    $time = date("Y-m-d G:i:s<br>", time()); ;
 
 
-                    $sql = "INSERT INTO tbl_video (title,price,description,id_category,image_prev,video,status) VALUES ('$title','$price','$description','$cat_id','$image','$video','$status')";
+                    $sql = "INSERT INTO tbl_video (title,price,`date`,description,id_category,image_prev,video,status) VALUES ('$title','$price','$time','$description','$cat_id','$image','$video','$status')";
                     $result = $this->query($sql);
                     $this->confirm($result);
                 }
