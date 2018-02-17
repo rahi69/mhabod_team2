@@ -1,0 +1,15 @@
+form{
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    direction: rtl;
+    font-family: IRANSans;
+    font-weight: bold;
+    margin: 10%;
+}
+body div{
+    direction: rtl;width: 100%
+}
+body{
+    background-image: url("../img/BackgroundHome.jpg");
+}

@@ -66,6 +66,10 @@
     {
         include '../admin_panel/delete_video.php';
     }
+    if(isset($_GET['edit_video']))
+    {
+        include '../admin_panel/edit_video.php';
+    }
     ?>
 </body>
 </html>
