@@ -45,31 +45,15 @@
                 <div class="overlay-content">
 
                     <div class="dropdown row col-xs-12 col-lg-12">
-                        <button class="dropbtn">دسته بندی</button>
+                        <button class="dropbtn" name="dropBtn">دسته بندی</button>
                         <div class="dropdown-content">
-                            <a href="#">دسته بندی اول</a>
-                            <a href="#">دسته بندی دوم</a>
-                            <a href="#">دسته بندی سوم</a>
+                          <?php $function->manage_category();?>
                         </div>
                     </div>
 
                     <h3 class="row col-lg-12 col-xs-12">دسته بندی لیست ها</h3>
                     <ul class="row col-lg-12 col-xs-12">
-                        <li>
-                            <button class="btn btn-primary btn-md">حذف</button><button class="btn btn-primary btn-md">ویرایش</button><button class="btn btn-primary btn-md">غیر فعال</button><p>طراحی چهره</p>
-                        </li>
-                        <li>
-                            <button class="btn btn-primary btn-md">حذف</button><button class="btn btn-primary btn-md">ویرایش</button><button class="btn btn-primary btn-md">غیر فعال</button><p>طراحی چهره</p>
-                        </li>
-                        <li>
-                            <button class="btn btn-primary btn-md">حذف</button><button class="btn btn-primary btn-md">ویرایش</button><button class="btn btn-primary btn-md">غیر فعال</button><p>طراحی چهره</p>
-                        </li>
-                        <li>
-                            <button class="btn btn-primary btn-md">حذف</button><button class="btn btn-primary btn-md">ویرایش</button><button class="btn btn-primary btn-md">غیر فعال</button><p>طراحی چهره</p>
-                        </li>
-                        <li>
-                            <button class="btn btn-primary btn-md">حذف</button><button class="btn btn-primary btn-md">ویرایش</button><button class="btn btn-primary btn-md">غیر فعال</button><p>طراحی چهره</p>
-                        </li>
+                        <?php $function->manage_list_category();?>
 
                     </ul>
                 </div>
@@ -96,12 +80,12 @@
                 <span class="closebtn" onclick="closeSearch2()" title="Close Overlay">×</span>
                 <div class="overlay-content">
                     <div  class="containerrrrr">
-                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                        <form   enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
                             <?php
                             $function->get_video();
                             ?>
-                            <form>
+
 
                                 <div class="form-group">
                                     <label for="title">عنوان </label>
@@ -144,24 +128,18 @@
                                 </div>
                                 <div id="choseFile" class="form-group">
                                     <label for="video">انتخاب ویدئو</label>
-                                    <input type="file" name="video" required>
+<!--                                    <input type="file" name="video" required>-->
 
                                 </div>
 
                                 <div style="width: 15%" class="checkbox">
-                                    <label><input type="checkbox" name="status" value="1" required> فعال</label>&nbsp;&nbsp;
+                                    <label><input type="checkbox" name="status" value="1"> فعال</label>&nbsp;&nbsp;
                                 </div>
 <br/>
                                 <div class="form-group">
                                     <button style="margin-left:600px;" class="btn btn-danger" type="submit" name="Add">ثبت</button>
                                 </div>
-
-
                             </form>
-
-
-
-
                     </div>
 
                 </div>

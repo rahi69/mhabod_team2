@@ -196,7 +196,9 @@ button:hover {
     background-image: url("../img/BackgroundHome.jpg");
     padding-top: 50px;
 }
-
+.modal-error{
+    display: block;
+}
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
