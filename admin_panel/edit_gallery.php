@@ -27,28 +27,22 @@
     }
 </style>
 <body>
-<form>
-    <div class="form-group">
-        <label>عنوان:</label>
-        <input type="text" class="form-control" id="title"
-               placeholder="عنوان">
-    </div>
-    <br/>
-    <label>انتخاب عکس</label>
-    <input style="direction: rtl;width: 50%" type="file" >
-    <br/>
-    <label>انتخاب ویدئو</label>
-    <input style="direction: rtl;width: 50%" type="file" >
-    <br/>
-    <div class="checkbox">
-        <label><input type="radio" name="remember">&nbsp;&nbsp;&nbsp;&nbsp; عکس</label>&nbsp;&nbsp;
-    </div>
-    <div class="checkbox">
-        <label><input type="radio" name="remember">&nbsp;&nbsp;&nbsp;&nbsp; ویدئو</label>&nbsp;&nbsp;
-    </div><br/>
-    <div class="form-group">
-        <button class="btn btn-danger" type="submit" name="Add">ثبت</button>
-    </div>
+<?php $result = $function->edit_gallery();?>
+<div class="form-group">
+    <label>عنوان:</label>
+    <input type="text" class="form-control" id="title" name="ga_title" value="<?php echo $result['title']?>">
+</div>
+<br/>
+<div class="form-group">
+    <label>نام فایل:</label>
+  <label><span><?php if(!is_null($result['image_url'])) echo$result['image_url']; else echo $result['video_url'] ;?></span></label>
+</div>
+<br>
+<div style="direction: rtl;width: 100%" class="checkbox">
+    <label><input type="checkbox" name="ga_status" checked>&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
+</div>
+<button type="submit" name="ga_add" class="btn btn-danger"> ثبت </button>
+<input type="hidden" name="id_gallery" value="<?php echo $result['id_gallery'];?> >
 </form>
 </body>
 </html>

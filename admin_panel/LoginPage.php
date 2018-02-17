@@ -1,4 +1,6 @@
-<?php require_once '../resources/config.php';?><!DOCTYPE html>
+<?php require_once '../resources/config.php';
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +9,13 @@
     <link rel="stylesheet" type="text/css" href="css/login.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
             <div>
 
             </div>
@@ -21,7 +24,6 @@
             <div class="BackgroundOne"></div>
             <div class="BackgroundTwo"></div>
             <div class="BackgroundThree"><img src="img/UserPicture.jpg" class="UserPicture"></div>
-
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <div>
@@ -32,54 +34,57 @@
                  <?php $function->login(); ?>
                 </form>
                 <br>
-
-                <a href="#"><div class="SignUpButtom"><div class="Login" onclick="document.getElementById('id01').style.display='block'">Sign Up</div></div></a>
+                <a href="signUp.php"><div class="SignUpButtom"><div class="Login" onclick="document.getElementById('id01').style.display='block'">Sign Up</div></div></a>
                 <div id="id01" class="modal">
 <!--                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>-->
-                    <form class="modal-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                    <form class="modal-content" id="modal-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
                         <div class="container">
                             <h1>Sign Up</h1>
                             <p>Please fill in this form to create an account.</p>
+<!--                            <p><span>--><?php //$function->display_message(); ?><!--</span></p>-->
                             <hr>
+                            <label><b>Username</b></label>
+                            <input type="text" placeholder="Enter Username" name="username" required><br>
                             <label><b>Email</b></label>
-                            <input type="text" placeholder="Enter Email" name="email" required><br>
+                            <input type="email" placeholder="Enter Email" name="email" required><br>
 
                             <label><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="psw" required><br>
+                            <input type="password" placeholder="Enter Password" name="password" required><br>
 
                             <label><b>Repeat Password</b></label>
-                            <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
+                            <input type="password" placeholder="Repeat Password" name="re_password" required><br>
 
                             <label>
                                 <input type="checkbox" checked="checked" name="remember"> Remember me
                             </label>
                             <div class="clearfix">
                                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                                <button type="submit" class="signupbtn">Sign Up</button>
+                                <button type="submit" class="signupbtn" id="signUpBtn" name="SignUp">Sign Up</button>
                             </div>
                         </div>
                     </form>
                 </div>
-
-                <!--                <script>-->
-                <!--                    // Get the modal-->
-                <!--                    var modal = document.getElementById('id01');-->
-                <!---->
-                <!--                    // When the user clicks anywhere outside of the modal, close it-->
-                <!--                    window.onclick = function(event) {-->
-                <!--                        if (event.target == modal) {-->
-                <!--                            modal.style.display = "none";-->
-                <!--                        }-->
-                <!--                    }-->
-                <!--                </script>-->
-
             </div>
         </div>
     </div>
 </div>
 <script src="Scripts/jquery-1.9.1.min.js"></script>
 <script src="Scripts/bootstrap.min.js"></script>
-
+<script>
+    <?php if((isset($_POST['SignUp'])) && isset($_SESSION['message'])){ ?>
+    $(document).ready(function(){
+        $("#signUpBtn").click(function(){
+            $("#modal-content").addClass("modal-error");
+        });
+    });
+    <?php } else{ ?>
+    $(document).ready(function(){
+        $("#signUpBtn").click(function(){
+            $("#modal-content").addClass("modal");
+        });
+    });
+    <?php } ?>
+</script>
 </body>
 </html>

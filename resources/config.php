@@ -1,7 +1,7 @@
 <?php
 
-//session_start();
-
+session_start();
+date_default_timezone_set("Asia/Tehran");
 defined("DS") ? null : define("DS", DIRECTORY_SEPARATOR);
 
 defined('TEMPLATE_FRONT') ? null : define('TEMPLATE_FRONT', __DIR__ . DS . 'templates/front/');

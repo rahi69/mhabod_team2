@@ -11,8 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
 <style>
 
     body{
@@ -53,7 +51,7 @@
     <input style="direction: rtl;width: 100%" type="file" id="myFile" name="image">
 
     <div style="direction: rtl;width: 100%" class="checkbox">
-        <label><input type="checkbox" name="status" value="1">&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
+        <label><input type="checkbox" name="status" checked>&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
     </div>
     <div>
         <button style="direction: rtl" type="submit" name="Add" class="btn btn-danger">ثبت</button>

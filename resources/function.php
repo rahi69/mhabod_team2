@@ -49,6 +49,7 @@ if(!isset($_SESSION))
         $string2 = htmlspecialchars($string2);
         $string2 = htmlentities($string2, ENT_COMPAT, 'UTF-8');
         $string2 = trim($string2);
+        $string2 =stripslashes($string2);
         return $string2;
 
     }
@@ -89,44 +90,20 @@ LISTARTICLE;
         }
     }
 
-    public function list_article()
-    {
-        $sql = "SELECT * FROM tbl_article";
-        $result = $this->query($sql);
-        $this->confirm($result);
-        while ($row = $this->fetch_array($result)) {
-            $list = <<<LISTARTICLE
-          <tr>
-          <td>{$row['title']}</td>
-          <td>{$row['short_desc']}</td>
-          <td><img src="img/{$row['image_src']}"width="100px"height="100px"/></td>
-          <td>
-          <a href="index.php?delete_article={$row['id_article']}" class="btn btn-danger">Delete</a>
-          <a href="index.php?edit_article={$row['id_article']}" class="btn btn-info">Edit</a>
-       
-        
-</td>
-</tr>
-LISTARTICLE;
-            echo $list;
-
-        }
-    }
-
     public function get_article()
     {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['Add'])) {
 
-                if (empty($_POST['title']) || empty($_POST['short_desc']) || empty($_POST['description']) || empty($_POST['image']) || empty($_POST['status'])) {
+                if (empty($_POST['title']) || empty($_POST['short_desc']) || empty($_POST['description']) || empty($_POST['image'])) {
                     echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
                 } else {
                     $title = $this->escape_string($_POST['title']);
                     $short_desc = $this->escape_string($_POST['short_desc']);
                     $description = $this->escape_string($_POST['description']);
                     $image = $this->escape_string($_POST['image']);
-                    $status = $this->escape_string($_POST['status']);
+                  if(isset($_POST['status'])) $status = 1; else $status = 0;
                     $sql = "INSERT INTO tbl_article(title,short_desc,description,image_src,status) VALUES ('$title','$short_desc','$description','$image','$status')";
                     $result = $this->query($sql);
                     $this->confirm($result);
@@ -137,38 +114,33 @@ LISTARTICLE;
     }
 
     public function edit_article()
-    {
-//        if(!isset($_SESSION))
-//        {
-//            session_start();
-//        }
-        $id = $this->escape_string($_GET['edit_article']);
-        $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id}'";
+    {if(isset($_GET['edit_article'])){
+        $id_edit_article = $this->escape_string($_GET['edit_article']);
+        $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id_edit_article}'";
         $query = $this->query($sql);
         $this->confirm($query);
         $result = $this->fetch_array($query);
         return $result;
 
-    }
+    }}
 
     public function UpdateArticleById()
     {
-        $id = $this->escape_string($_GET['edit_article']);
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['update_article']) && is_numeric($id)) {
+
+            if (isset($_POST['update_article'])) {
+                $id2 =$this->escape_string($_POST['id']);
                 $title = $this->escape_string($_POST['title']);
                 $short_desc = $this->escape_string($_POST['short_desc']);
                 $description = $this->escape_string($_POST['description']);
                 $image = $this->escape_string($_POST['image']);
-                $status = intval($_POST['status']);
-                $sql = "UPDATE tbl_article SET title ='{$title}' ,short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
+                if(isset($_POST['status'])) $status = 1; else $status = 0;
+              $sql = "UPDATE `tbl_article` SET `title`='".$title."' , `short_desc`= '".$short_desc."' , `image_src`= '".$image."' , `description`= '".$description."' , `status`= '".$status."' WHERE  id_article = '".$id2."' ";
+//                $sql = "UPDATE `tbl_article` SET `title` = '".{$title}."' , short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
                 $query = $this->query($sql);
-//                    $this->confirm($result);
-                if ($query) {
-                    return true;
-                } else {
-                    return false;
-                }
+                    $this->confirm($query);
+
             } else {
                 return false;
             }
@@ -262,7 +234,7 @@ DELIMITER;
             $gallery=<<<DELIMITER
 <div class="SCard">
                 <img class="Svideo" src=img/"{$row['image_url']}">
-                <button>حذف</button><button>ویرایش</button>
+                <button> حذف</button><button>ویرایش</button>
             </div>
 <div class="SCard">
                 <video  class="XLvideo" controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
@@ -272,6 +244,111 @@ DELIMITER;
             return $gallery;
         }
     }
+
+    public function add_gallery(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['ga_add'])) {
+                if (empty($_POST['ga_title']) || empty($_POST['ga_remember']) || empty($_POST['ga_status'])) {
+                    echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
+                } else
+                {
+//                    print_r($_FILES['file']['name']);
+//                    EXIT;
+                    $image_file = $time = $video_prev =$pasvand = $type = $pasvand_prev = $video_file = $extention_prev = $extention =null;
+                //
+                    $hash = md5($_FILES['file']['name']. microtime()) . substr($_FILES['file']['name'],-5,5);
+                    if(isset($_POST['ga_status'])) {$status = 1;} else{ $status = 0;}
+                    $title = $this->escape_string($_POST['ga_title']);
+                    $remember = $this->escape_string($_POST['ga_remember']);
+                    if($remember == "picture") {
+                        $pasvand = array("gif", "jpg", "jpeg", "PNG");
+                        $type = 1;
+                    }else if($remember == "video"){
+                        $pasvand = array("mov", "avi", "mp4", "mp3");
+                        $type = 2;
+                        $hash_prev = md5($_FILES['prev_file']['name']. microtime()) . substr($_FILES['prev_file']['name'],-5,5);
+                        $pasvand_prev = array("gif", "jpg", "jpeg", "PNG");
+                        $fileExtention_prev = explode("." ,$_FILES['prev_file']['name']);
+                        $extention_prev = end($fileExtention_prev);
+                        if (in_array("$extention_prev" , $pasvand_prev) && ($_FILES['prev_file']['size']<=20971520)){
+                            if(move_uploaded_file($_FILES["prev_file"]["tmp_name"] , 'upload/'.$hash_prev)) {
+                            if ($_FILES["file"]["error"] == 0) {
+                                echo "<div class='msg'>file uploaded successfully</div>";
+
+                            } else {
+                                echo "<div class='msg'>cannot  uploaded </div>";
+                            }
+                        }
+                        }
+                    }
+                        $fileExtention = explode("." ,$_FILES['file']['name']);
+                        $extention = end($fileExtention);
+                        if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=20971520))
+                        {
+                            if(move_uploaded_file($_FILES["file"]["tmp_name"] , 'upload/'.$hash)) {
+                                if ($_FILES["file"]["error"] == 0) {
+                                    echo "<div class='msg'>file uploaded successfully</div>";
+                                    $time = date('Y/m/d/ H:i:s');
+                                } else {
+                                    echo "<div class='msg'>cannot  uploaded </div>";
+                                }
+                            }
+                        else
+                        {
+                            echo "<div class='msg'>can upload file with picture or video format </div>";
+                        }
+                    }
+                   if($type == 1){
+                       $image_file = $this->escape_string($_FILES['file']['name']);
+                       $video_file = null;
+                       $video_prev = null;
+                   }else if($type ==2){
+                       $video_file = $this->escape_string($_FILES['file']['name']);
+                       $video_prev = $this->escape_string($_FILES['prev_file']['name']);
+                       $image_file =null;
+                   }
+                    $sql = "INSERT INTO `tblgallery` (`id_gallery`, `title`, `image_url`, `status`, `type`, `video_url`, `prev_url`, `date`) VALUES (NULL,'$title','$image_file','$status','$type','$video_file', ' $video_prev','$time')";
+                    $result = $this->query($sql);
+                    $this->confirm($result);
+                }
+            }
+        }
+    }
+
+    public function edit_gallery()
+        {
+            if (isset($_GET['edit_gallery'])) {
+                $id_edit_gallery = $this->escape_string($_GET['edit_gallery']);
+                $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id_edit_gallery}'";
+                $query = $this->query($sql);
+                $this->confirm($query);
+                $result = $this->fetch_array($query);
+                return $result;
+            }
+        }
+
+        public function UpdateGalleryByID(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+                if (isset($_POST['update_gallery'])) {
+                    $id2 =$this->escape_string($_POST['id']);
+                    $title = $this->escape_string($_POST['title']);
+                    $short_desc = $this->escape_string($_POST['short_desc']);
+                    $description = $this->escape_string($_POST['description']);
+                    $image = $this->escape_string($_POST['image']);
+                    if(isset($_POST['status'])) $status = 1; else $status = 0;
+                    $sql = "UPDATE `tbl_article` SET `title`='".$title."' , `short_desc`= '".$short_desc."' , `image_src`= '".$image."' , `description`= '".$description."' , `status`= '".$status."' WHERE  id_article = '".$id2."' ";
+//                $sql = "UPDATE `tbl_article` SET `title` = '".{$title}."' , short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
+                    $query = $this->query($sql);
+                    $this->confirm($query);
+
+                } else {
+                    return false;
+                }
+
+            }
+        }
+
     public function list_video()
     {
         $sql="SELECT * FROM tbl_video";
@@ -371,15 +448,12 @@ LIST;
     }
     public function sign_up()
     {
-//        if(!isset($_SESSION))
-//        {
-//            session_start();
-//        }
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['SignUp'])) {
                 if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['re_password']) || empty($_POST['email'])) {
-//                    echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
-//                    $this->set_message("Please fill all fields ");
+                    echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
+                    $this->set_message("Please fill all fields ");
+                    echo $_SESSION['message'];exit();
                 } else {
                     $username = $this->escape_string($_POST['username']);
                     $password1 = $this->escape_string($_POST['password']);
@@ -387,20 +461,31 @@ LIST;
                     $email = $this->escape_string($_POST['email']);
                     // check if e-mail address syntax is valid
                     if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $email)) {
-//                        echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Invalid email format </p>';
+                        echo '<p style="background-color: #ac2925;color: black ;text-align: center"> Invalid email format </p>';
                         $this->set_message("Invalid email format");
-                        exit();
+                        echo $_SESSION['message'];exit();
                     }
-                    if (strlen($password1) <=6 || strlen($password2) <=6) {
-//                        echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Passwords arent strong enought</p>';
-                        $this->set_message("Passwords aren't strong enough");
-                        exit;
-                    }
-
                     if ($password1 != $password2) {
-//                        echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Passwords not matched</p>';
+                        echo '<p style="background-color: #ac2925;color: black ;text-align: center"> Passwords not matched</p>';
                         $this->set_message("Passwords not matched");
-                        exit;
+                        echo $_SESSION['message'];exit;
+                    }
+                    if (strlen($password1) <= 6 || strlen($password2) <= 6) {
+                        echo '<p style="background-color: #ac2925;color: black ;text-align: center"> Passwords arent strong enought</p>';
+                        $this->set_message("Passwords aren't strong enough");
+                        echo $_SESSION['message'];exit;
+                    }
+                    //checking email unique
+                    $query = "SELECT * FROM admin WHERE email =" . $email;
+                    $emailCheck = $this->query($query);
+                    $this->confirm($emailCheck);
+                    $row = $this->fetch_array($emailCheck);
+                    $numRow =mysqli_num_rows( $row);
+                    if($numRow>0){
+                        echo '<p style="background-color: #ac2925;color: black ;text-align: center"> you have an account with this email</p>';
+                        $this->set_message("you have an account with this email");
+                        echo $_SESSION['message'];
+                        exit();
                     }
                     $hashedPassword = sha1($password1);
                     $sql = "INSERT INTO admin (username,password,email) VALUES ('$username','$hashedPassword','$email')";

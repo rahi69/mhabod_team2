@@ -1,3 +1,4 @@
+<?php require_once '../resources/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,26 +28,31 @@
     }
 </style>
 <body>
-<form>
+<form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
     <div class="form-group">
         <label>عنوان:</label>
-        <input type="text" class="form-control" id="title"
+        <input type="text" class="form-control" id="title" name="ga_title"
                placeholder="عنوان">
     </div>
     <br/>
-    <label>انتخاب عکس</label>
-    <input style="direction: rtl;width: 50%" type="file" >
-    <br/>
-    <label>انتخاب ویدئو</label>
-    <input style="direction: rtl;width: 50%" type="file" >
+    <label>انتخاب فایل مربوطه </label>
+
     <br/>
     <div class="checkbox">
-        <label><input type="radio" name="remember">&nbsp;&nbsp;&nbsp;&nbsp; عکس</label>&nbsp;&nbsp;
+        <label><input type="radio" name="ga_remember" value="picture" <?php if(isset($ga_remember) && $ga_remember=="picture") echo "checked"; ?> >&nbsp;&nbsp;&nbsp;&nbsp; عکس</label>&nbsp;&nbsp;
     </div>
     <div class="checkbox">
-        <label><input type="radio" name="remember">&nbsp;&nbsp;&nbsp;&nbsp; ویدئو</label>&nbsp;&nbsp;
+        <label><input type="radio" name="ga_remember" value="video" <?php  if(isset($ga_remember) && $ga_remember=="video") echo "checked"; ?> >&nbsp;&nbsp;&nbsp;&nbsp; ویدئو</label>&nbsp;&nbsp;
     </div><br/>
-    <button type="submit" class="btn btn-danger">ثبت</button>
+    <input name="file" style="direction: rtl;width: 50%" type="file" ><br>
+    <input name="prev_file" style="direction: rtl;width: 50%" type="file" ><br>
+    <div style="direction: rtl;width: 100%" class="checkbox">
+        <label><input type="checkbox" name="ga_status" checked>&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
+    </div>
+    <button type="submit" name="ga_add" class="btn btn-danger"> ثبت </button>
+    <?php $function->add_gallery();?>
 </form>
 </body>
 </html>
+
+

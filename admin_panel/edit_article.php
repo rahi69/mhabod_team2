@@ -36,10 +36,6 @@
 <div class="container">
 <?php
 //$function=new functions();
-$ResponseUpdate =$function->UpdateArticleById();
-if ($ResponseUpdate == true){
-    echo "<script> alert('Success');</script>";
-}
 $result = $function->edit_article();
 ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -59,22 +55,21 @@ $result = $function->edit_article();
         </div>
 
         <input style="direction: rtl;width: 100%" type="file" id="myFile" name="image" value="<?php echo $result['image_src'];?>">
-<!--        <script>-->
-<!--            function myFunction() {-->
-<!--                var x = document.getElementById("myFile");-->
-<!--                x.disabled = true;-->
-<!--            }-->
-<!--        </script>-->
+
         <div style="direction: rtl;width: 100%" class="checkbox">
-            <label><input type="checkbox" name="status" value="<?php echo $result['status'];?>">&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="status"<?php if( $result['status'] ==1 ){ ?> <?php echo 'checked' ;} ?> >">&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
         </div>
         <div style="direction: rtl;width: 100%">
             <button style="direction: rtl" type="submit" name="update_article" class="btn btn-danger">ویرایش</button>
+            <input type="hidden" name="id" value="<?php echo $result['id_article'];?> >
         </div>
     </form>
-
-
-
+<?php
+//$function=new functions();
+$ResponseUpdate =$function->UpdateArticleById();
+if ($ResponseUpdate == true) {
+    echo "<script> alert('Success');</script>";
+} ?>
 </div>
 </body>
 </html>

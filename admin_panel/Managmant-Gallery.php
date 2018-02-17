@@ -40,7 +40,7 @@
         </div>
 
         <div class="row col-xs-12" id="Add-newGallery">
-            <a href="#">اضافه کردن گالری جدید</a>
+            <a href="add_gallery.php">اضافه کردن گالری جدید</a>
         </div>
 
     </div>
