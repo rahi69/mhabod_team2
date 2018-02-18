@@ -21,33 +21,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<!--<button class="hidden-lg" id="showListHome" onclick="showListHome()"></button>-->
-<!---->
-<!--<script src="Scripts/main.js"></script>-->
 <div>
 
     <img id="imgProfile" src="img/CIRLEpROFILE.jpg"/>
+
 </div>
+
 <div class="container-fluid col-lg-12">
+
     <div  id="container" class="col-lg-8">
 
-        <div id="header-GAllery" class="row col-lg-12">مدیریت گالری</div>
-
-
+        <div id="header-GAllery" class="row col-lg-12">
+            مدیریت گالری
+        </div>
         <div class="row col-lg-12 ListGallery">
 
   <?php echo $function->manage_gallery();?>
         </div>
-
         <div class="row col-xs-12" id="Add-newGallery">
             <a href="add_gallery.php">اضافه کردن گالری جدید</a>
         </div>
 
     </div>
-    <div id="HomeLIST"  class="nav-side-menu col-lg-4">
-        <!--BUTTON LIST-->
-        <!--<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>-->
 
+
+
+    <div id="HomeLIST"  class="nav-side-menu col-lg-4">
         <?php include TEMPLATE_FRONT . 'nav_right.php'; ?>
 
 
