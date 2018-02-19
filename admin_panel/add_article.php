@@ -17,7 +17,7 @@
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
     <?php
-    $function->get_article();
+    $function->add_article();
 ?>
     <br/>
     <div class="form-group">

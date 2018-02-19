@@ -22,20 +22,7 @@
 
         <img id="imgProfile" src="img/CIRLEpROFILE.jpg" height="124" width="89"/>
     </div>
-    <!--<button onclick="openList1" type="button" class="btn btn-default btn-sm" id="ListButton">-->
-        <!--<span class="glyphicon glyphicon-tasks"></span></button>-->
 
-    <!--<script>-->
-        <!--function openList1() {-->
-            <!--var list = document.getElementById("headerList");-->
-
-            <!--if (list.style.display == "none") {-->
-                <!--list.style.display = "block";-->
-            <!--} else {-->
-                <!--list.style.display = "none";-->
-            <!--}-->
-        <!--}-->
-    <!--</script>-->
     <br/>
 
     <div class="container-fluid col-lg-12">

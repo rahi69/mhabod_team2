@@ -58,24 +58,7 @@ if(!isset($_SESSION))
 
     }
 
-    public function add_cat()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['submit'])) {
-                if (empty($_POST['name_cat'])) {
-                    echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
-
-                } else {
-                    $name_cat = $this->escape_string($_POST['name_cat']);
-                    $sql = "INSERT INTO tbl_category(name_category) VALUES ('$name_cat')";
-                    $result = $this->query($sql);
-                    $this->confirm($result);
-                }
-
-            }
-        }
-    }
-
+/* manage article.................................................... */
     public function manage_article()
     {
         $sql = "SELECT * FROM tbl_article";
@@ -94,7 +77,7 @@ LISTARTICLE;
         }
     }
 
-    public function get_article()
+    public function add_article()
     {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -118,7 +101,8 @@ LISTARTICLE;
     }
 
     public function edit_article()
-    {if(isset($_GET['edit_article'])){
+    {
+        if(isset($_GET['edit_article'])){
         $id_edit_article = $this->escape_string($_GET['edit_article']);
         $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id_edit_article}'";
         $query = $this->query($sql);
@@ -152,62 +136,8 @@ LISTARTICLE;
         }
 
     }
+    /* manage image.................................................... */
 
-    public function button()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['Add_category'])) {
-                $this->redirect("add_cat.php");
-            } elseif (isset($_POST['Add_video'])) {
-                $this->redirect("add_video.php");
-
-            } elseif (isset($_POST['Admin_category'])) {
-                $this->redirect("list_cat.php");
-
-            }
-        }
-    }
-    public function manage_video()
-    {
-        $sql = "SELECT * FROM tbl_video";
-        $result = $this->query($sql);
-        $this->confirm($result);
-        while ($row = $this->fetch_array($result)) {
-            $list = <<<VIDEO
-       <div class="CARDvideo">
-                    <video poster="upload/{$row['image_prev']}" class="XLvideo" controls><source src="upload/{$row['video']}" type="video/mp4"></video>
-                    <a class="btn btn-danger" href="index.php?delete_video={$row['id_video']}">حذف</a>
-                    <a class="btn btn-info" href="edit_video.php?edit_video={$row['id_video']}">ویرایش</a></div>
-VIDEO;
-            echo $list;
-        }
-    }
-
-    public function manage_category(){
-        $sql = "SELECT * FROM tbl_category";
-        $result = $this->query($sql);
-        $this->confirm($result);
-        while ($row = $this->fetch_array($result)){
-            $category = <<<DELIMITER
-  <a href="#">{$row['name_category']}</a>
-                          
-DELIMITER;
-            echo $category;
-        }
-    }
-    public function manage_list_category(){
-        $sql = "SELECT * FROM tbl_category";
-        $result = $this->query($sql);
-        $this->confirm($result);
-        while ($row = $this->fetch_array($result)) {
-            $list = <<<DELIMITER
-            <li >
-            <button class="btn btn-primary btn-md" > حذف</button ><button class="btn btn-primary btn-md" > ویرایش</button ><button class="btn btn-primary btn-md" > غیر فعال </button ><p > {$row['name_category']} </p >
-            </li >
-DELIMITER;
-            echo $list;
-        }
-    }
     public function manage_gallery()
     {
         $sql = "SELECT * FROM tblgallery";
@@ -224,7 +154,7 @@ DELIMITER;
             </div>
 <div class="SCard">
                 <video  class="XLvideo" controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
-                <button>حذف</button><button>ویرایش</button>
+               <a href="index.php?delete_gallery={$row['id_gallery']}"><button>حذف</button><button>ویرایش</button></a>
             </div>
 DELIMITER;
             return $gallery;
@@ -241,7 +171,7 @@ DELIMITER;
 //                    print_r($_FILES['file']['name']);
 //                    EXIT;
                     $image_file = $time = $video_prev =$pasvand = $type = $pasvand_prev = $video_file = $extention_prev = $extention =null;
-                //
+                    //
                     $hash = md5($_FILES['file']['name']. microtime()) . substr($_FILES['file']['name'],-5,5);
                     if(isset($_POST['ga_status'])) {$status = 1;} else{ $status = 0;}
                     $title = $this->escape_string($_POST['ga_title']);
@@ -258,41 +188,41 @@ DELIMITER;
                         $extention_prev = end($fileExtention_prev);
                         if (in_array("$extention_prev" , $pasvand_prev) && ($_FILES['prev_file']['size']<=20971520)){
                             if(move_uploaded_file($_FILES["prev_file"]["tmp_name"] , 'upload/'.$hash_prev)) {
-                            if ($_FILES["file"]["error"] == 0) {
-                                echo "<div class='msg'>file uploaded successfully</div>";
-
-                            } else {
-                                echo "<div class='msg'>cannot  uploaded </div>";
-                            }
-                        }
-                        }
-                    }
-                        $fileExtention = explode("." ,$_FILES['file']['name']);
-                        $extention = end($fileExtention);
-                        if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=20971520))
-                        {
-                            if(move_uploaded_file($_FILES["file"]["tmp_name"] , 'upload/'.$hash)) {
                                 if ($_FILES["file"]["error"] == 0) {
                                     echo "<div class='msg'>file uploaded successfully</div>";
-                                    $time = date('Y/m/d/ H:i:s');
+
                                 } else {
                                     echo "<div class='msg'>cannot  uploaded </div>";
                                 }
                             }
+                        }
+                    }
+                    $fileExtention = explode("." ,$_FILES['file']['name']);
+                    $extention = end($fileExtention);
+                    if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=20971520))
+                    {
+                        if(move_uploaded_file($_FILES["file"]["tmp_name"] , 'upload/'.$hash)) {
+                            if ($_FILES["file"]["error"] == 0) {
+                                echo "<div class='msg'>file uploaded successfully</div>";
+                                $time = date('Y/m/d/ H:i:s');
+                            } else {
+                                echo "<div class='msg'>cannot  uploaded </div>";
+                            }
+                        }
                         else
                         {
                             echo "<div class='msg'>can upload file with picture or video format </div>";
                         }
                     }
-                   if($type == 1){
-                       $image_file = $this->escape_string($_FILES['file']['name']);
-                       $video_file = null;
-                       $video_prev = null;
-                   }else if($type ==2){
-                       $video_file = $this->escape_string($_FILES['file']['name']);
-                       $video_prev = $this->escape_string($_FILES['prev_file']['name']);
-                       $image_file =null;
-                   }
+                    if($type == 1){
+                        $image_file = $this->escape_string($_FILES['file']['name']);
+                        $video_file = null;
+                        $video_prev = null;
+                    }else if($type ==2){
+                        $video_file = $this->escape_string($_FILES['file']['name']);
+                        $video_prev = $this->escape_string($_FILES['prev_file']['name']);
+                        $image_file =null;
+                    }
                     $sql = "INSERT INTO `tblgallery` (`id_gallery`, `title`, `image_url`, `status`, `type`, `video_url`, `prev_url`, `date`) VALUES (NULL,'$title','$image_file','$status','$type','$video_file', ' $video_prev','$time')";
                     $result = $this->query($sql);
                     $this->confirm($result);
@@ -302,62 +232,123 @@ DELIMITER;
     }
 
     public function edit_gallery()
-        {
-            if (isset($_GET['edit_gallery'])) {
-                $id_edit_gallery = $this->escape_string($_GET['edit_gallery']);
-                $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id_edit_gallery}'";
+    {
+        if (isset($_GET['edit_gallery'])) {
+            $id_edit_gallery = $this->escape_string($_GET['edit_gallery']);
+            $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id_edit_gallery}'";
+            $query = $this->query($sql);
+            $this->confirm($query);
+            $result = $this->fetch_array($query);
+            return $result;
+        }
+    }
+
+    public function UpdateGalleryByID(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            if (isset($_POST['update_gallery'])) {
+                $id2 =$this->escape_string($_POST['id']);
+                $title = $this->escape_string($_POST['title']);
+                $short_desc = $this->escape_string($_POST['short_desc']);
+                $description = $this->escape_string($_POST['description']);
+                $image = $this->escape_string($_POST['image']);
+                if(isset($_POST['status'])) $status = 1; else $status = 0;
+                $sql = "UPDATE `tbl_article` SET `title`='".$title."' , `short_desc`= '".$short_desc."' , `image_src`= '".$image."' , `description`= '".$description."' , `status`= '".$status."' WHERE  id_article = '".$id2."' ";
+//                $sql = "UPDATE `tbl_article` SET `title` = '".{$title}."' , short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
                 $query = $this->query($sql);
                 $this->confirm($query);
-                $result = $this->fetch_array($query);
-                return $result;
+
+            } else {
+                return false;
             }
+
         }
+    }
+    /* manage video.................................................... */
 
-        public function UpdateGalleryByID(){
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-                if (isset($_POST['update_gallery'])) {
-                    $id2 =$this->escape_string($_POST['id']);
-                    $title = $this->escape_string($_POST['title']);
-                    $short_desc = $this->escape_string($_POST['short_desc']);
-                    $description = $this->escape_string($_POST['description']);
-                    $image = $this->escape_string($_POST['image']);
-                    if(isset($_POST['status'])) $status = 1; else $status = 0;
-                    $sql = "UPDATE `tbl_article` SET `title`='".$title."' , `short_desc`= '".$short_desc."' , `image_src`= '".$image."' , `description`= '".$description."' , `status`= '".$status."' WHERE  id_article = '".$id2."' ";
-//                $sql = "UPDATE `tbl_article` SET `title` = '".{$title}."' , short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
-                    $query = $this->query($sql);
-                    $this->confirm($query);
-
-                } else {
-                    return false;
-                }
-
-            }
-        }
-
-    public function list_video()
+    public function manage_video()
     {
-        $sql="SELECT * FROM tbl_video";
-        $result=$this->query($sql);
+        $sql = "SELECT * FROM tbl_video";
+        $result = $this->query($sql);
         $this->confirm($result);
-        while ($row=$this->fetch_array($result))
-        {
-            $list=<<<VIDEO
-            <div id="film">
-            <!--<ul id ="list-group" class="list-group">-->
-               <div class="item"  href="#">
-                <video width="200" height="100"  controls>
-            <ul id="video" class="list-group">
-                <div  class="item"  href="#"><video  width="200" height="100"  controls>
-                        <source src="upload/{$row['video']}" type="video/mp4">
-                    </video></div>
-                    <div><a class="btn btn-danger" href="index.php?delete_video={$row['id_video']}">delete</a></div>
-                   
-            </ul>
+        while ($row = $this->fetch_array($result)) {
+            $list = <<<VIDEO
+       <div class="CARDvideo">
+                    <video poster="upload/{$row['image_prev']}" class="XLvideo" controls><source src="upload/{$row['video']}" type="video/mp4"></video>
+                    <a class="btn btn-danger" href="index.php?delete_video={$row['id_video']}">حذف</a>
+                    <a class="btn btn-info" href="edit_video.php?edit_video={$row['id_video']}">ویرایش</a></div>
 VIDEO;
             echo $list;
+        }
+    }
+
+    public function add_video()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['Add'])) {
+                if (empty($_POST['title']) || empty($_POST['price']) || empty($_POST['description'])
+                    || empty($_POST['image']) || empty($_POST['video'])) {
+                    echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
+// || empty($_POST['video']) || empty($_POST['status'])|| empty($_POST['image'])
+                } else {
+                    $this->upload_image();
+                    $this->upload_video();
+                    $cat_id = $_POST['category'];
+                    $title = $this->escape_string($_POST['title']);
+                    $price = $this->escape_string($_POST['price']);
+                    $description = $this->escape_string($_POST['description']);
+                    $video = $this->hash_video;
+                    $image = $this->hash_image;
+
+//                    $video = 'IMG_0162.mov';$this->uploadPathi;$this->uploadPathv;
+                    //
+                    $status = $this->escape_string($_POST['status']);
+                    $time = date("Y-m-d G:i:s<br>", time());
+                    $sql = "INSERT INTO tbl_video (title,price,`date`,description,id_category,image_prev,video,status) VALUES ('$title','$price','$time','$description','$cat_id','$image','$video' ,'$status')";
+                    $result = $this->query($sql);
+                    $this->confirm($result);
+                }
+            }
+        }
+    }
+
+    public function edit_video()
+    {
+        if (isset($_GET['edit_video'])) {
+            $id_edit_video = $this->escape_string($_GET['edit_video']);
+            $sql = "SELECT * FROM tbl_video WHERE id_video = '{$id_edit_video}'";
+            $query = $this->query($sql);
+            $this->confirm($query);
+            $result = $this->fetch_array($query);
+            return $result;
 
         }
+    }
+
+    public function UpdateVideoById()
+    {
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            if (isset($_POST['update_video'])) {
+                $id2 =$this->escape_string($_POST['id']);
+                $title = $this->escape_string($_POST['title']);
+                $price = $this->escape_string($_POST['price']);
+                $description = $this->escape_string($_POST['description']);
+                $video = $this->escape_string($_POST['video']);
+                $image = $this->escape_string($_POST['image']);
+                if(isset($_POST['status'])) $status = 1; else $status = 0;
+                $sql = "UPDATE `tbl_video` SET `title`='".$title."' , `description`= '".$description."' , `price`= '".$price."'  , `status`= '".$status."' , `image_prev` = '".$image."' , `video` = '".$video."' WHERE  id_video = '".$id2."' ";
+//                $sql = "UPDATE tbl_video SET title = '{$title}' , description = '{$description}' ,price = '{$price}' ,status ='{$status}', image_prev = '{$image}' , video = '{$video}' WHERE id_video ='{$id2}'";
+                $query = $this->query($sql);
+                $this->confirm($query);
+
+            } else {
+                return false;
+            }
+
+        }
+
     }
     public function filter_list_video()
     {
@@ -382,37 +373,81 @@ LIST;
             }
         }
     }
-    public function get_video()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['Add'])) {
-                if (empty($_POST['title']) || empty($_POST['price']) || empty($_POST['description'])
-                    ) {
-                    echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
-// || empty($_POST['video']) || empty($_POST['status'])|| empty($_POST['image'])
-                } else {
-                    $this->upload_image();
-                   // $this->upload_video();
-                    $cat_id = $_POST['category'];
-                    $title = $this->escape_string($_POST['title']);
-                    $price = $this->escape_string($_POST['price']);
-                    $description = $this->escape_string($_POST['description']);
-                    $image = $this->hash_image;
-                    $video = 'IMG_0162.mov';
-                    //$this->hash_video;
-                    $status = $this->escape_string($_POST['status']);
-                    $time = date("Y-m-d G:i:s<br>", time());
-                    $sql = "INSERT INTO tbl_video (title,price,`date`,description,id_category,image_prev,video,status) VALUES ('$title','$price','$time','$description','$cat_id','$image','$video' ,'$status')";
-                    $result = $this->query($sql);
-                    $this->confirm($result);
-                }
-            }
+    /* manage category.................................................... */
+
+    public function manage_category(){
+        $sql = "SELECT * FROM tbl_category";
+        $result = $this->query($sql);
+        $this->confirm($result);
+        while ($row = $this->fetch_array($result)){
+            $category = <<<DELIMITER
+  <a href="#">{$row['name_category']}</a>
+                          
+DELIMITER;
+            echo $category;
         }
     }
 
-    public function upload_video(){
-            $direction = $_SERVER['DOCUMENT_ROOT'];
-            $video_name = $_FILES['video']['name'];
+    public function add_cat()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['submit'])) {
+                if (empty($_POST['name_cat'])) {
+                    echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
+
+                } else {
+                    $name_cat = $this->escape_string($_POST['name_cat']);
+                    $sql = "INSERT INTO tbl_category(name_category) VALUES ('$name_cat')";
+                    $result = $this->query($sql);
+                    $this->confirm($result);
+                }
+
+            }
+        }
+    }
+    public function manage_list_category(){
+        $sql = "SELECT * FROM tbl_category";
+        $result = $this->query($sql);
+        $this->confirm($result);
+        while ($row = $this->fetch_array($result)) {
+            $list = <<<DELIMITER
+            <li >
+            <button class="btn btn-primary btn-md" > حذف</button ><button class="btn btn-primary btn-md" > ویرایش</button ><button class="btn btn-primary btn-md" > غیر فعال </button ><p > {$row['name_category']} </p >
+            </li >
+DELIMITER;
+            echo $list;
+        }
+    }
+    /* upload files.................................................... */
+
+    public function upload_video()
+    {
+//        if (isset($_FILES['video'])) {
+//            $uploadDir = __DIR__ . '/upload/';
+//            $this->uploadPathv = $uploadDir . rand(100, 500) . '_' . $_FILES['video']['name'];
+//            //$move=move_uploaded_file($_FILES['video']['tmp_name'],$uploadPath);
+//            $allowType = array("ogg" , "mp4");;
+//            $allowSize = $_FILES['video']['size'];
+//            if ($allowSize < 2147483648) {
+//
+//                if (in_array($_FILES['video']['type'], $allowType)) {
+//
+//                    if (move_uploaded_file($_FILES['video']['tmp_name'], $this->uploadPathv)) {
+//                        echo "file as  valid and success video";
+//                    } else {
+//                        echo "Error on video";
+//                    }
+//                } else {
+//                    echo 'cannot format...';
+//                }
+//            } else {
+//                echo "Error Size";
+//            }
+//            crady
+//            orp
+            
+//            $direction = $_SERVER['DOCUMENT_ROOT'];
+        $video_name = $_FILES['video']['name'];
         $video_size = $_FILES['video']['size'];
         $video_temp = $_FILES['video']['tmp_name'];
         $video_error = $_FILES['video']['error'];
@@ -423,7 +458,7 @@ LIST;
         $extention = end($fileExtention);
         if (in_array("$extention" , $pasvand) && ($video_size<=$file_size_max))
         {
-            if(move_uploaded_file($video_temp , $direction.'/upload/'. $this->hash_video))
+            if(move_uploaded_file($video_temp , './../upload/'. $this->hash_video))
             {
                 if ($video_error == 0) {
                     echo "<div class='msg'>file uploaded successfully</div>";
@@ -435,33 +470,53 @@ LIST;
         {
             echo "<div class='msg'>can upload file with .ogg .mp4</div>";
         }
-    }
-    public function upload_image(){
-        $direction = $_SERVER['DOCUMENT_ROOT'];
-        $image_name = $_FILES['image']['name'];
-        $image_size = $_FILES['image']['size'];
-        $image_temp = $_FILES['image']['tmp_name'];
-        $image_error = $_FILES['image']['error'];
-        $this->hash_image = md5($image_name. microtime()) . substr($image_name,-5,5);
-        $pasvand = array("gif" , "jpg" , "jpeg" ,"PNG");
-        $fileExtention = explode("." ,$image_name);
-        $extention = end($fileExtention);
-        if (in_array("$extention" , $pasvand) && ($image_size<=20971520))
-        {
-            if(move_uploaded_file($image_temp , $direction.'/upload/'. $this->hash_image))
-            {
-                if ($image_error == 0) {
-                    echo "<div class='msg'>file uploaded successfully</div>";
-                } else {
-                    echo "<div class='msg'>cannot  uploaded </div>";
-                }
-            }
-        }else
-        {
-            echo "<div class='msg'>can upload file with .ogg .mp4</div>";
         }
-    }
 
+        public function upload_image()
+        {
+//            if (isset($_FILES['image'])) {
+//                $uploadDir = __DIR__ . '/upload/';
+//                $this->uploadPathi = $uploadDir . rand(100, 500) . '_' . $_FILES['image']['name'];
+//                //$move=move_uploaded_file($_FILES['image']['tmp_name'],$uploadPath);
+//                $allowType = array('image/jpeg', 'image/png');
+//                $allowSize = $_FILES['image']['size'];
+//                if ($allowSize < 200000) {
+//
+//
+//                    if (in_array($_FILES['image']['type'], $allowType)) {
+//
+//                        if (move_uploaded_file($_FILES['image']['tmp_name'], $this->uploadPathi)) {
+//                            echo "file as  valid and success image";
+//                        } else {
+//                            echo "Error on image";
+//                        }
+//                    } else {
+//                        echo 'cannot format...';
+//                    }
+//                } else {
+//                    echo "Error Size";
+//                }
+//            $direction = $_SERVER['DOCUMENT_ROOT'];
+            $image_name = $_FILES['image']['name'];
+            $image_size = $_FILES['image']['size'];
+            $image_temp = $_FILES['image']['tmp_name'];
+            $image_error = $_FILES['image']['error'];
+            $this->hash_image = md5($image_name . microtime()) . substr($image_name, -5, 5);
+            $pasvand = array("gif", "jpg", "jpeg", "PNG");
+            $fileExtention = explode(".", $image_name);
+            $extention = end($fileExtention);
+            if (in_array("$extention", $pasvand) && ($image_size <= 20971520)) {
+                if (move_uploaded_file($image_temp,  './../upload/' . $this->hash_image)) {
+                    if ($image_error == 0) {
+                        echo "<div class='msg'>file uploaded successfully</div>";
+                    } else {
+                        echo "<div class='msg'>cannot  uploaded </div>";
+                    }
+                }
+            } else {
+                echo "<div class='msg'>can upload file with .ogg .mp4</div>";
+            }
+            }
 
     public function login()
     {
@@ -488,8 +543,14 @@ LIST;
             }
         }
     }
+    /* register .................................................... */
+
     public function sign_up()
     {
+//        if(!isset($_SESSION))
+//        {
+//            session_start();
+//        }
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['SignUp'])) {
                 if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['re_password']) || empty($_POST['email'])) {

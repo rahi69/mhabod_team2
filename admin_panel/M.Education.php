@@ -83,7 +83,7 @@
                         <form   enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
                             <?php
-                            $function->get_video();
+                            $function->add_video();
                             ?>
 
 
@@ -128,7 +128,7 @@
                                 </div>
                                 <div id="choseFile" class="form-group">
                                     <label for="video">انتخاب ویدئو</label>
-<!--                                    <input type="file" name="video" required>-->
+                                    <input type="file" name="video" required>
 
                                 </div>
 

@@ -34,25 +34,17 @@
                 <?php $function=new functions();
                 $function->manage_article();
                 ?>
-<!--                <li>-->
-<!--                    <button class="DeleteBox btn btn-primary">حذف</button>-->
-<!--                    &nbsp;&nbsp;&nbsp;<button class="EditBox btn btn-primary">ویرایش</button><span class="nameTitle">نام مقاله</span>&nbsp;&nbsp;-->
-<!--                    <span>توضیحات مربوط به مقاله</span>-->
-<!--                </li>-->
 
             </ul>
             <div id="buttonBox1" class="row">
                 <form method="post" action="add_article.php">
                     <button type="submit" name="Add_article">افزودن مقاله</button><br/>
                 </form>
-<!--                <button>افزودن مقاله</button><br/>-->
             </div>
         </div>
     </div>
     <!--MENU LIST-->
     <div id="HomeLIST"  class="nav-side-menu col-lg-4">
-        <!--BUTTON LIST-->
-        <!--<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>-->
 
         <?php include TEMPLATE_FRONT . 'nav_right.php'; ?>
 
