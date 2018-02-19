@@ -58,7 +58,6 @@
                     </ul>
                 </div>
             </div>
-            <!--..................................................................................................-->
             <!--PUP UP2-->
             <div id="myOverlayone" class="overlay">
                 <span class="closebtn" onclick="closeSearch1()" title="Close Overlay">×</span>
@@ -72,10 +71,8 @@
                         <br/><br/><br/><br/>
                         <input class="row col-lg-12" name="name_cat" type="text" placeholder="نام دسته">
                     </form>
-
                 </div>
             </div>
-
             <div id="myOverlaytow" class="overlay">
                 <span class="closebtn" onclick="closeSearch2()" title="Close Overlay">×</span>
                 <div class="overlay-content">
@@ -144,19 +141,11 @@
 
                 </div>
             </div>
-
         </div>
-
     </div>
-
-
     <div id="headerList"  class="nav-side-menu col-lg-4">
-
         <?php include TEMPLATE_FRONT . 'nav_right.php'; ?>
-
     </div>
-
-
 </div>
 <br/>
 <?php
@@ -173,8 +162,6 @@ if(isset($_GET['delete_video']))
     include '../admin_panel/delete_video.php';
 }
 ?>
-<!--<div id="footer" class="row">فوتر صفحه</div>-->
-
 </body>
 </html>
 

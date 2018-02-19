@@ -175,50 +175,50 @@ body{
     z-index: 1000;
 }
 /*.................................................................................................*/
-@media (max-width: 1024px) {
-    #HomeLIST{
-        display: none;
-        position: relative;
-        margin-top:-650px;
-    }
-    #imgProfile{
-        display: none;
-    }
-    .nav-side-menu li {
-        margin-bottom:1px;
-    }
-    .nav-side-menu{
-        background-image: url("../img/UserPicture.jpg");
-        background-size: cover;
-        padding:0;
-    }
-}
-@media (max-width:425px){
-#showListHome{
-    margin-left:42%;
-}
-    #HomeLIST{
-        display: none;
-        position: relative;
-        margin-top:-500px;
-    }
-#listsVideo .CARDvideo{
-    padding: 0px;
-    height: 3%;
-    width: 30%;
-}
+/*@media (max-width: 1024px) {*/
+    /*#HomeLIST{*/
+        /*display: none;*/
+        /*position: relative;*/
+        /*margin-top:-650px;*/
+    /*}*/
+    /*#imgProfile{*/
+        /*display: none;*/
+    /*}*/
+    /*.nav-side-menu li {*/
+        /*margin-bottom:1px;*/
+    /*}*/
+    /*.nav-side-menu{*/
+        /*background-image: url("../img/UserPicture.jpg");*/
+        /*background-size: cover;*/
+        /*padding:0;*/
+    /*}*/
+/*}*/
+/*@media (max-width:425px){*/
+/*#showListHome{*/
+    /*margin-left:42%;*/
+/*}*/
+    /*#HomeLIST{*/
+        /*display: none;*/
+        /*position: relative;*/
+        /*margin-top:-500px;*/
+    /*}*/
+/*#listsVideo .CARDvideo{*/
+    /*padding: 0px;*/
+    /*height: 3%;*/
+    /*width: 30%;*/
+/*}*/
 
-}
-@media (max-width:320px){
-    #showListHome{
-        margin-left:38%;
-    }
-    #HomeLIST{
-        display: none;
-        position: relative;
-        margin-top:-490px;
-    }
-}
+/*}*/
+/*@media (max-width:320px){*/
+    /*#showListHome{*/
+        /*margin-left:38%;*/
+    /*}*/
+    /*#HomeLIST{*/
+        /*display: none;*/
+        /*position: relative;*/
+        /*margin-top:-490px;*/
+    /*}*/
+/*}*/
 
 
 
