@@ -57,6 +57,9 @@
     {
         include '../admin_panel/edit_video.php';
     }
+    if(isset($_GET['delete_gallery'])) {
+        include '../admin_panel/delete_gallery.php';
+    }
     ?>
 </body>
 </html>

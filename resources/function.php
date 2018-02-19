@@ -1,6 +1,5 @@
 <?php
-if(!isset($_SESSION))
-{
+if (!isset($_SESSION)) {
     session_start();
 
 }class functions
@@ -53,9 +52,32 @@ if(!isset($_SESSION))
         $string2 = htmlspecialchars($string2);
         $string2 = htmlentities($string2, ENT_COMPAT, 'UTF-8');
         $string2 = trim($string2);
-        $string2 =stripslashes($string2);
+        $string2 = stripslashes($string2);
         return $string2;
 
+    }
+
+// ******* About Us functions ********//
+
+public function about_me(){
+if(isset($_POST['ab_save']))
+{
+    if(empty($_POST['description'])){
+        $this->set_message("لطفا متن مربوطه را وارد نمایید");
+    }else{
+        $description = $this->escape_string($_POST['description']);
+
+        $sql = "INSERT INTO tbl_aboutme(biog) VALUES ($description)";
+        $result = $this->query($sql);
+        $this->confirm($result);
+
+        if(isset($_POST[''])){
+
+
+        }
+    }
+
+}
     }
 
 /* manage article.................................................... */
@@ -90,7 +112,7 @@ LISTARTICLE;
                     $short_desc = $this->escape_string($_POST['short_desc']);
                     $description = $this->escape_string($_POST['description']);
                     $image = $this->escape_string($_POST['image']);
-                  if(isset($_POST['status'])) $status = 1; else $status = 0;
+                    if (isset($_POST['status'])) $status = 1; else $status = 0;
                     $sql = "INSERT INTO tbl_article(title,short_desc,description,image_src,status) VALUES ('$title','$short_desc','$description','$image','$status')";
                     $result = $this->query($sql);
                     $this->confirm($result);
@@ -102,15 +124,16 @@ LISTARTICLE;
 
     public function edit_article()
     {
-        if(isset($_GET['edit_article'])){
-        $id_edit_article = $this->escape_string($_GET['edit_article']);
-        $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id_edit_article}'";
-        $query = $this->query($sql);
-        $this->confirm($query);
-        $result = $this->fetch_array($query);
-        return $result;
+        if (isset($_GET['edit_article'])) {
+            $id_edit_article = $this->escape_string($_GET['edit_article']);
+            $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id_edit_article}'";
+            $query = $this->query($sql);
+            $this->confirm($query);
+            $result = $this->fetch_array($query);
+            return $result;
 
-    }}
+        }
+    }
 
     public function UpdateArticleById()
     {
@@ -118,46 +141,52 @@ LISTARTICLE;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (isset($_POST['update_article'])) {
-                $id2 =$this->escape_string($_POST['id']);
+                $id2 = $this->escape_string($_POST['id']);
                 $title = $this->escape_string($_POST['title']);
                 $short_desc = $this->escape_string($_POST['short_desc']);
                 $description = $this->escape_string($_POST['description']);
                 $image = $this->escape_string($_POST['image']);
-                if(isset($_POST['status'])) $status = 1; else $status = 0;
-              $sql = "UPDATE `tbl_article` SET `title`='".$title."' , `short_desc`= '".$short_desc."' , `image_src`= '".$image."' , `description`= '".$description."' , `status`= '".$status."' WHERE  id_article = '".$id2."' ";
+                if (isset($_POST['status'])) $status = 1; else $status = 0;
+                $sql = "UPDATE `tbl_article` SET `title`='" . $title . "' , `short_desc`= '" . $short_desc . "' , `image_src`= '" . $image . "' , `description`= '" . $description . "' , `status`= '" . $status . "' WHERE  id_article = '" . $id2 . "' ";
 //                $sql = "UPDATE `tbl_article` SET `title` = '".{$title}."' , short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
                 $query = $this->query($sql);
-                    $this->confirm($query);
-
+                $this->confirm($query);
             } else {
                 return false;
             }
-
         }
 
     }
-    /* manage image.................................................... */
+    /* manage gallery.................................................... */
 
     public function manage_gallery()
     {
         $sql = "SELECT * FROM tblgallery";
         $result = $this->query($sql);
         $this->confirm($result);
-        while ($row = $this->fetch_array($result)){
-//echo "<pre>";
-//print_r($row);
-//echo "</pre>";
-            $gallery=<<<DELIMITER
+        while ($row = $this->fetch_array($result)) {
+//            echo "<pre>";
+//            print_r($row);
+//            echo "</pre>";
+//
+            if ($row['type'] == 1) {
+                $gallery = <<<DELIMITER
 <div class="SCard">
-                <img class="Svideo" src=img/"{$row['image_url']}">
-                <button> حذف</button><button>ویرایش</button>
+                <img class="Svideo" src="upload/{$row['image_url']}">
+               <a href="index.php?delete_gallery={$row['id_gallery']}"><button>delete</button></a><a href="edit_gallery.php?edit_gallery={$row['id_gallery']}" style="display: inline;"><button>edit</button></a>
             </div>
+
+DELIMITER;
+                echo $gallery;
+            } elseif ($row['type'] == 2) {
+                $video = <<<DELIMITER
 <div class="SCard">
                 <video  class="XLvideo" controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
-               <a href="index.php?delete_gallery={$row['id_gallery']}"><button>حذف</button><button>ویرایش</button></a>
+                <a href="index.php?delete_gallery={$row['id_gallery']}"><button>delete</button></a><a href="edit_gallery.php?edit_gallery={$row['id_gallery']}" style="display: inline;"><button>edit</button></a>
             </div>
 DELIMITER;
-            return $gallery;
+                echo $video;
+            }
         }
     }
 
@@ -170,24 +199,32 @@ DELIMITER;
                 {
 //                    print_r($_FILES['file']['name']);
 //                    EXIT;
+                    $image_file = $time = $video_prev = $pasvand = $type = $pasvand_prev = $video_file = $extention_prev = $extention = null;
+                    //
+                    $hash = md5($_FILES['file']['name'] . microtime()) . substr($_FILES['file']['name'], -5, 5);
+                    if (isset($_POST['ga_status'])) {
+                        $status = 1;
+                    } else {
+                        $status = 0;
+                    }
                     $image_file = $time = $video_prev =$pasvand = $type = $pasvand_prev = $video_file = $extention_prev = $extention =null;
                     //
                     $hash = md5($_FILES['file']['name']. microtime()) . substr($_FILES['file']['name'],-5,5);
                     if(isset($_POST['ga_status'])) {$status = 1;} else{ $status = 0;}
                     $title = $this->escape_string($_POST['ga_title']);
                     $remember = $this->escape_string($_POST['ga_remember']);
-                    if($remember == "picture") {
+                    if ($remember == "picture") {
                         $pasvand = array("gif", "jpg", "jpeg", "PNG");
                         $type = 1;
-                    }else if($remember == "video"){
+                    } else if ($remember == "video") {
                         $pasvand = array("mov", "avi", "mp4", "mp3");
                         $type = 2;
-                        $hash_prev = md5($_FILES['prev_file']['name']. microtime()) . substr($_FILES['prev_file']['name'],-5,5);
+                        $hash_prev = md5($_FILES['prev_file']['name'] . microtime()) . substr($_FILES['prev_file']['name'], -5, 5);
                         $pasvand_prev = array("gif", "jpg", "jpeg", "PNG");
-                        $fileExtention_prev = explode("." ,$_FILES['prev_file']['name']);
+                        $fileExtention_prev = explode(".", $_FILES['prev_file']['name']);
                         $extention_prev = end($fileExtention_prev);
-                        if (in_array("$extention_prev" , $pasvand_prev) && ($_FILES['prev_file']['size']<=20971520)){
-                            if(move_uploaded_file($_FILES["prev_file"]["tmp_name"] , 'upload/'.$hash_prev)) {
+                        if (in_array("$extention_prev", $pasvand_prev) && ($_FILES['prev_file']['size'] <= 20971520)) {
+                            if (move_uploaded_file($_FILES["prev_file"]["tmp_name"], 'upload/' . $hash_prev)) {
                                 if ($_FILES["file"]["error"] == 0) {
                                     echo "<div class='msg'>file uploaded successfully</div>";
 
@@ -197,32 +234,32 @@ DELIMITER;
                             }
                         }
                     }
-                    $fileExtention = explode("." ,$_FILES['file']['name']);
-                    $extention = end($fileExtention);
-                    if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=20971520))
-                    {
-                        if(move_uploaded_file($_FILES["file"]["tmp_name"] , 'upload/'.$hash)) {
-                            if ($_FILES["file"]["error"] == 0) {
-                                echo "<div class='msg'>file uploaded successfully</div>";
-                                $time = date('Y/m/d/ H:i:s');
-                            } else {
-                                echo "<div class='msg'>cannot  uploaded </div>";
+                        $fileExtention = explode("." ,$_FILES['file']['name']);
+                        $extention = end($fileExtention);
+                        if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=20971520))
+                        {
+                            if(move_uploaded_file($_FILES["file"]["tmp_name"] , 'upload/'.$hash)) {
+                                if ($_FILES["file"]["error"] == 0) {
+                                    echo "<div class='msg'>file uploaded successfully</div>";
+                                    $time = date('Y/m/d/ H:i:s');
+                                } else {
+                                    echo "<div class='msg'>cannot  uploaded </div>";
+                                }
                             }
-                        }
                         else
                         {
                             echo "<div class='msg'>can upload file with picture or video format </div>";
                         }
                     }
-                    if($type == 1){
-                        $image_file = $this->escape_string($_FILES['file']['name']);
-                        $video_file = null;
-                        $video_prev = null;
-                    }else if($type ==2){
-                        $video_file = $this->escape_string($_FILES['file']['name']);
-                        $video_prev = $this->escape_string($_FILES['prev_file']['name']);
-                        $image_file =null;
-                    }
+                   if($type == 1){
+                       $image_file = $this->escape_string($_FILES['file']['name']);
+                       $video_file = null;
+                       $video_prev = null;
+                   }else if($type ==2){
+                       $video_file = $this->escape_string($_FILES['file']['name']);
+                       $video_prev = $this->escape_string($_FILES['prev_file']['name']);
+                       $image_file =null;
+                   }
                     $sql = "INSERT INTO `tblgallery` (`id_gallery`, `title`, `image_url`, `status`, `type`, `video_url`, `prev_url`, `date`) VALUES (NULL,'$title','$image_file','$status','$type','$video_file', ' $video_prev','$time')";
                     $result = $this->query($sql);
                     $this->confirm($result);
@@ -235,33 +272,33 @@ DELIMITER;
     {
         if (isset($_GET['edit_gallery'])) {
             $id_edit_gallery = $this->escape_string($_GET['edit_gallery']);
-            $sql = "SELECT * FROM tbl_article WHERE id_article = '{$id_edit_gallery}'";
+            $sql = "SELECT * FROM tblgallery WHERE id_gallery = '{$id_edit_gallery}'";
             $query = $this->query($sql);
             $this->confirm($query);
             $result = $this->fetch_array($query);
             return $result;
+
         }
     }
 
-    public function UpdateGalleryByID(){
+    public function UpdateGalleryByID()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            if (isset($_POST['update_gallery'])) {
-                $id2 =$this->escape_string($_POST['id']);
+            if (isset($_POST['UpdateGallery'])) {
+                $id2 = $this->escape_string($_POST['id']);
                 $title = $this->escape_string($_POST['title']);
-                $short_desc = $this->escape_string($_POST['short_desc']);
-                $description = $this->escape_string($_POST['description']);
-                $image = $this->escape_string($_POST['image']);
-                if(isset($_POST['status'])) $status = 1; else $status = 0;
-                $sql = "UPDATE `tbl_article` SET `title`='".$title."' , `short_desc`= '".$short_desc."' , `image_src`= '".$image."' , `description`= '".$description."' , `status`= '".$status."' WHERE  id_article = '".$id2."' ";
+                $time = date("Y-m-d G:i:s<br>", time());
+                if (isset($_POST['status'])) $status = 1; else $status = 0;
+//                $sql = "UPDATE `tbl_article` SET `title`='" . $title . "' , `short_desc`= '"  . "' , `image_src`= '"  . "' , `description`= '" . "' , `status`= '" . $status . "' WHERE  id_article = '" . $id2 . "' ";
+//
 //                $sql = "UPDATE `tbl_article` SET `title` = '".{$title}."' , short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
+                $sql = "UPDATE `tblgallery` SET `title`='".$title."',`status`='".$status."',`date`='".$time."' WHERE id_gallery = '".$id2."'";
                 $query = $this->query($sql);
                 $this->confirm($query);
-
+                $this->redirect("Managmant-Gallery.php");
             } else {
                 return false;
             }
-
         }
     }
     /* manage video.................................................... */
@@ -445,7 +482,7 @@ DELIMITER;
 //            }
 //            crady
 //            orp
-            
+
 //            $direction = $_SERVER['DOCUMENT_ROOT'];
         $video_name = $_FILES['video']['name'];
         $video_size = $_FILES['video']['size'];
@@ -466,8 +503,7 @@ DELIMITER;
                     echo "<div class='msg'>cannot  uploaded </div>";
                 }
             }
-        }else
-        {
+        } else {
             echo "<div class='msg'>can upload file with .ogg .mp4</div>";
         }
         }
@@ -583,8 +619,8 @@ DELIMITER;
                     $emailCheck = $this->query($query);
                     $this->confirm($emailCheck);
                     $row = $this->fetch_array($emailCheck);
-                    $numRow =mysqli_num_rows( $row);
-                    if($numRow>0){
+                    $numRow = mysqli_num_rows($row);
+                    if ($numRow > 0) {
                         echo '<p style="background-color: #ac2925;color: black ;text-align: center"> you have an account with this email</p>';
                         $this->set_message("you have an account with this email");
                         echo $_SESSION['message'];
@@ -599,5 +635,6 @@ DELIMITER;
         }
     }
 }
-$function=new functions();
+
+$function = new functions();
 

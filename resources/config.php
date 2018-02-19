@@ -14,7 +14,7 @@ defined('DB_USER') ? null : define('DB_USER', 'root');
 defined('DB_PASS') ? null : define('DB_PASS', '');
 defined('DB_NAME') ? null : define('DB_NAME', 'paint_tbl');
 defined('CHARSET') ? null : define('CHARSET', 'utf8');
-
+defined('MAX_SIZE') ? null : define('MAX_SIZE', 50);
 $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $connection->set_charset(CHARSET);
 
