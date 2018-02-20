@@ -8,14 +8,14 @@ include '../resources/config.php';
 <head>
     <meta charset="UTF-8">
     <title>درباره من</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css">
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
 
     <!-- Compiled and minified JavaScript -->
     <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
@@ -62,7 +62,7 @@ include '../resources/config.php';
 
         <div class="row col-lg-12 AboutUsContantDiv">
             <div class="form">
-                <form method="post" action="">
+                <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>">
 
                     <div class="embed-responsive embed-responsive-16by9">
                         <video class="embed-responsive-item "></video>
@@ -70,43 +70,25 @@ include '../resources/config.php';
                     <br>
                     <div class="file UplodeButton Button">
                         آپلود ویدئو
-                        <input class="Input" type="file" name="file"/>
+<!--                        <input class="Input" type="file" name="file"/>-->
                     </div>
                     <br><hr>
 
                     <textarea class="form-control description" id="description" placeholder="متن درباره ما" rows="5" name="description"></textarea>
                     <br>
-                    <div class="fixed-action-btn horizontal click-to-toggle">
-                        <a class="btn-floating btn-large red">
-                            <i class="material-icons">menu</i>
-                        </a>
-                        <ul>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/facebook.png" name="facebook" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/pinterest.png" name="pinterest" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/google plus.png" name="google_plus" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/instagram.png" name="instagram" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/linkedin.png" name="linkedin" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/skype.png" name="skype" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/telegram.png" name="telegram" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/twitter.png" name="twitter" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/whatsapp.png" name="whatsapp" /></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="youtube"/></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="telephone"/></a></li>
-                            <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="email"/></a></li>
-
-                        </ul>
-                    </div>
-
-
                     <input style="border: none" type="submit" name="ab_save" class="Button" value="ذخیره">
 <!--                </form>-->
+                    <?php $function->about_me();
+                    $function->display_message();
+                    ?>
+
                 <br><hr>
 <!--                <form>-->
                     <div id="myOverlay" class="overlay">
                         <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
                         <div class="overlay-content">
-<!--                            <form>-->
-                                <input type="text" class="Social" placeholder="لینک">
+                            <form method="post"  action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>">
+                                <input type="text" name="link" class="Social" placeholder="لینک">
                                 <br><br>
                                 <a href="#"><div class="SaveButton">حذف</div></a>
 <!--                                <a href="#"><div class="CancelButton">ذخیره</div></a>-->
@@ -134,23 +116,25 @@ include '../resources/config.php';
 
     </div>
 </div>
-<!--<div class="fixed-action-btn horizontal click-to-toggle">-->
-<!--    <a class="btn-floating btn-large red">-->
-<!--        <i class="material-icons">menu</i>-->
-<!--    </a>-->
-<!--    <ul>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/facebook.png" name="facebook" /></a></li>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/pinterest.png" name="pinterest" /></a></li>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/google plus.png" name="google_plus" /></a></li>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/instagram.png" name="instagram" /></a></li>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/linkedin.png" name="linkedin" /></a></li>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/skype.png" name="skype" /></a></li>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/telegram.png" name="telegram" /></a></li>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/twitter.png" name="twitter" /></a></li>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/whatsapp.png" name="whatsapp" /></a></li>-->
-<!--        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="youtube"/></a></li>-->
-<!---->
-<!--    </ul>-->
-<!--</div>-->
+<div class="fixed-action-btn horizontal click-to-toggle">
+    <a class="btn-floating btn-large red">
+        <i class="material-icons">menu</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/facebook.png" name="facebook" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/pinterest.png" name="pinterest" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/google plus.png" name="google_plus" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/instagram.png" name="instagram" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/linkedin.png" name="linkedin" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/skype.png" name="skype" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/telegram.png" name="telegram" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/twitter.png" name="twitter" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/whatsapp.png" name="whatsapp" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="youtube"/></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="telephone"/></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="email"/></a></li>
+
+    </ul>
+</div>
 </body>
 </html>

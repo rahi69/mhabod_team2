@@ -64,22 +64,75 @@ if(isset($_POST['ab_save']))
 {
     if(empty($_POST['description'])){
         $this->set_message("لطفا متن مربوطه را وارد نمایید");
-    }else{
+    }else {
         $description = $this->escape_string($_POST['description']);
-
-        $sql = "INSERT INTO tbl_aboutme(biog) VALUES ($description)";
-        $result = $this->query($sql);
+        $query = "SELECT * FROM tbl_aboutme";
+        $result = $this->query($query);
         $this->confirm($result);
-
-        if(isset($_POST[''])){
-
-
+        $rowCount = mysqli_num_rows($result);
+        if ($rowCount > 0) {
+            $sql = "UPDATE `tbl_aboutme` SET `biog` ='".$description."'";
+            $result2 = $this->query($sql);
+            $this->confirm($result2);
+            $this->set_message('متن شما با موفقیت ویرایش شد');
+        } else {
+            $sql = "INSERT INTO `tbl_aboutme`(biog) VALUES ('$description')";
+            $result2 = $this->query($sql);
+            $this->confirm($result2);
+            $this->set_message('متن شما با موفقیت ثبت شد');
         }
     }
-
-}
     }
+    }
+public function social_network(){
+    if(isset($_POST['social'])) {
+        if (empty($_POST['facebook']) && empty($_POST['pinterest']) && empty($_POST['google_plus']) && empty($_POST['instagram']) && empty($_POST['linkedin']) &&
+            empty($_POST['skype']) && empty($_POST['telegram']) && empty($_POST['twitter']) && empty($_POST['whatsapp']) && empty($_POST['youtube'])
+            && empty($_POST['telephone']) && empty($_POST['email'])) {
+            $this->set_message("کاربر گرامی حداقل یکی از موارد زیر را کامل نمایید.");
+        } else {
+            IF(isset($_POST['facebook']))
+            $facebook = $_POST['facebook'];
+            IF(isset($_POST['pinterest']))
+            $pinterest = $_POST['pinterest'];
+            IF(isset($_POST['google_plus']))
+            $google_plus = $_POST['google_plus'];
+            IF(isset($_POST['instagram']))
+            $instagram = $_POST['instagram'];
+            IF(isset($_POST['linkedin']))
+            $linkedin = $_POST['linkedin'];
+            IF(isset($_POST['skype']))
+            $skype = $_POST['skype'];
+            IF(isset($_POST['telegram']))
+            $telegram = $_POST['telegram'];
+            IF(isset($_POST['twitter']))
+            $twitter = $_POST['twitter'];
+            IF(isset($_POST['whatsapp']))
+            $whatsapp = $_POST['whatsapp'];
+            IF(isset($_POST['youtube']))
+            $youtube = $_POST['youtube'];
+            IF(isset($_POST['telephone']))
+            $telephone = $_POST['telephone'];
+            IF(isset($_POST['email']))
+            $email = $_POST['email'];
+            $sql = "SELECT * FROM social-network";
+            $result = $this->query($sql);
+            $this->confirm($result);
+            $rowCount = mysqli_num_rows($result);
+            if ($rowCount > 0) {
+                $sql = "UPDATE `social-network` SET `facebook` ='" . $facebook . "' , `pinterest` ='" . $pinterest . "' , `google_plus` ='" . $google_plus . "' 
+                 , `instagram` ='" . $instagram . "' , `linkedin` ='" . $linkedin . "' , `skype` ='" . $skype . "' , `telegram` ='" . $telegram . "' 
+                 , `twitter` ='" . $twitter . "' , `whatsapp` ='" . $whatsapp . "' , `youtube` ='" . $youtube . "' , `telephone` ='" . $telephone . "' , `email` ='" . $email . "' ";
+                $result2 = $this->query($sql);
+                $this->confirm($result2);
+                $this->set_message('متن شما با موفقیت ویرایش شد.');
+            }else {$sql ="INSERT INTO `social-network`(`id`, `facebook`, `pinterest`, `google_plus`, `instagram`, `linkedin`, `skype`, `telegram`, `twitter`, `whatsapp`, `youtube`, `telephone`, `email`, `json`) VALUES
+                                                          ('null','$facebook','$pinterest','$google_plus','$instagram','$linkedin','$skype','$telegram',[value-10],[value-11],[value-12],[value-13],[value-14])";
 
+            }
+        }
+    }
+}
 /* manage article.................................................... */
     public function manage_article()
     {
@@ -168,7 +221,7 @@ LISTARTICLE;
 //            echo "<pre>";
 //            print_r($row);
 //            echo "</pre>";
-//
+
             if ($row['type'] == 1) {
                 $gallery = <<<DELIMITER
 <div class="SCard">
