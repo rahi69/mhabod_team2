@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+<form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
     <div class="form-group">
         <label>عنوان:</label>
         <input type="text" class="form-control" id="title" name="ga_title"
@@ -29,7 +29,8 @@
         <label><input type="radio" name="ga_remember" value="video" <?php  if(isset($ga_remember) && $ga_remember=="video") echo "checked"; ?> >&nbsp;&nbsp;&nbsp;&nbsp; ویدئو</label>&nbsp;&nbsp;
     </div><br/>
     <input name="file" style="direction: rtl;width: 50%" type="file" ><br>
-    <input name="prev_file" style="direction: rtl;width: 50%" type="file" ><br>
+    <input name="prev_file" style="direction: rtl;width: 50%;" type="file" ><br>
+<!--    if(isset($ga_remember) && $ga_remember=="video") echo 'display: none'; else echo 'display: block'; -->
     <div style="direction: rtl;width: 100%" class="checkbox">
         <label><input type="checkbox" name="ga_status" checked>&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
     </div>

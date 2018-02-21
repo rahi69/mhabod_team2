@@ -62,16 +62,17 @@ if (!isset($_SESSION)) {
 // ******* About Us functions ********//
 
 public function about_me(){
-    $file_size_max = 2147483648;
+
 
       //  if(isset($_POST['upload']))
-            if(isset($_POST['ab_save'])){
-        { $hash = md5($_FILES['file']['name']. microtime()) . substr($_FILES['file']['name'],-5,5);
+            if(isset($_POST['ab_save']))
+            {
+                $hash = md5($_FILES['file']['name']. microtime()) . substr($_FILES['file']['name'],-5,5);
             $pasvand = array("ogg" , "mp4");
             //array("gif" , "jpg" , "jpeg" ,"PNG");
             $fileExtention = explode("." ,$_FILES['file']['name']);
             $extention = end($fileExtention);
-            if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=$file_size_max))
+            if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=self::file_size_max))
             {
                 if(move_uploaded_file($_FILES["file"]["tmp_name"] , '../admin_panel/upload/'. $hash))
                 {
@@ -83,15 +84,9 @@ public function about_me(){
                         echo "<div class='msg'>cannot uploaded </div>";
                     }
                 }
-            }else
-            {
+            }else {
                 echo "<div class='msg'>can upload file with . ogg -mp4</div>";
             }
-        }
-//        else{
-//            $this->set_message("فیلم خود را آپلود نمایید.");
-//        }
-
             $video_url = $this->video_url;
     if(empty($_POST['description'])){
         $this->set_message("لطفا متن مربوطه را وارد نمایید");
@@ -185,17 +180,17 @@ public function social_network(){
 
 /* manage function upload.................................................... */
 public function upload($file, $suffix = array()){
-    $hash = md5($_FILES["$file"]['name']. microtime()) . substr($_FILES["$file"]['name'],-5,5);
+    $hash = md5($file['name']. microtime()).substr($file['name'],-5,5);
     $pasvand = $suffix;
 //    array("ogg" , "mp4");
 //    array("gif" , "jpg" , "jpeg" ,"PNG");
-    $fileExtention = explode("." ,$_FILES["$file"]['name']);
+    $fileExtention = explode("." ,$file['name']);
     $extention = end($fileExtention);
-    if (in_array("$extention" , $pasvand) && ($_FILES["$file"]['size'] <= self::file_size_max))
+    if (in_array("$extention" , $pasvand) && ($file['size'] <= self::file_size_max))
     {
-        if(move_uploaded_file($_FILES["$file"]["tmp_name"] , '../admin_panel/upload/'. $hash))
+        if(move_uploaded_file($file["tmp_name"] , '../admin_panel/upload/'. $hash))
         {
-            if ($_FILES["$file"]["error"] == 0) {
+            if ($file["error"] == 0) {
                 echo "<div class='msg'>file uploaded successfully</div>";
                 $this->_url = $hash;
 
@@ -235,25 +230,47 @@ LISTARTICLE;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['Add'])) {
-
                 if (empty($_POST['title']) || empty($_POST['short_desc']) || empty($_POST['description'])) {
                     echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
-                } else {
-                    $this->upload($_POST['file'], array("gif" , "jpg" , "jpeg" ,"PNG"));
-                    $title = $this->escape_string($_POST['title']);
-                    $short_desc = $this->escape_string($_POST['short_desc']);
-                    $description = $this->escape_string($_POST['description']);
-                    $image = $this->escape_string($this->_url);
-                    //$image = $this->escape_string($_FILES['image']['name']);
-                    if (isset($_POST['status'])) $status = 1; else $status = 0;
-                    $sql = "INSERT INTO tbl_article(title,short_desc,description,image_src,status) VALUES ('$title','$short_desc','$description','$image','$status')";
-                    $result = $this->query($sql);
-                    $this->confirm($result);
-
-                }
+                }else{
+//                $hash = md5($_FILES['file']['name']. microtime()).substr($_FILES['file']['name'],-5,5);
+//                $pasvand = array("gif" , "jpg" , "jpeg" ,"PNG");
+//                $fileExtention = explode("." ,$_FILES['file']['name']);
+//                $extention = end($fileExtention);
+//                if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=self::file_size_max))
+//                {
+//                    if(move_uploaded_file($_FILES['file']["tmp_name"] , '../admin_panel/upload/'. $hash))
+//                    {
+//                        if ($_FILES['file']["error"] == 0) {
+//                            echo "<div class='msg'>file uploaded successfully</div>";
+//                            $this->_url = $hash;
+//
+//                        } else {
+//                            echo "<div class='msg'>cannot uploaded </div>";
+//                        }
+//                    }
+//                }else
+//                {
+//                    echo "<div class='msg'>can upload file with . giff -jpg</div>";
+//                }
+                ///
+                    $this->upload($_FILES['file'], array("gif" , "jpg" , "jpeg" ,"PNG"));
+                $title = $this->escape_string($_POST['title']);
+                $short_desc = $this->escape_string($_POST['short_desc']);
+                $description = $this->escape_string($_POST['description']);
+                $image = $this->escape_string($this->_url);
+                //$image = $this->escape_string($_FILES['image']['name']);
+                if (isset($_POST['status'])) $status = 1; else $status = 0;
+                $sql = "INSERT INTO tbl_article(title,short_desc,description,image_src,status) VALUES ('$title','$short_desc','$description','$image','$status')";
+                $result = $this->query($sql);
+                $this->confirm($result);
             }
+
+        }
         }
     }
+
+
 
     public function edit_article()
     {
@@ -330,65 +347,24 @@ DELIMITER;
                     echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
                 } else
                 {
-//                    print_r($_FILES['file']['name']);
-//                    EXIT;
-                    $image_file = $time = $video_prev = $pasvand = $type = $pasvand_prev = $video_file = $extention_prev = $extention = null;
-                    //
-                    $hash = md5($_FILES['file']['name'] . microtime()) . substr($_FILES['file']['name'], -5, 5);
-                    if (isset($_POST['ga_status'])) {
-                        $status = 1;
-                    } else {
-                        $status = 0;
-                    }
-                    $image_file = $time = $video_prev =$pasvand = $type = $pasvand_prev = $video_file = $extention_prev = $extention =null;
-                    //
-                    $hash = md5($_FILES['file']['name']. microtime()) . substr($_FILES['file']['name'],-5,5);
-                    if(isset($_POST['ga_status'])) {$status = 1;} else{ $status = 0;}
-                    $title = $this->escape_string($_POST['ga_title']);
-                    $remember = $this->escape_string($_POST['ga_remember']);
-                    if ($remember == "picture") {
-                        $pasvand = array("gif", "jpg", "jpeg", "PNG");
-                        $type = 1;
-                    } else if ($remember == "video") {
-                        $pasvand = array("mov", "avi", "mp4", "mp3");
-                        $type = 2;
-                        $hash_prev = md5($_FILES['prev_file']['name'] . microtime()) . substr($_FILES['prev_file']['name'], -5, 5);
-                        $pasvand_prev = array("gif", "jpg", "jpeg", "PNG");
-                        $fileExtention_prev = explode(".", $_FILES['prev_file']['name']);
-                        $extention_prev = end($fileExtention_prev);
-                        if (in_array("$extention_prev", $pasvand_prev) && ($_FILES['prev_file']['size'] <= 20971520)) {
-                            if (move_uploaded_file($_FILES["prev_file"]["tmp_name"], 'upload/' . $hash_prev)) {
-                                if ($_FILES["file"]["error"] == 0) {
-                                    echo "<div class='msg'>file uploaded successfully</div>";
+                    $title = $_POST['ga_title'];
+                    $type = $_POST['ga_remember'];
+                    if($type == "picture"){
+                        $this->upload($_FILES['file'], array("gif" , "jpg" , "jpeg" ,"PNG"));
 
-                                } else {
-                                    echo "<div class='msg'>cannot  uploaded </div>";
-                                }
-                            }
-                        }
+                }elseif ($type == "video"){
+
+                        $this->upload($_FILES['file'], array("ogg" , "mp4"));
+                        $this->upload($_FILES['prev_file'],  array("gif" , "jpg" , "jpeg" ,"PNG"));
                     }
-                        $fileExtention = explode("." ,$_FILES['file']['name']);
-                        $extention = end($fileExtention);
-                        if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=20971520))
-                        {
-                            if(move_uploaded_file($_FILES["file"]["tmp_name"] , 'upload/'.$hash)) {
-                                if ($_FILES["file"]["error"] == 0) {
-                                    echo "<div class='msg'>file uploaded successfully</div>";
+
                                     $time = date('Y/m/d/ H:i:s');
-                                } else {
-                                    echo "<div class='msg'>cannot  uploaded </div>";
-                                }
-                            }
-                        else
-                        {
-                            echo "<div class='msg'>can upload file with picture or video format </div>";
-                        }
-                    }
-                   if($type == 1){
+
+                   if($type == "picture"){
                        $image_file = $this->escape_string($_FILES['file']['name']);
                        $video_file = null;
                        $video_prev = null;
-                   }else if($type ==2){
+                   }else if($type =="video"){
                        $video_file = $this->escape_string($_FILES['file']['name']);
                        $video_prev = $this->escape_string($_FILES['prev_file']['name']);
                        $image_file =null;
@@ -589,103 +565,6 @@ DELIMITER;
         }
     }
     /* upload files.................................................... */
-
-    public function upload_video()
-    {
-//        if (isset($_FILES['video'])) {
-//            $uploadDir = __DIR__ . '/upload/';
-//            $this->uploadPathv = $uploadDir . rand(100, 500) . '_' . $_FILES['video']['name'];
-//            //$move=move_uploaded_file($_FILES['video']['tmp_name'],$uploadPath);
-//            $allowType = array("ogg" , "mp4");;
-//            $allowSize = $_FILES['video']['size'];
-//            if ($allowSize < 2147483648) {
-//
-//                if (in_array($_FILES['video']['type'], $allowType)) {
-//
-//                    if (move_uploaded_file($_FILES['video']['tmp_name'], $this->uploadPathv)) {
-//                        echo "file as  valid and success video";
-//                    } else {
-//                        echo "Error on video";
-//                    }
-//                } else {
-//                    echo 'cannot format...';
-//                }
-//            } else {
-//                echo "Error Size";
-//            }
-//            crady
-//            orp
-
-//            $direction = $_SERVER['DOCUMENT_ROOT'];
-        $video_name = $_FILES['video']['name'];
-        $video_size = $_FILES['video']['size'];
-        $video_temp = $_FILES['video']['tmp_name'];
-        $video_error = $_FILES['video']['error'];
-        $file_size_max = 2147483648;
-        $this->hash_video= md5($video_name. microtime()).substr($video_name,-5,5);
-        $pasvand = array("ogg" , "mp4");
-        $fileExtention = explode("." ,$video_name);
-        $extention = end($fileExtention);
-        if (in_array("$extention" , $pasvand) && ($video_size<=$file_size_max))
-        {
-            if(move_uploaded_file($video_temp , './../upload/'. $this->hash_video))
-            {
-                if ($video_error == 0) {
-                    echo "<div class='msg'>file uploaded successfully</div>";
-                } else {
-                    echo "<div class='msg'>cannot  uploaded </div>";
-                }
-            }
-        } else {
-            echo "<div class='msg'>can upload file with .ogg .mp4</div>";
-        }
-        }
-
-        public function upload_image()
-        {
-//            if (isset($_FILES['image'])) {
-//                $uploadDir = __DIR__ . '/upload/';
-//                $this->uploadPathi = $uploadDir . rand(100, 500) . '_' . $_FILES['image']['name'];
-//                //$move=move_uploaded_file($_FILES['image']['tmp_name'],$uploadPath);
-//                $allowType = array('image/jpeg', 'image/png');
-//                $allowSize = $_FILES['image']['size'];
-//                if ($allowSize < 200000) {
-//
-//
-//                    if (in_array($_FILES['image']['type'], $allowType)) {
-//
-//                        if (move_uploaded_file($_FILES['image']['tmp_name'], $this->uploadPathi)) {
-//                            echo "file as  valid and success image";
-//                        } else {
-//                            echo "Error on image";
-//                        }
-//                    } else {
-//                        echo 'cannot format...';
-//                    }
-//                } else {
-//                    echo "Error Size";
-//                }
-//            $direction = $_SERVER['DOCUMENT_ROOT'];
-            $image_name = $_FILES['image']['name'];
-            $image_size = $_FILES['image']['size'];
-            $image_temp = $_FILES['image']['tmp_name'];
-            $image_error = $_FILES['image']['error'];
-            $this->hash_image = md5($image_name . microtime()) . substr($image_name, -5, 5);
-            $pasvand = array("gif", "jpg", "jpeg", "PNG");
-            $fileExtention = explode(".", $image_name);
-            $extention = end($fileExtention);
-            if (in_array("$extention", $pasvand) && ($image_size <= 20971520)) {
-                if (move_uploaded_file($image_temp,  './../upload/' . $this->hash_image)) {
-                    if ($image_error == 0) {
-                        echo "<div class='msg'>file uploaded successfully</div>";
-                    } else {
-                        echo "<div class='msg'>cannot  uploaded </div>";
-                    }
-                }
-            } else {
-                echo "<div class='msg'>can upload file with .ogg .mp4</div>";
-            }
-            }
 
     public function login()
     {
