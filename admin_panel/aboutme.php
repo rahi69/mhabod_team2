@@ -62,21 +62,24 @@ include '../resources/config.php';
 
         <div class="row col-lg-12 AboutUsContantDiv">
             <div class="form">
-                <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>">
+                <form enctype="multipart/form-data" method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>">
 
                     <div class="embed-responsive embed-responsive-16by9">
                         <video class="embed-responsive-item "></video>
                     </div>
                     <br>
                     <div class="file UplodeButton Button">
-                        آپلود ویدئو
-<!--                        <input class="Input" type="file" name="file"/>-->
+                        انتخاب فایل
+                        <input class="Input" type="file" name="file"/>
+
                     </div>
-                    <br><hr>
+<!--                    <br>-->
+<!--                    <input type="submit" name="upload" class="file UplodeButton Button"  value="  آپلود ویدئو">-->
+                   <br><hr>
 
                     <textarea class="form-control description" id="description" placeholder="متن درباره ما" rows="5" name="description"></textarea>
                     <br>
-                    <input style="border: none" type="submit" name="ab_save" class="Button" value="ذخیره">
+                    <input style="border: none" type="submit" name="ab_save" class="Button" value=" ذخیره فیلم و متن">
 <!--                </form>-->
                     <?php $function->about_me();
                     $function->display_message();

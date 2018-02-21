@@ -16,9 +16,7 @@
 <body>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-    <?php
-    $function->add_article();
-?>
+
     <br/>
     <div class="form-group">
         <label>نام مقاله:</label>
@@ -34,14 +32,16 @@
         <textarea class="form-control" rows="5" name="description" id="comment"></textarea>
     </div>
 
-    <input style="direction: rtl;width: 100%" type="file" id="myFile" name="image">
+    <input style="direction: rtl;width: 100%" type="file" id="myFile" name="file">
 
     <div style="direction: rtl;width: 100%" class="checkbox">
         <label><input type="checkbox" name="status" checked>&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
     </div>
     <div>
         <button style="direction: rtl" type="submit" name="Add" class="btn btn-danger">ثبت</button>
-
+        <?php
+        $function->add_article();
+        ?>
     </div>
 </form>
 

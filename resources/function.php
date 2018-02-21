@@ -3,9 +3,11 @@ if (!isset($_SESSION)) {
     session_start();
 
 }class functions
-{
+{ public $video_url;
+    public $_url;
     private $hash_video;
     private $hash_image;
+    const file_size_max = 2147483648;
 
     public function set_message($msg)
     {
@@ -60,8 +62,37 @@ if (!isset($_SESSION)) {
 // ******* About Us functions ********//
 
 public function about_me(){
-if(isset($_POST['ab_save']))
-{
+    $file_size_max = 2147483648;
+
+      //  if(isset($_POST['upload']))
+            if(isset($_POST['ab_save'])){
+        { $hash = md5($_FILES['file']['name']. microtime()) . substr($_FILES['file']['name'],-5,5);
+            $pasvand = array("ogg" , "mp4");
+            //array("gif" , "jpg" , "jpeg" ,"PNG");
+            $fileExtention = explode("." ,$_FILES['file']['name']);
+            $extention = end($fileExtention);
+            if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=$file_size_max))
+            {
+                if(move_uploaded_file($_FILES["file"]["tmp_name"] , '../admin_panel/upload/'. $hash))
+                {
+                    if ($_FILES["file"]["error"] == 0) {
+                        echo "<div class='msg'>file uploaded successfully</div>";
+                        $this->video_url = $hash;
+
+                    } else {
+                        echo "<div class='msg'>cannot uploaded </div>";
+                    }
+                }
+            }else
+            {
+                echo "<div class='msg'>can upload file with . ogg -mp4</div>";
+            }
+        }
+//        else{
+//            $this->set_message("فیلم خود را آپلود نمایید.");
+//        }
+
+            $video_url = $this->video_url;
     if(empty($_POST['description'])){
         $this->set_message("لطفا متن مربوطه را وارد نمایید");
     }else {
@@ -71,18 +102,19 @@ if(isset($_POST['ab_save']))
         $this->confirm($result);
         $rowCount = mysqli_num_rows($result);
         if ($rowCount > 0) {
-            $sql = "UPDATE `tbl_aboutme` SET `biog` ='".$description."'";
+            $sql = "UPDATE `tbl_aboutme` SET `biog` ='".$description."' , `video_url` = '".$video_url."'";
             $result2 = $this->query($sql);
             $this->confirm($result2);
+
             $this->set_message('متن شما با موفقیت ویرایش شد');
         } else {
-            $sql = "INSERT INTO `tbl_aboutme`(biog) VALUES ('$description')";
+            $sql = "INSERT INTO `tbl_aboutme`(`biog`,`video_url`) VALUES ('$description','$video_url')";
             $result2 = $this->query($sql);
             $this->confirm($result2);
             $this->set_message('متن شما با موفقیت ثبت شد');
         }
-    }
-    }
+       }
+     }
     }
 public function social_network(){
     if(isset($_POST['social'])) {
@@ -119,20 +151,66 @@ public function social_network(){
             $result = $this->query($sql);
             $this->confirm($result);
             $rowCount = mysqli_num_rows($result);
+            $json = array(
+                'whatsapp'=>$_POST['whatsapp'],
+                'facebook'=>$_POST['facebook'],
+                'pinterest'=>$_POST['pinterest'],
+                'google_plus'=>$_POST['google_plus'],
+                'instagram'=>$_POST['instagram'],
+                'linkedin'=>$_POST['linkedin'],
+                'skype'=>$_POST['skype'],
+                'telegram'=>$_POST['telegram'],
+                'twitter'=>$_POST['twitter'],
+                'youtube'=>$_POST['youtube'],
+                'telephone'=>$_POST['telephone'],
+                'email'=>$_POST['email'],
+            );
+            $json_encode = json_encode($json);
             if ($rowCount > 0) {
                 $sql = "UPDATE `social-network` SET `facebook` ='" . $facebook . "' , `pinterest` ='" . $pinterest . "' , `google_plus` ='" . $google_plus . "' 
                  , `instagram` ='" . $instagram . "' , `linkedin` ='" . $linkedin . "' , `skype` ='" . $skype . "' , `telegram` ='" . $telegram . "' 
-                 , `twitter` ='" . $twitter . "' , `whatsapp` ='" . $whatsapp . "' , `youtube` ='" . $youtube . "' , `telephone` ='" . $telephone . "' , `email` ='" . $email . "' ";
+                 , `twitter` ='" . $twitter . "' , `whatsapp` ='" . $whatsapp . "' , `youtube` ='" . $youtube . "' , `telephone` ='" . $telephone . "' , `email` ='" . $email . "','".$json_encode."' ";
                 $result2 = $this->query($sql);
                 $this->confirm($result2);
                 $this->set_message('متن شما با موفقیت ویرایش شد.');
             }else {$sql ="INSERT INTO `social-network`(`id`, `facebook`, `pinterest`, `google_plus`, `instagram`, `linkedin`, `skype`, `telegram`, `twitter`, `whatsapp`, `youtube`, `telephone`, `email`, `json`) VALUES
-                                                          ('null','$facebook','$pinterest','$google_plus','$instagram','$linkedin','$skype','$telegram',[value-10],[value-11],[value-12],[value-13],[value-14])";
-
+                                                      ('null','$facebook','$pinterest','$google_plus','$instagram','$linkedin','$skype','$telegram','$twitter','$whatsapp','$youtube','$telephone','$email','$json')";
+                $result2 = $this->query($sql);
+                $this->confirm($result2);
+                $this->set_message('متن شما با موفقیت ثبت شد.');
             }
         }
     }
 }
+
+/* manage function upload.................................................... */
+public function upload($file, $suffix = array()){
+    $hash = md5($_FILES["$file"]['name']. microtime()) . substr($_FILES["$file"]['name'],-5,5);
+    $pasvand = $suffix;
+//    array("ogg" , "mp4");
+//    array("gif" , "jpg" , "jpeg" ,"PNG");
+    $fileExtention = explode("." ,$_FILES["$file"]['name']);
+    $extention = end($fileExtention);
+    if (in_array("$extention" , $pasvand) && ($_FILES["$file"]['size'] <= self::file_size_max))
+    {
+        if(move_uploaded_file($_FILES["$file"]["tmp_name"] , '../admin_panel/upload/'. $hash))
+        {
+            if ($_FILES["$file"]["error"] == 0) {
+                echo "<div class='msg'>file uploaded successfully</div>";
+                $this->_url = $hash;
+
+            } else {
+                echo "<div class='msg'>cannot uploaded </div>";
+            }
+        }
+    }else
+    {
+        echo "<div class='msg'>can upload file</div>";
+    }
+}
+
+
+
 /* manage article.................................................... */
     public function manage_article()
     {
@@ -158,13 +236,15 @@ LISTARTICLE;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['Add'])) {
 
-                if (empty($_POST['title']) || empty($_POST['short_desc']) || empty($_POST['description']) || empty($_POST['image'])) {
+                if (empty($_POST['title']) || empty($_POST['short_desc']) || empty($_POST['description'])) {
                     echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
                 } else {
+                    $this->upload($_POST['file'], array("gif" , "jpg" , "jpeg" ,"PNG"));
                     $title = $this->escape_string($_POST['title']);
                     $short_desc = $this->escape_string($_POST['short_desc']);
                     $description = $this->escape_string($_POST['description']);
-                    $image = $this->escape_string($_POST['image']);
+                    $image = $this->escape_string($this->_url);
+                    //$image = $this->escape_string($_FILES['image']['name']);
                     if (isset($_POST['status'])) $status = 1; else $status = 0;
                     $sql = "INSERT INTO tbl_article(title,short_desc,description,image_src,status) VALUES ('$title','$short_desc','$description','$image','$status')";
                     $result = $this->query($sql);
@@ -542,7 +622,7 @@ DELIMITER;
         $video_temp = $_FILES['video']['tmp_name'];
         $video_error = $_FILES['video']['error'];
         $file_size_max = 2147483648;
-        $this->hash_video= md5($video_name. microtime()) . substr($video_name,-5,5);
+        $this->hash_video= md5($video_name. microtime()).substr($video_name,-5,5);
         $pasvand = array("ogg" , "mp4");
         $fileExtention = explode("." ,$video_name);
         $extention = end($fileExtention);
