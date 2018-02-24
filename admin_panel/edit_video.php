@@ -32,14 +32,14 @@ $result=$function->edit_video();
             <label for="comment">توضیحات:</label>
             <textarea class="form-control" rows="5" id="comment" name="description"><?php echo $result['description'];?></textarea>
         </div>
-        <label for="video">انتخاب ویدئو</label>
-        <input style="direction: rtl;width: 100%" type="file" id="myFile" name="video" value="<?php echo $result['video'];?>" ><br/>
-
-        <div class="form-group">
-            <label for="image">انتخاب عکس</label>
-            <input type="file" name="image" value="<?php echo $result['image_prev'];?>">
-
-        </div>
+<!--        <label for="video">انتخاب ویدئو</label>-->
+<!--        <input style="direction: rtl;width: 100%" type="file" id="myFile" name="video" value="--><?php //echo $result['video'];?><!--" ><br/>-->
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="image">انتخاب عکس</label>-->
+<!--            <input type="file" name="image" value="--><?php //echo $result['image_prev'];?><!--">-->
+<!---->
+<!--        </div>-->
         <div style="direction: rtl;width: 100%" class="checkbox">
             <label><input type="checkbox" name="status"<?php if( $result['status'] ==1 ){ ?> <?php echo 'checked' ;} ?> >">&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
         </div>

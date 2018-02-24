@@ -79,12 +79,7 @@
                 <span class="closebtn" onclick="closeSearch2()" title="Close Overlay">×</span>
                 <div class="overlay-content">
                     <div  class="containerrrrr">
-                        <form   enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-
-                            <?php
-                            $function->add_video();
-                            ?>
-
+                        <form  enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
                                 <div class="form-group">
                                     <label for="title">عنوان </label>
@@ -138,7 +133,10 @@
                                 <div class="form-group">
                                     <button style="margin-left:600px;" class="btn btn-danger" type="submit" name="Add">ثبت</button>
                                 </div>
-                            </form>
+                            <?php
+                            $function->add_video();
+                            ?>
+                        </form>
                     </div>
 
                 </div>
