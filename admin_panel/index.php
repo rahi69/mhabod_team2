@@ -60,6 +60,12 @@
     if(isset($_GET['delete_gallery'])) {
         include '../admin_panel/delete_gallery.php';
     }
+    if(isset($_GET['delete_cat'])){
+        include_once '../admin_panel/delete_category.php';
+    }
+    if(isset($_GET['edit_cat'])){
+        include_once '../admin_panel/edit_category.php';
+    }
     ?>
 </body>
 </html>

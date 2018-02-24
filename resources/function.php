@@ -1,8 +1,8 @@
 <?php
 if (!isset($_SESSION)) {
     session_start();
-
-}class functions
+}
+class functions
 { public $video_url;
     public $_url;
     private $hash_video;
@@ -118,6 +118,7 @@ public function social_network(){
             && empty($_POST['telephone']) && empty($_POST['email'])) {
             $this->set_message("کاربر گرامی حداقل یکی از موارد زیر را کامل نمایید.");
         } else {
+            echo $_POST;exit;
             IF(isset($_POST['facebook']))
             $facebook = $_POST['facebook'];
             IF(isset($_POST['pinterest']))
@@ -142,10 +143,6 @@ public function social_network(){
             $telephone = $_POST['telephone'];
             IF(isset($_POST['email']))
             $email = $_POST['email'];
-            $sql = "SELECT * FROM social-network";
-            $result = $this->query($sql);
-            $this->confirm($result);
-            $rowCount = mysqli_num_rows($result);
             $json = array(
                 'whatsapp'=>$_POST['whatsapp'],
                 'facebook'=>$_POST['facebook'],
@@ -161,6 +158,10 @@ public function social_network(){
                 'email'=>$_POST['email'],
             );
             $json_encode = json_encode($json);
+            $sql = "SELECT * FROM social-network";
+            $result = $this->query($sql);
+            $this->confirm($result);
+            $rowCount = mysqli_num_rows($result);
             if ($rowCount > 0) {
                 $sql = "UPDATE `social-network` SET `facebook` ='" . $facebook . "' , `pinterest` ='" . $pinterest . "' , `google_plus` ='" . $google_plus . "' 
                  , `instagram` ='" . $instagram . "' , `linkedin` ='" . $linkedin . "' , `skype` ='" . $skype . "' , `telegram` ='" . $telegram . "' 
@@ -168,7 +169,8 @@ public function social_network(){
                 $result2 = $this->query($sql);
                 $this->confirm($result2);
                 $this->set_message('متن شما با موفقیت ویرایش شد.');
-            }else {$sql ="INSERT INTO `social-network`(`id`, `facebook`, `pinterest`, `google_plus`, `instagram`, `linkedin`, `skype`, `telegram`, `twitter`, `whatsapp`, `youtube`, `telephone`, `email`, `json`) VALUES
+            }elseif($rowCount == 0){
+                $sql ="INSERT INTO `social-network`(`id`, `facebook`, `pinterest`, `google_plus`, `instagram`, `linkedin`, `skype`, `telegram`, `twitter`, `whatsapp`, `youtube`, `telephone`, `email`, `json`) VALUES
                                                       ('null','$facebook','$pinterest','$google_plus','$instagram','$linkedin','$skype','$telegram','$twitter','$whatsapp','$youtube','$telephone','$email','$json')";
                 $result2 = $this->query($sql);
                 $this->confirm($result2);
@@ -347,28 +349,28 @@ DELIMITER;
                     echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
                 } else
                 {
+                    $time = date('Y/m/d/ H:i:s');
                     $title = $_POST['ga_title'];
-                    $type = $_POST['ga_remember'];
-                    if($type == "picture"){
+                    $check = $_POST['ga_remember'];
+                    if(isset($_POST['ga_status'])) $status = 1; else $status = 0;
+                    if($check == "picture"){
+                        $type = 1;
                         $this->upload($_FILES['file'], array("gif" , "jpg" , "jpeg" ,"PNG"));
+                        $image_file = $this->_url;
+                        $video_file = null;
+                        $video_prev = null;
 
-                }elseif ($type == "video"){
 
+                }elseif ($check == "video"){
+                        $type = 2;
+                       // $video_file = $this->escape_string($_FILES['file']['name']);
                         $this->upload($_FILES['file'], array("ogg" , "mp4"));
+                        $video_file = $this->_url;
+                       // $video_prev = $this->escape_string($_FILES['prev_file']['name']);
                         $this->upload($_FILES['prev_file'],  array("gif" , "jpg" , "jpeg" ,"PNG"));
+                        $video_prev = $this->_url;
+                        $image_file =null;
                     }
-
-                                    $time = date('Y/m/d/ H:i:s');
-
-                   if($type == "picture"){
-                       $image_file = $this->escape_string($_FILES['file']['name']);
-                       $video_file = null;
-                       $video_prev = null;
-                   }else if($type =="video"){
-                       $video_file = $this->escape_string($_FILES['file']['name']);
-                       $video_prev = $this->escape_string($_FILES['prev_file']['name']);
-                       $image_file =null;
-                   }
                     $sql = "INSERT INTO `tblgallery` (`id_gallery`, `title`, `image_url`, `status`, `type`, `video_url`, `prev_url`, `date`) VALUES (NULL,'$title','$image_file','$status','$type','$video_file', ' $video_prev','$time')";
                     $result = $this->query($sql);
                     $this->confirm($result);
@@ -376,7 +378,6 @@ DELIMITER;
             }
         }
     }
-
     public function edit_gallery()
     {
         if (isset($_GET['edit_gallery'])) {
@@ -558,7 +559,12 @@ DELIMITER;
         while ($row = $this->fetch_array($result)) {
             $list = <<<DELIMITER
             <li >
-            <button class="btn btn-primary btn-md" > حذف</button ><button class="btn btn-primary btn-md" > ویرایش</button ><button class="btn btn-primary btn-md" > غیر فعال </button ><p > {$row['name_category']} </p >
+          <a href="index.php?delete_cat={$row['id_category']}">  <button class="btn btn-primary btn-md" > delete</button ></a>
+          <a href="index.php?edit_cat={$row['id_category']}&&edit_cat_name= {$_GET['cat_name']}">  <button class="btn btn-primary btn-md" > edit</button ></a>
+            <button class="btn btn-primary btn-md" > غیر فعال </button >
+             <p > {$row['name_category']} </p >
+           
+            
             </li >
 DELIMITER;
             echo $list;
@@ -584,7 +590,6 @@ DELIMITER;
                         $this->redirect("login.php");
                     } else {
                         $_SESSION['username'] = $username;
-
                         $this->redirect("index.php");
                     }
                 }
@@ -595,55 +600,52 @@ DELIMITER;
 
     public function sign_up()
     {
-//        if(!isset($_SESSION))
-//        {
-//            session_start();
-//        }
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['SignUp'])) {
                 if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['re_password']) || empty($_POST['email'])) {
-                    echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
+                  //  echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
                     $this->set_message("Please fill all fields ");
-                    echo $_SESSION['message'];exit();
+
                 } else {
                     $username = $this->escape_string($_POST['username']);
                     $password1 = $this->escape_string($_POST['password']);
                     $password2 = $this->escape_string($_POST['re_password']);
-                    $email = $this->escape_string($_POST['email']);
+                    $email = $_POST['email'];
                     // check if e-mail address syntax is valid
-                    if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $email)) {
-                        echo '<p style="background-color: #ac2925;color: black ;text-align: center"> Invalid email format </p>';
+                    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                     //   echo '<p style="background-color: #ac2925;color: black ;text-align: center"> Invalid email format </p>';
                         $this->set_message("Invalid email format");
-                        echo $_SESSION['message'];exit();
-                    }
-                    if ($password1 != $password2) {
-                        echo '<p style="background-color: #ac2925;color: black ;text-align: center"> Passwords not matched</p>';
+                    }elseif($password1 != $password2) {
+                     //   echo '<p style="background-color: #ac2925;color: black ;text-align: center"> Passwords not matched</p>';
                         $this->set_message("Passwords not matched");
-                        echo $_SESSION['message'];exit;
+
                     }
-                    if (strlen($password1) <= 6 || strlen($password2) <= 6) {
-                        echo '<p style="background-color: #ac2925;color: black ;text-align: center"> Passwords arent strong enought</p>';
+                    elseif(strlen($password1) < 6 || strlen($password2) < 6) {
+                       // echo '<p style="background-color: #ac2925;color: black ;text-align: center"> Passwords arent strong enought</p>';
                         $this->set_message("Passwords aren't strong enough");
-                        echo $_SESSION['message'];exit;
-                    }
+                    }else{
                     //checking email unique
-                    $query = "SELECT * FROM admin WHERE email =" . $email;
+                    $query = "SELECT * FROM admin WHERE email =$email";
                     $emailCheck = $this->query($query);
                     $this->confirm($emailCheck);
                     $row = $this->fetch_array($emailCheck);
                     $numRow = mysqli_num_rows($row);
-                    if ($numRow > 0) {
-                        echo '<p style="background-color: #ac2925;color: black ;text-align: center"> you have an account with this email</p>';
+                      if ($numRow > 0) {
+                       // echo '<p style="background-color: #ac2925;color: black ;text-align: center"> you have an account with this email</p>';
                         $this->set_message("you have an account with this email");
-                        echo $_SESSION['message'];
+                       // echo $_SESSION['message'];
                         exit();
+                     }elseif($numRow== 0) {
+                        $status = 0;
+                        $hashedPassword = sha1($password1);
+                        //$sql = "INSERT INTO admin (username,password,email) VALUES ('$username','$hashedPassword','$email')";
+                        $sql = "INSERT INTO `admin`( `username`, `email`, `password`, `status`) VALUES ('$username','$email','$hashedPassword','$status')";
+                        $result = $this->query($sql);
+                        $this->confirm($result);
                     }
-                    $hashedPassword = sha1($password1);
-                    $sql = "INSERT INTO admin (username,password,email) VALUES ('$username','$hashedPassword','$email')";
-                    $result = $this->query($sql);
-                    $this->confirm($result);
                 }
             }
+        }
         }
     }
 }

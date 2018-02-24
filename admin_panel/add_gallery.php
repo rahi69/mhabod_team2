@@ -32,7 +32,7 @@
     <input name="prev_file" style="direction: rtl;width: 50%;" type="file" ><br>
 <!--    if(isset($ga_remember) && $ga_remember=="video") echo 'display: none'; else echo 'display: block'; -->
     <div style="direction: rtl;width: 100%" class="checkbox">
-        <label><input type="checkbox" name="ga_status" checked>&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
+        <label><input type="checkbox" name="ga_status" checked >&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
     </div>
     <button type="submit" name="ga_add" class="btn btn-danger"> ثبت </button>
     <?php $function->add_gallery();?>

@@ -52,10 +52,12 @@
                     </div>
 
                     <h3 class="row col-lg-12 col-xs-12">دسته بندی لیست ها</h3>
+                    <form method="post">
                     <ul class="row col-lg-12 col-xs-12">
                         <?php $function->manage_list_category();?>
-
+                        <input style="" type="text" name="cat_name">
                     </ul>
+                    </form>
                 </div>
             </div>
             <!--PUP UP2-->

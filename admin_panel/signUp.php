@@ -12,31 +12,31 @@
 </head>
 <body>
 
-<!--<div class="modal">-->9
-<form class="modal-content" id="modal-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-
+<!--<div class="modal">-->
+<form class="modal-content" id="modal-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"  method="post">
     <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
-        <!--                            <p><span>--><?php //$function->display_message(); ?><!--</span></p>-->
+        <p><span><?php $function->display_message(); ?></span></p>
         <hr>
         <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required><br>
+        <input type="text" placeholder="Enter Username" name="username" ><br>
         <label><b>Email</b></label>
-        <input type="email" placeholder="Enter Email" name="email" required><br>
+        <input type="email" placeholder="Enter Email" name="email" ><br>
 
         <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required><br>
+        <input type="password" placeholder="Enter Password" name="password" ><br>
 
         <label><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="re_password" required><br>
+        <input type="password" placeholder="Repeat Password" name="re_password" ><br>
 
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
+<!--        <label>-->
+<!--            <input type="checkbox" checked="checked" name="remember"> Remember me-->
+<!--        </label>-->
         <div class="clearfix">
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+          <a href="LoginPage.php"><button type="button"class="cancelbtn">Cancel</button></a>
             <button type="submit" class="signupbtn" id="signUpBtn" name="SignUp">Sign Up</button>
+            <?php $function->sign_up(); ?>
         </div>
     </div>
 </form>

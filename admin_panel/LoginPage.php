@@ -72,19 +72,39 @@
 <script src="Scripts/jquery-1.9.1.min.js"></script>
 <script src="Scripts/bootstrap.min.js"></script>
 <script>
-    <?php if((isset($_POST['SignUp'])) && isset($_SESSION['message'])){ ?>
-    $(document).ready(function(){
-        $("#signUpBtn").click(function(){
-            $("#modal-content").addClass("modal-error");
-        });
-    });
-    <?php } else{ ?>
-    $(document).ready(function(){
-        $("#signUpBtn").click(function(){
-            $("#modal-content").addClass("modal");
-        });
-    });
-    <?php } ?>
+<!--    --><?php //if((isset($_POST['SignUp']))){ ?>
+//    $(document).ready(function(){
+//        $("#signUpBtn").click(function(){
+//            $("#modal-content").addClass("modal-error");
+//        });
+//    });
+//    <?php //} else{ ?>
+//    $(document).ready(function(){
+//        $("#signUpBtn").click(function(){
+//            $("#modal-content").addClass("modal");
+//        });
+//    });
+//    <?php //} ?>
+
+function chng(){
+    var ostan=document.getElementById("ostan").value;
+    var xhr=new XMLHttpRequest();
+    xhr.onreadystatechange= function () {
+        if (xhr.readyState==4 && xhr.status==200){
+            var data=JSON.parse(xhr.responseText);
+            var shahr='';
+
+            for (i=0;i<data.length;i++){
+                shahr+= '<option>'+data[i]+'</option>';
+            }
+            document.getElementById("city").innerHTML=shahr;
+        }
+    };
+    xhr.open("POST","ostanha.php",true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("ostan="+ostan);
+    return false;
+}
 </script>
 </body>
 </html>

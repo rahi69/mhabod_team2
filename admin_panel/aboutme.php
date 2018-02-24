@@ -95,7 +95,8 @@ include '../resources/config.php';
                                 <br><br>
                                 <a href="#"><div class="SaveButton">حذف</div></a>
 <!--                                <a href="#"><div class="CancelButton">ذخیره</div></a>-->
-                                <input type="submit" class="CancelButton" name="social">
+                                <input type="submit" class="CancelButton" name="social" value="ثبت">
+                                <?php $function->social_network();?>
                             </form>
                         </div>
                     </div>

@@ -210,7 +210,37 @@ h3{
     margin-top: 10px;
     list-style-type: none;
 }
-.overlay ul li p{
+
+.overlay ul li input[type=text]  {
+     /*direction: rtl;*/
+     text-align: right;
+     color: #000000;
+     font-family: IRANSans;
+     background-color: #ff5e83;
+     padding: 7px;
+border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+    /*border-top-left-radius: 5px;*/
+    /*border-bottom-left-radius: 5px;*/
+     width: 38%;
+     height: 35px;
+    float: right;
+ }
+
+.overlay ul li p {
+    float: right;
+    direction: rtl;
+    text-align: right;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #ffffff;
+    font-family: IRANSans;
+    background-color: #ff5e83;
+    padding: 7px;
+    width: 35%;
+    height: 35px;
+}
+input[type = text]{
     direction: rtl;
     text-align: right;
     color: #ffffff;
@@ -218,7 +248,8 @@ h3{
     background-color: #ff5e83;
     padding: 7px;
     border-radius: 5px;
-
+    width: 75%;
+    height:7px;
 }
 .overlay li{
     margin: auto;
