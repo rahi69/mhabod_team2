@@ -10,14 +10,16 @@
     <link rel="stylesheet" type="text/css" href="css/login.css" />
     <title>Sign Up</title>
 </head>
+
 <body>
 
 <!--<div class="modal">-->
 <form class="modal-content" id="modal-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"  method="post">
+    <?php $function->sign_up(); ?>
     <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
-        <p><span><?php $function->display_message(); ?></span></p>
+        <!--        <p><span>--><?php //$function->display_message(); ?><!--</span></p>-->
         <hr>
         <label><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="username" ><br>
@@ -30,16 +32,16 @@
         <label><b>Repeat Password</b></label>
         <input type="password" placeholder="Repeat Password" name="re_password" ><br>
 
-<!--        <label>-->
-<!--            <input type="checkbox" checked="checked" name="remember"> Remember me-->
-<!--        </label>-->
+        <!--        <label>-->
+        <!--            <input type="checkbox" checked="checked" name="remember"> Remember me-->
+        <!--        </label>-->
         <div class="clearfix">
-          <a href="LoginPage.php"><button type="button"class="cancelbtn">Cancel</button></a>
+            <a href="LoginPage.php"><button type="button"class="cancelbtn">Cancel</button></a>
             <button type="submit" class="signupbtn" id="signUpBtn" name="SignUp">Sign Up</button>
-            <?php $function->sign_up(); ?>
         </div>
     </div>
 </form>
+
 <!--</div>-->
 </body>
 </html>
