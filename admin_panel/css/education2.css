@@ -15,8 +15,8 @@
 }
 #ManagementGallery{
     height: auto;
-    margin-bottom: 20px;
-    margin-right: 10px;
+    /*margin-bottom: 20px;*/
+    /*margin-right: 10px;*/
     margin: auto;
 }
 
@@ -122,6 +122,7 @@
     border: none;
     float: left;
     width: 80%;
+    color: #555;
     background: white;
     direction: rtl;
 }
@@ -216,7 +217,7 @@ h3{
      text-align: right;
      color: #000000;
      font-family: IRANSans;
-     background-color: #ff5e83;
+     background-color: #ff9e80;
      padding: 7px;
 border-top-right-radius: 0px;
 border-bottom-right-radius: 0px;
@@ -233,7 +234,7 @@ border-bottom-right-radius: 0px;
     text-align: right;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    color: #ffffff;
+    color: #0f0f0f;
     font-family: IRANSans;
     background-color: #ff5e83;
     padding: 7px;
@@ -340,7 +341,7 @@ input[type = text]{
     width: 100px;!important;
     height: auto;!important;
     background-color:firebrick;!important;
-    color: #ffffff;
+    color: #0f0f0f;
     margin-left: 730px;
     padding: 5px;!important;
 

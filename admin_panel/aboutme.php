@@ -90,6 +90,7 @@ include '../resources/config.php';
                     <div id="myOverlay" class="overlay">
                         <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
                         <div class="overlay-content">
+
                             <form method="post"  action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>">
                                 <input type="text" name="link" class="Social" placeholder="لینک">
                                 <br><br>

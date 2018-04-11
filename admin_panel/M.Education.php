@@ -32,36 +32,23 @@
             <div id="buttonBox" class="row">
                 <button class="openBtn" onclick="openSearch1()">افزودن دسته</button>
                 <button class="openBtn" onclick="openSearch2()">افزودن ویدئو</button>
-                <button class="openBtn" onclick="openSearch()">مدیریت دسته بندی ها</button>
 
+                    <a href="../admin_panel/manage_education.php">
+                        <button class="openBtn">
+
+                        مدیریت دسته بندی ها
+                        </button>
+                    </a>
             </div>
             <br/>
+
             <div id="listsVideo" class="row">
                 <?php $function->manage_video();?>
             </div>
             <!--pup uo 1-->
-            <div id="myOverlay" class="overlay">
-                <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
-                <div class="overlay-content">
 
-                    <div class="dropdown row col-xs-12 col-lg-12">
-                        <button class="dropbtn" name="dropBtn">دسته بندی</button>
-                        <div class="dropdown-content">
-                          <?php $function->manage_category();?>
-                        </div>
-                    </div>
-
-                    <h3 class="row col-lg-12 col-xs-12">دسته بندی لیست ها</h3>
-                    <form method="post">
-                    <ul class="row col-lg-12 col-xs-12">
-                        <?php $function->manage_list_category();?>
-                        <input style="" type="text" name="cat_name">
-                    </ul>
-                    </form>
-                </div>
-            </div>
             <!--PUP UP2-->
-            <div id="myOverlayone" class="overlay">
+            <div id="myOverlayone" class="overlay" onclick="closeSearch1()">
                 <span class="closebtn" onclick="closeSearch1()" title="Close Overlay">×</span>
                 <div class="overlay-content">
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -75,8 +62,8 @@
                     </form>
                 </div>
             </div>
-            <div id="myOverlaytow" class="overlay">
-                <span class="closebtn" onclick="closeSearch2()" title="Close Overlay">×</span>
+            <div id="myOverlaytow" class="overlay" onclick="closeSearch2()">
+                <span class="closebtn" title="Close Overlay">×</span>
                 <div class="overlay-content">
                     <div  class="containerrrrr">
                         <form  enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -190,6 +177,9 @@ if(isset($_GET['delete_video']))
 
     function closeSearch2() {
         document.getElementById("myOverlaytow").style.display = "none";
+    }
+    function off() {
+        document.getElementsByClassName("overlay").style.display = "none";
     }
 </script>
 
