@@ -1,8 +1,8 @@
 <?php
-if(!isset($_SESSION))
-{
+if (!isset($_SESSION)) {
     session_start();
 }
+
 class functions
 {
     public $video_url;
@@ -35,7 +35,7 @@ class functions
         global $connection;
 //        return $connection->query($sql);
 //        $result
-            return $connection->query($sql);
+        return $connection->query($sql);
 //        if (!$result) {
 //            echo "Query Failed " . mysqli_error($connection);
 //            exit();
@@ -70,21 +70,19 @@ class functions
 
 // ******* About Us functions ********//
 
-public function about_me(){
+    public function about_me()
+    {
 
 
-      //  if(isset($_POST['upload']))
-            if(isset($_POST['ab_save']))
-            {
-                $hash = md5($_FILES['file']['name']. microtime()) . substr($_FILES['file']['name'],-5,5);
-            $pasvand = array("ogg" , "mp4");
+        //  if(isset($_POST['upload']))
+        if (isset($_POST['ab_save'])) {
+            $hash = md5($_FILES['file']['name'] . microtime()) . substr($_FILES['file']['name'], -5, 5);
+            $pasvand = array("ogg", "mp4");
             //array("gif" , "jpg" , "jpeg" ,"PNG");
-            $fileExtention = explode("." ,$_FILES['file']['name']);
+            $fileExtention = explode(".", $_FILES['file']['name']);
             $extention = end($fileExtention);
-            if (in_array("$extention" , $pasvand) && ($_FILES['file']['size']<=self::file_size_max))
-            {
-                if(move_uploaded_file($_FILES["file"]["tmp_name"] , '../admin_panel/upload/'. $hash))
-                {
+            if (in_array("$extention", $pasvand) && ($_FILES['file']['size'] <= self::file_size_max)) {
+                if (move_uploaded_file($_FILES["file"]["tmp_name"], '../admin_panel/upload/' . $hash)) {
                     if ($_FILES["file"]["error"] == 0) {
                         echo "<div class='msg'>file uploaded successfully</div>";
                         $this->video_url = $hash;
@@ -93,93 +91,94 @@ public function about_me(){
                         echo "<div class='msg'>cannot uploaded </div>";
                     }
                 }
-            }else {
+            } else {
                 echo "<div class='msg'>can upload file with . ogg -mp4</div>";
             }
             $video_url = $this->video_url;
-    if(empty($_POST['description'])){
-        $this->set_message("لطفا متن مربوطه را وارد نمایید");
-    }else {
-        $description = $this->escape_string($_POST['description']);
-        $query = "SELECT * FROM tbl_aboutme";
-        $result = $this->query($query);
-        $this->confirm($result);
-        $rowCount = mysqli_num_rows($result);
-        if ($rowCount > 0) {
-            $sql = "UPDATE `tbl_aboutme` SET `biog` ='".$description."' , `video_url` = '".$video_url."'";
-            $result2 = $this->query($sql);
-            $this->confirm($result2);
+            if (empty($_POST['description'])) {
+                $this->set_message("لطفا متن مربوطه را وارد نمایید");
+            } else {
+                $description = $this->escape_string($_POST['description']);
+                $query = "SELECT * FROM tbl_aboutme";
+                $result = $this->query($query);
+                $this->confirm($result);
+                $rowCount = mysqli_num_rows($result);
+                if ($rowCount > 0) {
+                    $sql = "UPDATE `tbl_aboutme` SET `biog` ='" . $description . "' , `video_url` = '" . $video_url . "'";
+                    $result2 = $this->query($sql);
+                    $this->confirm($result2);
 
-            $this->set_message('متن شما با موفقیت ویرایش شد');
-        } else {
-            $sql = "INSERT INTO `tbl_aboutme`(`biog`,`video_url`) VALUES ('$description','$video_url')";
-            $result2 = $this->query($sql);
-            $this->confirm($result2);
-            $this->set_message('متن شما با موفقیت ثبت شد');
+                    $this->set_message('متن شما با موفقیت ویرایش شد');
+                } else {
+                    $sql = "INSERT INTO `tbl_aboutme`(`biog`,`video_url`) VALUES ('$description','$video_url')";
+                    $result2 = $this->query($sql);
+                    $this->confirm($result2);
+                    $this->set_message('متن شما با موفقیت ثبت شد');
+                }
+            }
         }
-       }
-     }
     }
-public function social_network()
-{
-    if (isset($_POST['social'])) {
-        if (empty($_POST['facebook']) && empty($_POST['pinterest']) && empty($_POST['google_plus']) && empty($_POST['instagram']) && empty($_POST['linkedin']) &&
-            empty($_POST['skype']) && empty($_POST['telegram']) && empty($_POST['twitter']) && empty($_POST['whatsapp']) && empty($_POST['youtube'])
-            && empty($_POST['telephone']) && empty($_POST['email'])) {
-            $this->set_message("کاربر گرامی حداقل یکی از موارد زیر را کامل نمایید.");
-        } else {
-            if (isset($_POST['facebook']))
-                $facebook = $_POST['facebook'];
-            if (isset($_POST['pinterest']))
-                $pinterest = $_POST['pinterest'];
-            if (isset($_POST['google_plus']))
-                $google_plus = $_POST['google_plus'];
-            if (isset($_POST['instagram']))
-                $instagram = $_POST['instagram'];
-            if (isset($_POST['linkedin']))
-                $linkedin = $_POST['linkedin'];
-            if (isset($_POST['skype']))
-                $skype = $_POST['skype'];
-            if (isset($_POST['telegram']))
-                $telegram = $_POST['telegram'];
-            if (isset($_POST['twitter']))
-                $twitter = $_POST['twitter'];
-            if (isset($_POST['whatsapp']))
-                $whatsapp = $_POST['whatsapp'];
-            if (isset($_POST['youtube']))
-                $youtube = $_POST['youtube'];
-            if (isset($_POST['telephone']))
-                $telephone = $_POST['telephone'];
-            if (isset($_POST['email']))
-                $email = $_POST['email'];
-            $json = array(
-                'whatsapp' => $_POST['whatsapp'],
-                'facebook' => $_POST['facebook'],
-                'pinterest' => $_POST['pinterest'],
-                'google_plus' => $_POST['google_plus'],
-                'instagram' => $_POST['instagram'],
-                'linkedin' => $_POST['linkedin'],
-                'skype' => $_POST['skype'],
-                'telegram' => $_POST['telegram'],
-                'twitter' => $_POST['twitter'],
-                'youtube' => $_POST['youtube'],
-                'telephone' => $_POST['telephone'],
-                'email' => $_POST['email'],
-            );
-            $json_encode = json_encode($json);
-            $sql = "SELECT * FROM social-network";
-            $result = $this->query($sql);
-            $this->confirm($result);
-            $rowCount = mysqli_num_rows($result);
-            if ($rowCount > 0) {
-                $sql = "UPDATE `social-network` SET `facebook` ='" . $facebook . "' , `pinterest` ='" . $pinterest . "' , `google_plus` ='" . $google_plus . "' 
+
+    public function social_network()
+    {
+        if (isset($_POST['social'])) {
+            if (empty($_POST['facebook']) && empty($_POST['pinterest']) && empty($_POST['google_plus']) && empty($_POST['instagram']) && empty($_POST['linkedin']) &&
+                empty($_POST['skype']) && empty($_POST['telegram']) && empty($_POST['twitter']) && empty($_POST['whatsapp']) && empty($_POST['youtube'])
+                && empty($_POST['telephone']) && empty($_POST['email'])) {
+                $this->set_message("کاربر گرامی حداقل یکی از موارد زیر را کامل نمایید.");
+            } else {
+                if (isset($_POST['facebook']))
+                    $facebook = $_POST['facebook'];
+                if (isset($_POST['pinterest']))
+                    $pinterest = $_POST['pinterest'];
+                if (isset($_POST['google_plus']))
+                    $google_plus = $_POST['google_plus'];
+                if (isset($_POST['instagram']))
+                    $instagram = $_POST['instagram'];
+                if (isset($_POST['linkedin']))
+                    $linkedin = $_POST['linkedin'];
+                if (isset($_POST['skype']))
+                    $skype = $_POST['skype'];
+                if (isset($_POST['telegram']))
+                    $telegram = $_POST['telegram'];
+                if (isset($_POST['twitter']))
+                    $twitter = $_POST['twitter'];
+                if (isset($_POST['whatsapp']))
+                    $whatsapp = $_POST['whatsapp'];
+                if (isset($_POST['youtube']))
+                    $youtube = $_POST['youtube'];
+                if (isset($_POST['telephone']))
+                    $telephone = $_POST['telephone'];
+                if (isset($_POST['email']))
+                    $email = $_POST['email'];
+                $json = array(
+                    'whatsapp' => $_POST['whatsapp'],
+                    'facebook' => $_POST['facebook'],
+                    'pinterest' => $_POST['pinterest'],
+                    'google_plus' => $_POST['google_plus'],
+                    'instagram' => $_POST['instagram'],
+                    'linkedin' => $_POST['linkedin'],
+                    'skype' => $_POST['skype'],
+                    'telegram' => $_POST['telegram'],
+                    'twitter' => $_POST['twitter'],
+                    'youtube' => $_POST['youtube'],
+                    'telephone' => $_POST['telephone'],
+                    'email' => $_POST['email'],
+                );
+                $json_encode = json_encode($json);
+                $sql = "SELECT * FROM social-network";
+                $result = $this->query($sql);
+                $this->confirm($result);
+                $rowCount = mysqli_num_rows($result);
+                if ($rowCount > 0) {
+                    $sql = "UPDATE `social-network` SET `facebook` ='" . $facebook . "' , `pinterest` ='" . $pinterest . "' , `google_plus` ='" . $google_plus . "' 
                  , `instagram` ='" . $instagram . "' , `linkedin` ='" . $linkedin . "' , `skype` ='" . $skype . "' , `telegram` ='" . $telegram . "' 
                  , `twitter` ='" . $twitter . "' , `whatsapp` ='" . $whatsapp . "' , `youtube` ='" . $youtube . "' , `telephone` ='" . $telephone . "' , `email` ='" . $email . "','" . $json_encode . "' ";
-                $result2 = $this->query($sql);
-                $this->confirm($result2);
-                $this->set_message('متن شما با موفقیت ویرایش شد.');
-            } elseif ($rowCount == 0) {
-                $sql = "INSERT INTO `social-network`(`id`, `facebook`, `pinterest`, `google_plus`, `instagram`, `linkedin`, `skype`, `telegram`, `twitter`, `whatsapp`, `youtube`, `telephone`, `email`, `json`) VALUES
+                    $result2 = $this->query($sql);
+                    $this->confirm($result2);
+                    $this->set_message('متن شما با موفقیت ویرایش شد.');
+                } elseif ($rowCount == 0) {
+                    $sql = "INSERT INTO `social-network`(`id`, `facebook`, `pinterest`, `google_plus`, `instagram`, `linkedin`, `skype`, `telegram`, `twitter`, `whatsapp`, `youtube`, `telephone`, `email`, `json`) VALUES
                                                       ('null','$facebook','$pinterest','$google_plus','$instagram','$linkedin','$skype','$telegram','$twitter','$whatsapp','$youtube','$telephone','$email','$json')";
                     $result2 = $this->query($sql);
                     $this->confirm($result2);
@@ -189,31 +188,29 @@ public function social_network()
         }
     }
 
-/* manage function upload.................................................... */
-public function upload($file, $suffix = array()){
-    $hash = md5($file['name']. microtime()).substr($file['name'],-5,5);
-    $pasvand = $suffix;
+    /* manage function upload.................................................... */
+    public function upload($file, $suffix = array())
+    {
+        $hash = md5($file['name'] . microtime()) . substr($file['name'], -5, 5);
+        $pasvand = $suffix;
 //    array("ogg" , "mp4");
 //    array("gif" , "jpg" , "jpeg" ,"PNG");
-    $fileExtention = explode("." ,$file['name']);
-    $extention = end($fileExtention);
-    if (in_array("$extention" , $pasvand) && ($file['size'] <= self::file_size_max))
-    {
-        if(move_uploaded_file($file["tmp_name"] , '../admin_panel/upload/'. $hash))
-        {
-            if ($file["error"] == 0) {
-                echo "<div class='msg'>file uploaded successfully</div>";
-                $this->_url = $hash;
+        $fileExtention = explode(".", $file['name']);
+        $extention = end($fileExtention);
+        if (in_array("$extention", $pasvand) && ($file['size'] <= self::file_size_max)) {
+            if (move_uploaded_file($file["tmp_name"], '../admin_panel/upload/' . $hash)) {
+                if ($file["error"] == 0) {
+                    echo "<div class='msg'>file uploaded successfully</div>";
+                    $this->_url = $hash;
 
-            } else {
-                echo "<div class='msg'>cannot uploaded </div>";
+                } else {
+                    echo "<div class='msg'>cannot uploaded </div>";
+                }
             }
+        } else {
+            echo "<div class='msg'>can upload file</div>";
         }
-    }else
-    {
-        echo "<div class='msg'>can upload file</div>";
     }
-}
 
 
     /* manage article.................................................... */
@@ -234,6 +231,7 @@ LISTARTICLE;
 
         }
     }
+
     public function add_article()
     {
 
@@ -257,7 +255,6 @@ LISTARTICLE;
 
         }
     }
-
 
 
     public function edit_article()
@@ -288,8 +285,8 @@ LISTARTICLE;
                 $sql = "UPDATE `tbl_article` SET `title`='" . $title . "' , `short_desc`= '" . $short_desc . "' , `image_src`= '" . $image . "' , `description`= '" . $description . "' , `status`= '" . $status . "' WHERE  id_article = '" . $id2 . "' ";
 //                $sql = "UPDATE `tbl_article` SET `title` = '".{$title}."' , short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
                 $query = $this->query($sql);
-                    $this->confirm($query);
-                    $this->redirect("ManagmantArticle.php");
+                $this->confirm($query);
+                $this->redirect("ManagmantArticle.php");
 
             } else {
                 return false;
@@ -297,6 +294,7 @@ LISTARTICLE;
         }
 
     }
+
     /* manage gallery.................................................... */
 
     public function manage_gallery()
@@ -330,34 +328,34 @@ DELIMITER;
         }
     }
 
-    public function add_gallery(){
+    public function add_gallery()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['ga_add'])) {
                 if (empty($_POST['ga_title']) || empty($_POST['ga_remember']) || empty($_POST['ga_status'])) {
                     echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
-                } else
-                {
+                } else {
                     $time = date('Y/m/d/ H:i:s');
                     $title = $_POST['ga_title'];
                     $check = $_POST['ga_remember'];
-                    if(isset($_POST['ga_status'])) $status = 1; else $status = 0;
-                    if($check == "picture"){
+                    if (isset($_POST['ga_status'])) $status = 1; else $status = 0;
+                    if ($check == "picture") {
                         $type = 1;
-                        $this->upload($_FILES['file'], array("gif" , "jpg" , "jpeg" ,"PNG"));
+                        $this->upload($_FILES['file'], array("gif", "jpg", "jpeg", "PNG"));
                         $image_file = $this->_url;
                         $video_file = null;
                         $video_prev = null;
 
 
-                }elseif ($check == "video"){
+                    } elseif ($check == "video") {
                         $type = 2;
-                       // $video_file = $this->escape_string($_FILES['file']['name']);
-                        $this->upload($_FILES['file'], array("ogg" , "mp4"));
+                        // $video_file = $this->escape_string($_FILES['file']['name']);
+                        $this->upload($_FILES['file'], array("ogg", "mp4"));
                         $video_file = $this->_url;
-                       // $video_prev = $this->escape_string($_FILES['prev_file']['name']);
-                        $this->upload($_FILES['prev_file'],  array("gif" , "jpg" , "jpeg" ,"PNG"));
+                        // $video_prev = $this->escape_string($_FILES['prev_file']['name']);
+                        $this->upload($_FILES['prev_file'], array("gif", "jpg", "jpeg", "PNG"));
                         $video_prev = $this->_url;
-                        $image_file =null;
+                        $image_file = null;
                     }
                     $sql = "INSERT INTO `tblgallery` (`id_gallery`, `title`, `image_url`, `status`, `type`, `video_url`, `prev_url`, `date`) VALUES (NULL,'$title','$image_file','$status','$type','$video_file', ' $video_prev','$time')";
                     $result = $this->query($sql);
@@ -366,6 +364,7 @@ DELIMITER;
             }
         }
     }
+
     public function edit_gallery()
     {
         if (isset($_GET['edit_gallery'])) {
@@ -390,7 +389,7 @@ DELIMITER;
 //                $sql = "UPDATE `tbl_article` SET `title`='" . $title . "' , `short_desc`= '"  . "' , `image_src`= '"  . "' , `description`= '" . "' , `status`= '" . $status . "' WHERE  id_article = '" . $id2 . "' ";
 //
 //                $sql = "UPDATE `tbl_article` SET `title` = '".{$title}."' , short_desc = '{$short_desc}' ,image_src = '{$image}' ,description ='{$description}',status = '{$status}' WHERE id_article ='{$id}'";
-                $sql = "UPDATE `tblgallery` SET `title`='".$title."',`status`='".$status."',`date`='".$time."' WHERE id_gallery = '".$id2."'";
+                $sql = "UPDATE `tblgallery` SET `title`='" . $title . "',`status`='" . $status . "',`date`='" . $time . "' WHERE id_gallery = '" . $id2 . "'";
                 $query = $this->query($sql);
                 $this->confirm($query);
                 $this->redirect("Managmant-Gallery.php");
@@ -399,6 +398,7 @@ DELIMITER;
             }
         }
     }
+
     /* manage video.................................................... */
 
     public function manage_video()
@@ -426,7 +426,7 @@ VIDEO;
                 } else {
                     $this->upload($_FILES['image'], array("gif", "jpg", "jpeg", "PNG"));
                     $image = $this->_url;
-                    $this->upload($_FILES['video'], array("ogg" , "mp4"));
+                    $this->upload($_FILES['video'], array("ogg", "mp4"));
                     $video = $this->_url;
 
                     $cat_id = $_POST['category'];
@@ -462,14 +462,14 @@ VIDEO;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (isset($_POST['update_video'])) {
-                $id2 =$this->escape_string($_POST['id']);
+                $id2 = $this->escape_string($_POST['id']);
                 $title = $this->escape_string($_POST['title']);
                 $price = $this->escape_string($_POST['price']);
                 $description = $this->escape_string($_POST['description']);
 //                $video = $this->escape_string($_POST['video']);
 //                $image = $this->escape_string($_POST['image']);
-                if(isset($_POST['status'])) $status = 1; else $status = 0;
-                $sql = "UPDATE `tbl_video` SET `title`='".$title."' , `description`= '".$description."' , `price`= '".$price."'  , `status`= '".$status."'  WHERE  id_video = '".$id2."' ";
+                if (isset($_POST['status'])) $status = 1; else $status = 0;
+                $sql = "UPDATE `tbl_video` SET `title`='" . $title . "' , `description`= '" . $description . "' , `price`= '" . $price . "'  , `status`= '" . $status . "'  WHERE  id_video = '" . $id2 . "' ";
 //                $sql = "UPDATE tbl_video SET title = '{$title}' , description = '{$description}' ,price = '{$price}' ,status ='{$status}', image_prev = '{$image}' , video = '{$video}' WHERE id_video ='{$id2}'";
                 $query = $this->query($sql);
                 $this->confirm($query);
@@ -483,6 +483,7 @@ VIDEO;
         }
 
     }
+
     public function filter_list_video()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -506,13 +507,15 @@ LIST;
             }
         }
     }
+
     /* manage category.................................................... */
 
-    public function manage_category(){
+    public function manage_category()
+    {
         $sql = "SELECT * FROM tbl_category WHERE `status`=1";
         $result = $this->query($sql);
         $this->confirm($result);
-        while ($row = $this->fetch_array($result)){
+        while ($row = $this->fetch_array($result)) {
             $category = <<<DELIMITER
   <a href="#">{$row['name_category']}</a>
                           
@@ -539,51 +542,109 @@ DELIMITER;
             }
         }
     }
-    public function manage_list_category(){
+
+    public function manage_list_category()
+    {
         $sql = "SELECT * FROM tbl_category";
         $result = $this->query($sql);
-         $this->confirm($result);
-        while ($row = $this->fetch_array($result)) {
-            $list = <<<DELIMITER
-            <li >
-          <a href="index.php?delete_cat={$row['id_category']}">  <button class="btn btn-primary btn-md" > حذف</button ></a>
-          <a href="index.php?edit_cat={$row['id_category']}&& edit_cat_name= {$row['name_category']}">  <button class="btn btn-primary btn-md" > ویرایش</button ></a>
-            <a href="index.php?off_cat={$row['id_category']}">  <button class="btn btn-primary btn-md" > غیر فعال</button ></a>
-            <!--<button class="btn btn-primary btn-md" > غیر فعال </button >-->
-             <p > {$row['name_category']} </p >
-             <input style="" type="text" name="cat_name">
-            </li >
-DELIMITER;
-            echo $list;
-        }
-    }
-    /* upload files.................................................... */
-    public function delete_cat()
-    {if (isset($_POST['delete_cat'])){
-        $id = $this->escape_string($_GET['delete_cat']) ;
-        $sql = "DELETE FROM tbl_category WHERE id_category={$id}";
-        $result =$this->query($sql);
         $this->confirm($result);
+        while ($row = $this->fetch_array($result)) {
+            if ($row['status'] == 1) {
+                $list = <<<DELIMITER
+
+            <li style="list-style-type: none">
+            
+          <a href="index.php?delete_cat={$row['id_category']}" class="btn btn-primary DeleteBox">
+           <span>حذف</span>
+           </a>  
+  
+        <a href="index.php?on_cat={$row['id_category']}" class=" btn btn-primary"> 
+          <span>فعال</span>  
+           </a>
+            
+           <a href="index.php?off_cat={$row['id_category']}"  class=" btn btn-primary">
+            <span>غیرفعال</span>
+           </a>
+           
+             <p class="pOn" style="float:right;width:50%; margin:0px;"> {$row['name_category']} </p >
+             <br>
+             <br>
+            
+ 
+              <!--<input style="float: right;" type="text" name="cat_name">-->
+            </li >     
+            
+           
+
+DELIMITER;
+                echo $list;
+        }
+        elseif($row['status'] == 0)
+             {
+                $list = <<<DELIMITER
+
+            <li style="list-style-type: none">
+            
+          <a href="index.php?delete_cat={$row['id_category']}" class="btn btn-primary DeleteBox">
+           <span>حذف</span>
+           </a>
+  
+        <a href="index.php?on_cat={$row['id_category']}" class=" btn btn-primary"> 
+          <span>فعال</span>  
+           </a>
+            
+           <a href="index.php?off_cat={$row['id_category']}"  class=" btn btn-primary">
+            <span>غیرفعال</span>
+           </a>
+           
+             <p class="pOff" style="float:right;width:50%; margin:0px;"> {$row['name_category']} </p >
+             <br>
+             <br>
+            
+ 
+              <!--<input style="float: right;" type="text" name="cat_name">-->
+            </li >     
+            
+           
+
+DELIMITER;
+                echo $list;
+            }
     }
 
-}
+    }
+
+
+    /* upload files.................................................... */
+    public function delete_cat()
+    {
+        if (isset($_POST['delete_cat'])) {
+            $id = $this->escape_string($_GET['delete_cat']);
+            $sql = "DELETE FROM tbl_category WHERE id_category={$id}";
+            $result = $this->query($sql);
+            $this->confirm($result);
+        }
+
+    }
+
     public function edit_cat()
     {
-        if (isset($_POST['delete_cat'])){
-        $id = $this->escape_string($_GET['delete_cat']) ;
-        $edit_cat_name = $this->escape_string($_GET['edit_cat_name']);
-        $sql = "UPDATE `tbl_category` SET `name_category`= '{$edit_cat_name}' WHERE `id_category`= '{$id}'";
-        $result =$this->query($sql);
-        $this->confirm($result);
+        if (isset($_POST['delete_cat'])) {
+            $id = $this->escape_string($_GET['delete_cat']);
+            $edit_cat_name = $this->escape_string($_GET['edit_cat_name']);
+            $sql = "UPDATE `tbl_category` SET `name_category`= '{$edit_cat_name}' WHERE `id_category`= '{$id}'";
+            $result = $this->query($sql);
+            $this->confirm($result);
+        }
     }
-    }
+
     public function off_cat()
     {
-        if (isset($_POST['delete_cat'])){
-            $id = $this->escape_string($_GET['delete_cat']) ;
+        if (isset($_POST['delete_cat'])) {
+            $id = $this->escape_string($_GET['delete_cat']);
             $status_off = 0;
             $sql = "UPDATE `tbl_category` SET `status`= '{$status_off}' WHERE `id_category`= '{$id}'";
-            $result =$this->query($sql);
+            $result = $this->query($sql);
             $this->confirm($result);
         }
     }
@@ -598,7 +659,7 @@ DELIMITER;
 
                 } else {
                     $username = $this->escape_string($_POST['username']);
-                    $password =sha1($this->escape_string($_POST['password']));
+                    $password = sha1($this->escape_string($_POST['password']));
                     $sql = "SELECT * FROM admin WHERE username='{$username}' AND password ='{$password}'";
                     $result = $this->query($sql);
 //                    $this->confirm($result);

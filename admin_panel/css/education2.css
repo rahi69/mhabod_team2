@@ -19,7 +19,10 @@
     /*margin-right: 10px;*/
     margin: auto;
 }
-
+p{
+    width:40px;
+    margin:0 0 10px;
+}
 
 #buttonBox{
     background-color: #ffffff;
@@ -121,7 +124,7 @@
     font-size: 17px;
     border: none;
     float: left;
-    width: 80%;
+    width: 70%;
     color: #555;
     background: white;
     direction: rtl;
@@ -241,6 +244,12 @@ border-bottom-right-radius: 0px;
     width: 35%;
     height: 35px;
 }
+.pOn{
+    background-color: #ff5e83;
+}
+.pOff{
+    background-color: #ff9e80;
+}
 input[type = text]{
     direction: rtl;
     text-align: right;
@@ -249,8 +258,8 @@ input[type = text]{
     background-color: #ff5e83;
     padding: 7px;
     border-radius: 5px;
-    width: 75%;
-    height:7px;
+    width: 30%;
+    height:24px;
 }
 .overlay li{
     margin: auto;

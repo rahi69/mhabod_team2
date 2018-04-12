@@ -34,7 +34,6 @@
                 <?php $function=new functions();
                 $function->manage_article();
                 ?>
-
             </ul>
             <div id="buttonBox1" class="row">
                 <form method="post" action="add_article.php">

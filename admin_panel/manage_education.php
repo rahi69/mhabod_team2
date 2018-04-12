@@ -2,9 +2,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <link href="Content/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
-    <link rel="stylesheet" type="text/css" href="css/education2.css" />
+    <link href="Content/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="css/education2.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,47 +13,33 @@
 <body>
 <div id="ManagementGallery">
 
-<div id="myOverlay">
-<!--  //مدیریت دسته بندی//-->
-                            <div id="myOverlay" >
-<!--                                <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>-->
-                                <div class="overlay-content">
+    <div id="myOverlay">
+        <!--  //مدیریت دسته بندی//-->
+        <div id="myOverlay">
+            <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+            <div class="overlay-content">
 
-                                    <div class="dropdown row col-xs-12 col-lg-12">
-                                        <button class="dropbtn" name="dropBtn">دسته بندی</button>
-                                        <div class="dropdown-content">
-                                          <?php $function->manage_category();?>
-                                        </div>
-                                    </div>
+                <div class="dropdown row col-xs-12 col-lg-12">
+                    <button class="dropbtn" name="dropBtn">دسته بندی</button>
+                    <div class="dropdown-content">
+                        <?php $function->manage_category(); ?>
+                    </div>
+                </div>
 
-                                    <h3 class="row col-lg-12 col-xs-12">دسته بندی لیست ها</h3>
-                                    <form method="post">
-                                    <ul class="row col-lg-12 col-xs-12">
+                <h3 class="row col-lg-12 col-xs-12">دسته بندی لیست ها</h3>
+                <form method="post">
+                    <ul class="row col-lg-12 col-xs-12">
 
-                                        <?php
-//                                        $function->manage_list_category();
-                                        $sql = "SELECT * FROM tbl_category";
-                                        $result = $function->query($sql);
-                                        $function->confirm($result);
-                                        while ($row = $function->fetch_array($result)) { ?>
-                                            <li >
+                        <?php
+                         $function->manage_list_category();
+                         ?>
 
-                                                <p > <?php echo $row['name_category'];?> </p >
+                    </ul>
+                </form>
+            </div>
+        </div>
 
-                                                <input style="" type="text" name="cat_name">
-                                                <a href="index.php?delete_cat=<?php echo $row['id_category'];?>">  <input type="submit" name="delete_cat" class="btn btn-primary btn-md" > حذف</a>
-                                                <a href="index.php?delete_cat=<?php echo $row['id_category'];?>">  <input type="submit" name="delete_cat" class="btn btn-primary btn-md" > حذف</a>
-                                                <a href="index.php?delete_cat=<?php echo $row['id_category'];?>">  <input type="submit" name="delete_cat" class="btn btn-primary btn-md" > حذف</a>
-                                                <button class="btn btn-primary btn-md" > غیر فعال </button >
-                                             </li >
-                                        <?php } ?>
-
-                                    </ul>
-                                    </form>
-                                </div>
-                            </div>
-
-            </ul>
+        </ul>
         </form>
     </div>
 </div>
@@ -61,11 +47,6 @@
 </div>
 </body>
 </html>
-
-
-
-
-
 
 
 <!--//مدیریت دسته بندی//-->

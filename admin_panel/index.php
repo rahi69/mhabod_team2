@@ -63,8 +63,11 @@
     if(isset($_GET['delete_cat'])){
         include_once '../admin_panel/delete_category.php';
     }
-    if(isset($_GET['edit_cat'])){
-        include_once '../admin_panel/edit_category.php';
+    if(isset($_GET['off_cat'])){
+        include_once '../admin_panel/off_category.php';
+    }
+    if(isset($_GET['on_cat'])){
+    include_once '../admin_panel/on_category.php';
     }
     ?>
 </body>
