@@ -123,15 +123,15 @@
 }
 
 .overlay {
-    height: 30%;
-    width: 50%;
+    height: 47%;
+    width: 88%;
     display: none;
-    position: fixed;
+    position: absolute;
     z-index: 1;
-    top: 300px;
+    top: 3px;
     left: 100px;
     background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, 0.9);
+    background-color: #55769f;
 }
 
 .overlay-content {
@@ -189,4 +189,22 @@
 
 .Img{
     width: 40px;
+}
+.parentFixBtn{
+    position: fixed;
+    right: 0;
+    bottom: 0px;
+}
+.fixed-action-btn.horizontal ul{
+    text-align: right;
+    right: 64px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 100%;
+    left: auto;
+    width: 710px !important;
+}
+.CancelButton{
+    border: none;
 }

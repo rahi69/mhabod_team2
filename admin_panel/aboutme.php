@@ -55,6 +55,7 @@ include '../resources/config.php';
 
     <img id="imgProfile" src="img/CIRLEpROFILE.jpg"/>
 </div>
+
 <div class="container-fluid col-lg-12">
     <div  id="container" class="col-lg-8">
 
@@ -94,7 +95,7 @@ include '../resources/config.php';
                             <form method="post"  action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>">
                                 <input type="text" name="link" class="Social" placeholder="لینک">
                                 <br><br>
-                                <a href="#"><div class="SaveButton">حذف</div></a>
+                                <a href="#"><div class="SaveButton">انصراف</div></a>
 <!--                                <a href="#"><div class="CancelButton">ذخیره</div></a>-->
                                 <input type="submit" class="CancelButton" name="social" value="ثبت">
                                 <?php $function->social_network();?>
@@ -121,25 +122,28 @@ include '../resources/config.php';
 
     </div>
 </div>
+<div class="row col-lg-12 parentFixBtn">
 <div class="fixed-action-btn horizontal click-to-toggle">
     <a class="btn-floating btn-large red">
         <i class="material-icons">menu</i>
     </a>
     <ul>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/facebook.png" name="facebook" /></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/pinterest.png" name="pinterest" /></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/google plus.png" name="google_plus" /></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/instagram.png" name="instagram" /></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/linkedin.png" name="linkedin" /></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/skype.png" name="skype" /></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/telegram.png" name="telegram" /></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/twitter.png" name="twitter" /></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/whatsapp.png" name="whatsapp" /></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="youtube"/></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="telephone"/></a></li>
-        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="email"/></a></li>
 
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/facebook.png" name="facebook" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/Pinterest.png" name="pinterest" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/Gogleplus.png" name="google_plus" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/Instagram.png" name="instagram" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/Linkdin.png" name="linkedin" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/skype.png" name="skype" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/telegram.png" name="telegram" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/Twitter.png" name="twitter" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/Whatsapp.png" name="whatsapp" /></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/youtube.png" name="youtube"/></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/Viber.png" name="telephone"/></a></li>
+        <li><a class="btn-floating" onclick="openSearch()"><img class="Img" src="img/Social%20Networks/Vero.png" name="email"/></a></li>
     </ul>
+</div>
+
 </div>
 </body>
 </html>

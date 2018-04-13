@@ -39,6 +39,8 @@
     </div>
     <div>
         <button style="direction: rtl" type="submit" name="Add" class="btn btn-danger">ثبت</button>
+        <button style="direction: rtl" type="submit" name="Add" class="btn btn-danger">انصراف</button>
+
         <?php
         $function->add_article();
         ?>

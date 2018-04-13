@@ -17,9 +17,7 @@
 
 </head>
 <body>
-
 <button class="hidden-lg" id="showListHome" onclick="showListHome()"></button>
-
 <script src="Scripts/main.js"></script>
 <div>
 
@@ -27,19 +25,116 @@
 </div>
 <div class="container-fluid col-lg-12">
     <div  id="container" class="col-lg-8">
-
         <div class="row" id="ManagementArticle">
             <div id="header-Article" class="row">مدیریت مقالات</div>
-            <ul  class="row"id="ulList">
-                <?php $function=new functions();
-                $function->manage_article();
-                ?>
-            </ul>
-            <div id="buttonBox1" class="row">
-                <form method="post" action="add_article.php">
-                    <button type="submit" name="Add_article">افزودن مقاله</button><br/>
-                </form>
+
+<div class="parentCardArticle">
+            <div class="card" style="width: 18rem; text-align: center;
+            font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
+                <img class="card-img-top" src="img/p.gif" style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">عنوان مقاله</h5>
+                    <p class="card-text">توضیحات مربوط به مقاله</p>
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+
+                </div>
             </div>
+            <div class="card" style="width: 18rem; text-align: center;
+            font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
+                <img class="card-img-top" src="img/p.gif" style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">عنوان مقاله</h5>
+                    <p class="card-text">توضیحات مربوط به مقاله</p>
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; text-align: center;
+            font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
+                <img class="card-img-top" src="img/p.gif" style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">عنوان مقاله</h5>
+                    <p class="card-text">توضیحات مربوط به مقاله</p>
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; text-align: center;
+            font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
+        <img class="card-img-top" src="img/p.gif" style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">عنوان مقاله</h5>
+            <p class="card-text">توضیحات مربوط به مقاله</p>
+            <a href="#" class="btn btn-primary">حذف</a>
+            <a href="#" class="btn btn-primary">ویرایش</a>
+
+        </div>
+    </div>
+            <div class="card" style="width: 18rem; text-align: center;
+            font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
+        <img class="card-img-top" src="img/p.gif" style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">عنوان مقاله</h5>
+            <p class="card-text">توضیحات مربوط به مقاله</p>
+            <a href="#" class="btn btn-primary">حذف</a>
+            <a href="#" class="btn btn-primary">ویرایش</a>
+
+        </div>
+    </div>
+            <div class="card" style="width: 18rem; text-align: center;
+            font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
+        <img class="card-img-top" src="img/p.gif" style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">عنوان مقاله</h5>
+            <p class="card-text">توضیحات مربوط به مقاله</p>
+            <a href="#" class="btn btn-primary">حذف</a>
+            <a href="#" class="btn btn-primary">ویرایش</a>
+
+        </div>
+    </div>
+            <div class="card" style="width: 18rem; text-align: center;
+            font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
+        <img class="card-img-top" src="img/p.gif" style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">عنوان مقاله</h5>
+            <p class="card-text">توضیحات مربوط به مقاله</p>
+            <a href="#" class="btn btn-primary">حذف</a>
+            <a href="#" class="btn btn-primary">ویرایش</a>
+
+        </div>
+    </div>
+            <div class="card" style="width: 18rem; text-align: center;
+            font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
+        <img class="card-img-top" src="img/p.gif" style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">عنوان مقاله</h5>
+            <p class="card-text">توضیحات مربوط به مقاله</p>
+            <a href="#" class="btn btn-primary">حذف</a>
+            <a href="#" class="btn btn-primary">ویرایش</a>
+
+        </div>
+    </div>
+
+</div>
+            <br/><br/>
+
+
+
+            <!--            <ul  class="row"id="ulList">-->
+<!--                --><?php //$function=new functions();
+//                $function->manage_article();
+//                ?>
+<!--            </ul>-->
+
+        </div>
+        <br/>
+        <div id="buttonBox1" class="row">
+            <form method="post" action="add_article.php">
+                <button type="submit" name="Add_article">افزودن مقاله</button><br/>
+            </form>
         </div>
     </div>
     <!--MENU LIST-->
@@ -50,7 +145,5 @@
 
     </div>
 </div>
-
-
 </body>
 </html>

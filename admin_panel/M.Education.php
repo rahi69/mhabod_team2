@@ -17,18 +17,14 @@
 
 <body>
 <img id="imgProfile" src="img/CIRLEpROFILE.jpg" height="124" width="89"/>
-</div>
 <br/>
-
 <div class="container-fluid col-lg-12">
-
     <div id="container" class="col-lg-8">
         <div class="row col-xs-12" id="titlePage">
             <span>مدیریت آموزش</span>
         </div>
 
         <div class="row" id="ManagementGallery">
-
             <div id="buttonBox" class="row">
                 <button class="openBtn" onclick="openSearch1()">افزودن دسته</button>
                 <button class="openBtn" onclick="openSearch2()">افزودن ویدئو</button>
@@ -42,7 +38,6 @@
 <!--                </a>-->
             </div>
             <br/>
-
             <div id="listsVideo" class="row">
                 <?php $function->manage_video(); ?>
             </div>
