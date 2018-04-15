@@ -15,16 +15,16 @@
 </head>
 
 <script>
-$(document).ready(function () {
-    $('#videoradio').click(function () {
-       $('.group1').show();
-       $('.group2').show();
-    });
-    $('#imageradio').click(function () {
-       $('.group2').show();
-       $('.group1').hide();
-    });
-})
+    $(document).ready(function () {
+        $('#videoradio').click(function () {
+            $('.group1').show();
+            $('.group2').show();
+        });
+        $('#imageradio').click(function () {
+            $('.group2').show();
+            $('.group1').hide();
+        });
+    })
 </script>
 <body>
 <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -41,12 +41,12 @@ $(document).ready(function () {
     <!--    radioImage-->
     <div onclick="myFunction" class="checkbox">
         <label><input onclick="show1();" type="radio" name="ga_remember" id="imageradio" value="picture"
-                <?php if (isset($ga_remember) && $ga_remember == "picture") echo "checked"; ?>/ >عکس
+            <?php if (isset($ga_remember) && $ga_remember == "picture") echo "checked"; ?>/ >عکس
     </div>
     <!--    radioVideo-->
     <div class="checkbox">
         <label ><input onclick="show1();" type="radio" name="ga_remember" id="videoradio"  value="video"
-                <?php if (isset($ga_remember) && $ga_remember == "video") echo "checked"; ?>/ >ویدئو
+            <?php if (isset($ga_remember) && $ga_remember == "video") echo "checked"; ?>/ >ویدئو
     </div>
     <br/>
     <!--    BrowseButton-->

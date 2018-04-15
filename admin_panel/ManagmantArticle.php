@@ -27,6 +27,7 @@
     <div id="container" class="col-lg-8">
         <div class="row ParentArticle" id="ManagementArticle">
             <div id="header-Article" class="row">مدیریت مقالات</div>
+
             <div class="parentCardArticle">
                 <div class="card" style="width: 18rem; text-align: center;
             font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
