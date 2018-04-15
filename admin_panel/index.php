@@ -1,11 +1,4 @@
 ﻿<?php include_once "../resources/config.php"; ?>
-
-<?php
-if(!isset($_SESSION['username']))
-{
-    $function->redirect("../admin_panel/LoginPage.php");
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>

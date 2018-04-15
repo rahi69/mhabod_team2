@@ -33,12 +33,14 @@ class functions
     public function query($sql)
     {
         global $connection;
+//        return $connection->query($sql);
+//        $result
         return $connection->query($sql);
-//        $result = $connection->query($sql);
 //        if (!$result) {
 //            echo "Query Failed " . mysqli_error($connection);
 //            exit();
 //        }
+
     }
 
     public function confirm($result)
@@ -70,6 +72,8 @@ class functions
 
     public function about_me()
     {
+
+
         //  if(isset($_POST['upload']))
         if (isset($_POST['ab_save'])) {
             $hash = md5($_FILES['file']['name'] . microtime()) . substr($_FILES['file']['name'], -5, 5);
@@ -217,15 +221,11 @@ class functions
         $this->confirm($result);
         while ($row = $this->fetch_array($result)) {
             $list = <<<LISTARTICLE
-           <div class="card" style="width: 18rem; text-align: center;font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
-                    <img class="card-img-top" src="upload/{$row['image_src']}" style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{$row['title']}</h5>
-                        <a href="index.php?delete_article={$row['id_article']}" onclick="return confirm('آيا براي حذف مطمئن  هستيد؟')" class="btn btn-primary">حذف</a>
-                        <a href="edit_article.php?edit_article={$row['id_article']}" class="btn btn-primary">ویرایش</a>
-
-                    </div>
-                </div>
+               <li>
+                    <a href="index.php?delete_article={$row['id_article']}" class="DeleteBox btn btn-primary">حذف</a>
+                    &nbsp;&nbsp;&nbsp;<a href="edit_article.php?edit_article={$row['id_article']}" class="EditBox btn btn-primary">ویرایش</a><span class="nameTitle">{$row['title']}</span>&nbsp;&nbsp;
+                    <span>{$row['short_desc']}</span>
+                </li>
 LISTARTICLE;
             echo $list;
 
@@ -234,6 +234,7 @@ LISTARTICLE;
 
     public function add_article()
     {
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['Add'])) {
                 if (empty($_POST['title']) || empty($_POST['short_desc']) || empty($_POST['description'])) {
@@ -249,12 +250,12 @@ LISTARTICLE;
                     $sql = "INSERT INTO tbl_article(title,short_desc,description,image_src,status) VALUES ('$title','$short_desc','$description','$image','$status')";
                     $result = $this->query($sql);
                     $this->confirm($result);
-                    $this->redirect('ManagmantArticle.php');
                 }
             }
 
         }
     }
+
 
     public function edit_article()
     {
@@ -287,13 +288,13 @@ LISTARTICLE;
                 $this->confirm($query);
                 $this->redirect("ManagmantArticle.php");
 
-
             } else {
                 return false;
             }
         }
 
     }
+
     /* manage gallery.................................................... */
 
     public function manage_gallery()
@@ -302,31 +303,24 @@ LISTARTICLE;
         $result = $this->query($sql);
         $this->confirm($result);
         while ($row = $this->fetch_array($result)) {
+//            echo "<pre>";
+//            print_r($row);
+//            echo "</pre>";
 
             if ($row['type'] == 1) {
                 $gallery = <<<DELIMITER
-
-            <div class="card">
-                <img class="card-img-top" src="upload/{$row['image_url']}" alt="Card image cap"><br/><br/>
-                <div class="card-body">
-                    <a href="index.php?delete_gallery={$row['id_gallery']}" class="btn btn-primary" onclick="return confirm('آيا براي حذف مطمئن  هستيد؟')">حذف</a>
-                    <a href="edit_gallery.php?edit_gallery={$row['id_gallery']}" class="btn btn-primary">ویرایش</a>
-                    <span >{$row['title']}</span >
-                </div>
+<div class="SCard">
+                <img class="Svideo" src="upload/{$row['image_url']}">
+               <a href="index.php?delete_gallery={$row['id_gallery']}"><button>حذف</button></a><a href="edit_gallery.php?edit_gallery={$row['id_gallery']}" style="display: inline;"><button>ویرایش</button></a>
             </div>
 
 DELIMITER;
                 echo $gallery;
             } elseif ($row['type'] == 2) {
                 $video = <<<DELIMITER
-            <div class="CardVideo">
-                <video controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
-                <br><br>
-                <div class="LinkVideo">
-                    <a href="index.php?delete_gallery={$row['id_gallery']}" class="btn btn-primary" onclick="return confirm('آيا براي حذف مطمئن  هستيد؟')" >حذف</a>
-                    <a href="edit_gallery.php?edit_gallery={$row['id_gallery']}" class="btn btn-primary">ویرایش</a>
-                    <span >{$row['title']}</span >
-                </div>
+<div class="SCard">
+                <video  class="XLvideo" controls><source src="upload/{$row['video_url']}" type="video/mp4"></video>
+                <a href="index.php?delete_gallery={$row['id_gallery']}"><button>حذف</button></a><a href="edit_gallery.php?edit_gallery={$row['id_gallery']}" style="display: inline;"><button>ویرایش</button></a>
             </div>
 DELIMITER;
                 echo $video;
@@ -334,13 +328,13 @@ DELIMITER;
         }
     }
 
-    public function add_gallery(){
+    public function add_gallery()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['ga_add'])) {
                 if (empty($_POST['ga_title']) || empty($_POST['ga_remember']) || empty($_POST['ga_status'])) {
                     echo '<p style="background-color: #ac2925;color: white ;text-align: center"> Please fill all fields </p>';
-                } else
-                {
+                } else {
                     $time = date('Y/m/d/ H:i:s');
                     $title = $_POST['ga_title'];
                     $check = $_POST['ga_remember'];
@@ -366,12 +360,11 @@ DELIMITER;
                     $sql = "INSERT INTO `tblgallery` (`id_gallery`, `title`, `image_url`, `status`, `type`, `video_url`, `prev_url`, `date`) VALUES (NULL,'$title','$image_file','$status','$type','$video_file', ' $video_prev','$time')";
                     $result = $this->query($sql);
                     $this->confirm($result);
-                    $this->redirect('Managmant-Gallery.php');
-
                 }
             }
         }
     }
+
     public function edit_gallery()
     {
         if (isset($_GET['edit_gallery'])) {
@@ -405,6 +398,7 @@ DELIMITER;
             }
         }
     }
+
     /* manage video.................................................... */
 
     public function manage_video()
@@ -416,7 +410,7 @@ DELIMITER;
             $list = <<<VIDEO
        <div class="CARDvideo">
                     <video poster="upload/{$row['image_prev']}" class="XLvideo" controls><source src="upload/{$row['video']}" type="video/mp4"></video>
-                    <a  class="btn btn-danger" href="index.php?delete_video={$row['id_video']}" onclick="return confirm('آيا براي حذف مطمئن  هستيد؟')">حذف</a> 
+                    <a class="btn btn-danger" href="index.php?delete_video={$row['id_video']}">حذف</a>
                     <a class="btn btn-info" href="edit_video.php?edit_video={$row['id_video']}">ویرایش</a></div>
 VIDEO;
             echo $list;
@@ -432,7 +426,7 @@ VIDEO;
                 } else {
                     $this->upload($_FILES['image'], array("gif", "jpg", "jpeg", "PNG"));
                     $image = $this->_url;
-                    $this->upload($_FILES['video'], array("ogg" , "mp4"));
+                    $this->upload($_FILES['video'], array("ogg", "mp4"));
                     $video = $this->_url;
 
                     $cat_id = $_POST['category'];
@@ -489,6 +483,7 @@ VIDEO;
         }
 
     }
+
     public function filter_list_video()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -512,6 +507,7 @@ LIST;
             }
         }
     }
+
     /* manage category.................................................... */
 
     public function manage_category()
@@ -763,7 +759,6 @@ DELIMITER;
                     $sql = "INSERT INTO admin (username,password,email) VALUES ('$username','$hashedPassword','$email')";
                     $result = $this->query($sql);
                     $this->confirm($result);
-                    $this->redirect('LoginPage.php');
                 }
             }
         }

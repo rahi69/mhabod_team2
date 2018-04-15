@@ -35,44 +35,26 @@
         </div>
         <div id="Parent">
         <div class="row col-lg-12 ListGallery">
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap"><br/><br/>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <br/><br/>
-                    <span >عنوان عکس</span >
-                </div>
-            </div>
-            <div class="CardVideo">
-                <video src="img/mov_bbb.mp4"></video>
-                <br><br><br/>
-                <div class="LinkVideo">
-                <a href="#" class="btn btn-primary">حذف</a>
-                <a href="#" class="btn btn-primary">ویرایش</a>
-                    <br/><br/>
-                <span >عنوان عکس</span >
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap"><br/><br/>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <br/><br/>
-                    <span >عنوان عکس</span >
-                </div>
-            </div>
-            <div class="CardVideo">
-                <video src="img/mov_bbb.mp4"></video>
-                <br><br><br/>
-                <div class="LinkVideo">
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <br/><br/>
-                    <span >عنوان عکس</span >
-                </div>
-            </div>
+
+            <?php $function->manage_gallery(); ?>
+<!--            <div class="card">-->
+<!--                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap"><br/><br/>-->
+<!--                <div class="card-body">-->
+<!--                    <a href="#" class="btn btn-primary">حذف</a>-->
+<!--                    <a href="#" class="btn btn-primary">ویرایش</a>-->
+<!--                    <span >عنوان عکس</span >-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="CardVideo">-->
+<!--                <video src="img/mov_bbb.mp4"></video>-->
+<!--                <br><br>-->
+<!--                <div class="LinkVideo">-->
+<!--                    <a href="#" class="btn btn-primary">حذف</a>-->
+<!--                    <a href="#" class="btn btn-primary">ویرایش</a>-->
+<!--                    <span >عنوان عکس</span >-->
+<!--                </div>-->
+<!--            </div>-->
 
         </div>
         </div>
@@ -86,7 +68,6 @@
     <div class="row col-xs-12" id="Add-newGallery">
         <a href="add_gallery.php">اضافه کردن گالری جدید</a>
     </div>
-
 </div>
 </body>
 </html>
