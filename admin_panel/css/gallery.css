@@ -19,6 +19,9 @@ position: absolute;
     font-size:13px;
     text-decoration: none;
 }
+/*#Add-newGallery a:hover{*/
+    /*font-size: 12px;*/
+    /*width: 150px;*/
 
 #header-GAllery{
     color: #ffffff;

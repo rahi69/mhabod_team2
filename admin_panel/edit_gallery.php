@@ -48,14 +48,14 @@
 <!--    <div class="checkbox">-->
 <!--        <label><input type="radio" name="remember">&nbsp;&nbsp;&nbsp;&nbsp; ویدئو</label>&nbsp;&nbsp;-->
 <!--    </div><br/>-->
-    <div style="direction: rtl;width: 100%" class="checkbox">
-<!--        <label><input type="checkbox" name="status"--><?php //if( $result['status'] ==1 ){ ?><!----><?php //echo 'checked' ;} ?><!--">&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;-->
-   <label >فعال</label><input type="checkbox" name="status" <?php if( $result['status'] ==1)echo 'checked' ;?>">
 
+    <div style="direction: rtl;width: 100%" class="checkbox">
+        <label><input type="checkbox" name="status"<?php if( $result['status'] ==1 ){ ?> <?php echo 'checked' ;} ?> >">&nbsp;&nbsp;&nbsp;&nbsp; فعال</label>&nbsp;&nbsp;
     </div>
     <input type="hidden" name="id" value="<?php echo $result['id_gallery']?>">
     <div class="form-group">
         <button class="btn btn-danger" type="submit" name="UpdateGallery">ثبت</button>
+        <button href="Managmant-Gallery.php" class="btn btn-danger" type="submit" name="UpdateGallery">انصراف</button>
         <?php $function->UpdateGalleryByID();?>
     </div>
 </form>

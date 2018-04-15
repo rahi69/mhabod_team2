@@ -1,6 +1,9 @@
 <?php
-
 session_start();
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+//header("Content-Type: application/html; charset=utf-8");
+
 date_default_timezone_set("Asia/Tehran");
 defined("DS") ? null : define("DS", DIRECTORY_SEPARATOR);
 
@@ -12,14 +15,11 @@ defined('TEMPLATE_BACK') ? null : define('TEMPLATE_BACK', __DIR__ . DS . 'templa
 defined('DB_HOST') ? null : define('DB_HOST', 'localhost');
 defined('DB_USER') ? null : define('DB_USER', 'root');
 defined('DB_PASS') ? null : define('DB_PASS', '');
-defined('DB_NAME') ? null : define('DB_NAME', 'paint_tbl');
+defined('DB_NAME') ? null : define('DB_NAME', 'skyf5_21654678_mahbod');
 defined('CHARSET') ? null : define('CHARSET', 'utf8');
 /*.....host....*/
 //defined('DB_HOST') ? null : define('DB_HOST', 'localhost');
 //defined('DB_USER') ? null : define('DB_USER', 'skyf5_21654678');
-//defined('DB_HOST') ? null : define('DB_HOST', 'sql204.skyf.ir');
-//defined('DB_HOST') ? null : define('DB_HOST', 'localhost');
-//defined('DB_USER') ? null : define('DB_USER', 'root');
 //defined('DB_PASS') ? null : define('DB_PASS', '');
 //defined('DB_NAME') ? null : define('DB_NAME', 'skyf5_21654678_mahbod');
 //defined('CHARSET') ? null : define('CHARSET', 'utf8');
@@ -30,5 +30,3 @@ $connection->set_charset(CHARSET);
 
 //include '../../resources/db/function.php';
 require_once "function.php";
-
-
