@@ -33,9 +33,108 @@
         <div id="header-GAllery" class="row col-lg-12">
             مدیریت گالری
         </div>
+        <div id="Parent">
         <div class="row col-lg-12 ListGallery">
-            <?php $function->manage_gallery();?>
+            <div class="card">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <div class="card-body">
+
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+                    <span >عنوان عکس</span >
+                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
+
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <div class="card-body">
+
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+                    <span >عنوان عکس</span >
+                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
+
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <div class="card-body">
+
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+                    <span >عنوان عکس</span >
+                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
+
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <div class="card-body">
+
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+                    <span >عنوان عکس</span >
+                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
+
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <div class="card-body">
+
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+                    <span >عنوان عکس</span >
+                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
+
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <div class="card-body">
+
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+                    <span >عنوان عکس</span >
+                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
+
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <div class="card-body">
+
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+                    <span >عنوان عکس</span >
+                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
+
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <div class="card-body">
+
+                    <a href="#" class="btn btn-primary">حذف</a>
+                    <a href="#" class="btn btn-primary">ویرایش</a>
+                    <span >عنوان عکس</span >
+                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
+
+
+                </div>
+            </div>
         </div>
+        </div>
+<!--            --><?php //$function->manage_gallery();?>
+
 
         <div class="row col-xs-12" id="Add-newGallery">
             <a href="add_gallery.php">اضافه کردن گالری جدید</a>

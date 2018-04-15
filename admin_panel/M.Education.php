@@ -30,12 +30,12 @@
                 <button class="openBtn" onclick="openSearch2()">افزودن ویدئو</button>
                 <button class="openBtn" onclick="openSearch()">مدیریت دسته بندی ها</button>
 
-<!--                <a href="../admin_panel/manage_education.php">-->
-<!--                    <button class="openBtn">-->
-<!---->
-<!--                        مدیریت دسته بندی ها-->
-<!--                    </button>-->
-<!--                </a>-->
+                <!--                <a href="../admin_panel/manage_education.php">-->
+                <!--                    <button class="openBtn">-->
+                <!---->
+                <!--                        مدیریت دسته بندی ها-->
+                <!--                    </button>-->
+                <!--                </a>-->
             </div>
             <br/>
             <div id="listsVideo" class="row">

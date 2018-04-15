@@ -208,3 +208,46 @@
     /*background-image: url("../img/p.gif");*/
     /*background-size: cover;*/
 /*}*/
+.card {
+    margin: auto;
+    width: 30rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: IRANSans;
+    background-color: #ffffff;
+    padding: 1%;
+    border: none;
+}
+#Parent{
+    overflow-y: scroll;width: 100%;height: 80vh
+
+}
+#Parent::-webkit-scrollbar {
+    width: 1em;
+}
+
+#Parent::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    /*outline: 1px solid #f22e14;*/
+}
+.card img {
+    width: 95%;
+    /*background-size: cover;*/
+    height: 160px;
+    /*border: 2px solid #000000*/
+}
+.card span{
+    font-family: IRANSans;
+    font-weight: bold;
+    width: 100px;
+    background-color: #2e6da4;
+    color: #ffffff;
+    padding: 6px;
+    border-radius:3px;
+
+
+    /*padding-bottom: 5px;*/
+    /*padding-top: 5px;*/
+    /*padding-right: 2px;*/
+    /*padding-left: 2px;*/
+}

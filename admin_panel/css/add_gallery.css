@@ -13,3 +13,6 @@ body div{
 body{
     background-image: url("../img/BackgroundHome.jpg");
 }
+.group{
+    direction: rtl;width: 50%
+}

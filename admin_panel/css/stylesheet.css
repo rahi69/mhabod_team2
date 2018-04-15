@@ -1,20 +1,21 @@
-
 @font-face {
     font-family: IRANSans;
     font-style: normal;
     font-weight: bold;
     src: url('./../fonts/IranSans.ttf');
 }
-body{
+
+body {
 
     margin: 0px;
     padding: 0px;
     font-family: IRANSans;
-    text-align:right;
+    text-align: right;
     background-image: url("../img/LoginPage.jpg");
-    background-size:cover;
+    background-size: cover;
 
 }
+
 .nav-side-menu {
     overflow: auto;
     font-family: IRANSans;
@@ -23,83 +24,88 @@ body{
     position: relative;
     height: auto;
     color: #e1ffff;
-    right:0;
-    padding-bottom:2%;
+    right: 0;
+    padding-bottom: 2%;
     padding-top: 7%;
     background-color: #ffffff;
 
 }
-    .nav-side-menu .brand {
-        background-color: #484943;
-        line-height: 50px;
-        display: block;
-        text-align: center;
-        font-size: 14px;
-    }
-    .nav-side-menu .toggle-btn {
-        display: none;
-    }
-    .nav-side-menu ul,
-    .nav-side-menu li {
-        list-style: none;
-        /*height: auto;*/
-        /*background-color: black;*/
-        padding: 0px;
-        margin: 0px;
-        line-height: 35px;
-        cursor: pointer;
-        color: #000000;
-        border: 1px solid #ffffff;
 
-    }
-        .nav-side-menu ul :not(collapsed) .arrow:before,
-        .nav-side-menu li :not(collapsed) .arrow:before {
-            font-family: FontAwesome;
-            content: "\f078";
-            display: inline-block;
-            padding-left: 10px;
-            padding-right: 10px;
-            vertical-align: middle;
-            float: left;
-        }
-            .nav-side-menu ul .sub-menu li:before,
-            .nav-side-menu li .sub-menu li:before {
-                font-family: FontAwesome;
-                content: "\f104";
-                display: inline-block;
-                padding-left: 10px;
-                padding-right: 10px;
-                float:right;
-                vertical-align: middle;
-            }
+.nav-side-menu .brand {
+    background-color: #484943;
+    line-height: 50px;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+}
 
-    .nav-side-menu li {
-        background-image: url("../img/backList.jpg");
-        background-size: cover;
-        margin-bottom: 5%;
-    }
+.nav-side-menu .toggle-btn {
+    display: none;
+}
 
-        .nav-side-menu li a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: bold;
-            margin-right: -20px;
-        }
+.nav-side-menu ul,
+.nav-side-menu li {
+    list-style: none;
+    /*height: auto;*/
+    /*background-color: black;*/
+    padding: 0px;
+    margin: 0px;
+    line-height: 35px;
+    cursor: pointer;
+    color: #000000;
+    border: 1px solid #ffffff;
 
-            .nav-side-menu li a i {
-                padding: 10px 30px;
-                width: 20px;
-                float: right;
-            }
+}
 
-        .nav-side-menu li:hover {
-            color: black;
-            -webkit-transition: all 1s ease;
-            -moz-transition: all 1s ease;
-            -o-transition: all 1s ease;
-            -ms-transition: all 1s ease;
-            transition: all 1s ease;
-        }
+.nav-side-menu ul :not(collapsed) .arrow:before,
+.nav-side-menu li :not(collapsed) .arrow:before {
+    font-family: FontAwesome;
+    content: "\f078";
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+    float: left;
+}
+
+.nav-side-menu ul .sub-menu li:before,
+.nav-side-menu li .sub-menu li:before {
+    font-family: FontAwesome;
+    content: "\f104";
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: right;
+    vertical-align: middle;
+}
+
+.nav-side-menu li {
+    background-image: url("../img/backList.jpg");
+    background-size: cover;
+    margin-bottom: 5%;
+}
+
+.nav-side-menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    margin-right: -20px;
+}
+
+.nav-side-menu li a i {
+    padding: 10px 30px;
+    width: 20px;
+    float: right;
+}
+
+.nav-side-menu li:hover {
+    color: black;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
 
 .nav-side-menu .toggle-btn {
     display: block;
@@ -122,8 +128,6 @@ body{
     line-height: 50px !important;
 }
 
-
-
 .nav-side-menu .toggle-btn {
     display: block;
     cursor: pointer;
@@ -144,7 +148,6 @@ body{
     padding-left: 20px;
     line-height: 50px !important;
 }
-
 
 @media (max-width: 767px) {
     .nav-side-menu {
@@ -160,23 +163,44 @@ body{
     }
 }
 
-#imgProfile{
-    width:150px;
+#imgProfile {
+    width: 150px;
     height: 150px;
     /*margin-right: 20px;*/
-    border-radius:150px;
+    border-radius: 150px;
     margin-bottom: 10px;
     background-size: cover;
     position: relative;
-    top:105px;
+    top: 105px;
     right: 166px;
     z-index: 1000;
 }
-.parentCardArticle div{
+
+/*ManagmentArticle................................................................................*/
+.parentCardArticle {
+    overflow-y: scroll;
+    height: 62vh;
+}
+
+.parentCardArticle::-webkit-scrollbar {
+    width: 1em;
+}
+
+.parentCardArticle::-webkit-scrollbar-thumb {
+    background-color: #aaf191;
+    outline: 1px solid slategray;
+}
+
+.parentCardArticle div {
     float: right;
-    margin-right:3%;
+    margin-right: 3%;
     margin-top: 2%;
 }
+
+/*ManagmentArticle^^^^^^^^...........................................................................*/
+
+
+
 
 
 
