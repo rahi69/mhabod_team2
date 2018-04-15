@@ -1,4 +1,10 @@
 <?php include_once "../resources/config.php"; ?>
+<?php
+if(!isset($_SESSION['username']))
+{
+    $function->redirect("../admin_panel/LoginPage.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +14,8 @@
 
 
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <!--BOOTSTRAP-->
@@ -35,40 +41,26 @@
         </div>
         <div id="Parent">
         <div class="row col-lg-12 ListGallery">
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap"><br/><br/>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <span >عنوان عکس</span >
-                </div>
-            </div>
-            <div class="CardVideo">
-                <video src="img/mov_bbb.mp4"></video>
-                <br><br>
-                <div class="LinkVideo">
-                <a href="#" class="btn btn-primary">حذف</a>
-                <a href="#" class="btn btn-primary">ویرایش</a>
-                <span >عنوان عکس</span >
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap"><br/><br/>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <span >عنوان عکس</span >
-                </div>
-            </div>
-            <div class="CardVideo">
-                <video src="img/mov_bbb.mp4"></video>
-                <br><br>
-                <div class="LinkVideo">
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <span >عنوان عکس</span >
-                </div>
-            </div>
+
+            <?php $function->manage_gallery(); ?>
+<!--            <div class="card">-->
+<!--                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap"><br/><br/>-->
+<!--                <div class="card-body">-->
+<!--                    <a href="#" class="btn btn-primary">حذف</a>-->
+<!--                    <a href="#" class="btn btn-primary">ویرایش</a>-->
+<!--                    <span >عنوان عکس</span >-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="CardVideo">-->
+<!--                <video src="img/mov_bbb.mp4"></video>-->
+<!--                <br><br>-->
+<!--                <div class="LinkVideo">-->
+<!--                    <a href="#" class="btn btn-primary">حذف</a>-->
+<!--                    <a href="#" class="btn btn-primary">ویرایش</a>-->
+<!--                    <span >عنوان عکس</span >-->
+<!--                </div>-->
+<!--            </div>-->
 
         </div>
         </div>
@@ -82,7 +74,6 @@
     <div class="row col-xs-12" id="Add-newGallery">
         <a href="add_gallery.php">اضافه کردن گالری جدید</a>
     </div>
-
 </div>
 </body>
 </html>

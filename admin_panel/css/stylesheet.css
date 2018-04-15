@@ -183,7 +183,7 @@ body {
 }
 
 .parentCardArticle::-webkit-scrollbar {
-    width: 1em;
+    width: 1em!important;
 }
 
 .parentCardArticle::-webkit-scrollbar-thumb {
@@ -192,9 +192,9 @@ body {
 }
 
 .parentCardArticle div {
-    float: right;
-    margin-right: 3%;
-    margin-top: 2%;
+    float: right!important;
+    margin-right: 3%!important;
+    margin-top: 2%!important;
 }
 
 /*ManagmentArticle^^^^^^^^...........................................................................*/

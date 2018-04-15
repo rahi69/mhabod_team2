@@ -77,11 +77,16 @@ include '../resources/config.php';
 <!--                    <br>-->
 <!--                    <input type="submit" name="upload" class="file UplodeButton Button"  value="  آپلود ویدئو">-->
                    <br><hr>
-
-                    <textarea class="form-control description" id="description" placeholder="متن درباره ما" rows="5" name="description"></textarea>
+                    <?php
+                    $sql = "SELECT * FROM tbl_aboutme";
+                    $query = $function->query($sql);
+                    $function->confirm($query);
+                    $row = $function->fetch_array($query);
+                            ?>
+                    <textarea class="form-control description" id="description" placeholder="متن درباره ما" rows="5" name="description"><?php echo $row['biog']; ?></textarea>
                     <br>
                     <input style="border: none" type="submit" name="ab_save" class="Button" value=" ذخیره فیلم و متن">
-<!--                </form>-->
+                </form>
                     <?php $function->about_me();
                     $function->display_message();
                     ?>
