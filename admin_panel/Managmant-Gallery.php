@@ -40,15 +40,17 @@
                 <div class="card-body">
                     <a href="#" class="btn btn-primary">حذف</a>
                     <a href="#" class="btn btn-primary">ویرایش</a>
+                    <br/><br/>
                     <span >عنوان عکس</span >
                 </div>
             </div>
             <div class="CardVideo">
                 <video src="img/mov_bbb.mp4"></video>
-                <br><br>
+                <br><br><br/>
                 <div class="LinkVideo">
                 <a href="#" class="btn btn-primary">حذف</a>
                 <a href="#" class="btn btn-primary">ویرایش</a>
+                    <br/><br/>
                 <span >عنوان عکس</span >
                 </div>
             </div>
@@ -57,15 +59,17 @@
                 <div class="card-body">
                     <a href="#" class="btn btn-primary">حذف</a>
                     <a href="#" class="btn btn-primary">ویرایش</a>
+                    <br/><br/>
                     <span >عنوان عکس</span >
                 </div>
             </div>
             <div class="CardVideo">
                 <video src="img/mov_bbb.mp4"></video>
-                <br><br>
+                <br><br><br/>
                 <div class="LinkVideo">
                     <a href="#" class="btn btn-primary">حذف</a>
                     <a href="#" class="btn btn-primary">ویرایش</a>
+                    <br/><br/>
                     <span >عنوان عکس</span >
                 </div>
             </div>

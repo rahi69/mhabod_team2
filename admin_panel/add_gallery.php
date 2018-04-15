@@ -11,7 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="jquery-3.3.1.min.js"></script>
+    <script src="../JQ/jquery-1.7.2.min.js"></script>
 </head>
+
+<script>
+$(document).ready(function () {
+    $('#videoradio').click(function () {
+       $('.group1').show();
+       $('.group2').show();
+    });
+    $('#imageradio').click(function () {
+       $('.group2').show();
+       $('.group1').hide();
+    });
+})
+</script>
 <body>
 <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <!--    Name-->
@@ -26,20 +40,20 @@
     <br/>
     <!--    radioImage-->
     <div onclick="myFunction" class="checkbox">
-        <label><input type="radio" name="ga_remember" value="picture"
-                <?php if (isset($ga_remember) && $ga_remember == "picture") echo "checked"; ?> > عکس</label>&nbsp;&nbsp;
+        <label><input onclick="show1();" type="radio" name="ga_remember" id="imageradio" value="picture"
+                <?php if (isset($ga_remember) && $ga_remember == "picture") echo "checked"; ?>/ >عکس
     </div>
     <!--    radioVideo-->
     <div class="checkbox">
-        <label><input type="radio" name="ga_remember" value="video"
-                <?php if (isset($ga_remember) && $ga_remember == "video") echo "checked"; ?> > ویدئو</label>&nbsp;&nbsp;
+        <label ><input onclick="show1();" type="radio" name="ga_remember" id="videoradio"  value="video"
+                <?php if (isset($ga_remember) && $ga_remember == "video") echo "checked"; ?>/ >ویدئو
     </div>
     <br/>
     <!--    BrowseButton-->
-    <input type="file" class="group" name="file" >
+    <input style="display: none" type="file" class="group1" name="file" >
     <br>
     <!--    BrowseButton-->
-    <input type="file" class="group" name="prev_file">
+    <input style="display: none" type="file" class="group2" name="prev_file">
     <br>
 
     <div style="direction: rtl;width: 100%" class="checkbox">
@@ -53,17 +67,3 @@
 </form>
 </body>
 </html>
-<script>
-    $("input:file").prop("disabled", true);
-
-    $("input:radio").on("click", function() {
-        $("input:file").prop("disabled", true);
-        $("input.group" + $(this).val()).prop("disabled", false);
-    });
-</script>
-
-<!--<script>-->
-<!--    function myFunction() {-->
-<!--        document.getElementsByClassName("group").disabled = false;-->
-<!--    }-->
-<!--</script>-->
