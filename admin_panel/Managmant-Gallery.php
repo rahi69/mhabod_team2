@@ -36,114 +36,53 @@
         <div id="Parent">
         <div class="row col-lg-12 ListGallery">
             <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap"><br/><br/>
                 <div class="card-body">
-
                     <a href="#" class="btn btn-primary">حذف</a>
                     <a href="#" class="btn btn-primary">ویرایش</a>
                     <span >عنوان عکس</span >
-                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
-
-
+                </div>
+            </div>
+            <div class="CardVideo">
+                <video src="img/mov_bbb.mp4"></video>
+                <br><br>
+                <div class="LinkVideo">
+                <a href="#" class="btn btn-primary">حذف</a>
+                <a href="#" class="btn btn-primary">ویرایش</a>
+                <span >عنوان عکس</span >
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
+                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap"><br/><br/>
                 <div class="card-body">
-
                     <a href="#" class="btn btn-primary">حذف</a>
                     <a href="#" class="btn btn-primary">ویرایش</a>
                     <span >عنوان عکس</span >
-                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
-
-
                 </div>
             </div>
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
-                <div class="card-body">
-
+            <div class="CardVideo">
+                <video src="img/mov_bbb.mp4"></video>
+                <br><br>
+                <div class="LinkVideo">
                     <a href="#" class="btn btn-primary">حذف</a>
                     <a href="#" class="btn btn-primary">ویرایش</a>
                     <span >عنوان عکس</span >
-                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
-
-
                 </div>
             </div>
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
-                <div class="card-body">
 
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <span >عنوان عکس</span >
-                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
-
-
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
-                <div class="card-body">
-
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <span >عنوان عکس</span >
-                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
-
-
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
-                <div class="card-body">
-
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <span >عنوان عکس</span >
-                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
-
-
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
-                <div class="card-body">
-
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <span >عنوان عکس</span >
-                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
-
-
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="img/CIRLEpROFILE.jpg" alt="Card image cap">
-                <div class="card-body">
-
-                    <a href="#" class="btn btn-primary">حذف</a>
-                    <a href="#" class="btn btn-primary">ویرایش</a>
-                    <span >عنوان عکس</span >
-                    <!--           <!       <a href="#" class="btn btn-primary">عنوان عکس</a>-->
-
-
-                </div>
-            </div>
         </div>
-        </div>
-<!--            --><?php //$function->manage_gallery();?>
-
-
-        <div class="row col-xs-12" id="Add-newGallery">
-            <a href="add_gallery.php">اضافه کردن گالری جدید</a>
         </div>
 
     </div>
+
     <div id="HomeLIST"  class="nav-side-menu col-lg-4">
         <?php include TEMPLATE_FRONT . 'nav_right.php'; ?>
     </div>
+    <br/>
+    <div class="row col-xs-12" id="Add-newGallery">
+        <a href="add_gallery.php">اضافه کردن گالری جدید</a>
+    </div>
+
 </div>
 </body>
 </html>

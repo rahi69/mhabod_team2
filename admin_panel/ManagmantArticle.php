@@ -113,18 +113,6 @@
 
                     </div>
                 </div>
-                <div class="card" style="width: 18rem; text-align: center;
-            font-weight: bold;font-family: IRANSans;background-color:#ffffff;padding: 1%;">
-                    <img class="card-img-top" src="img/p.gif"
-                         style="width: 150px;height: 100px;border: 2px solid #000000" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">عنوان مقاله</h5>
-                        <p class="card-text">توضیحات مربوط به مقاله</p>
-                        <a href="#" class="btn btn-primary">حذف</a>
-                        <a href="#" class="btn btn-primary">ویرایش</a>
-
-                    </div>
-                </div>
             </div>
 
 

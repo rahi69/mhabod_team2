@@ -172,14 +172,14 @@ body {
     background-size: cover;
     position: relative;
     top: 105px;
-    right: 166px;
+    right: 235px;
     z-index: 1000;
 }
 
 /*ManagmentArticle................................................................................*/
 .parentCardArticle {
-    overflow-y: scroll;
-    height: 62vh;
+    overflow-y: scroll!important;
+    height: 62vh !important;
 }
 
 .parentCardArticle::-webkit-scrollbar {
@@ -188,7 +188,7 @@ body {
 
 .parentCardArticle::-webkit-scrollbar-thumb {
     background-color: #aaf191;
-    outline: 1px solid slategray;
+    /*outline: 1px solid slategray;*/
 }
 
 .parentCardArticle div {
